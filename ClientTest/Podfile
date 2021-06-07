@@ -1,0 +1,6 @@
+
+target ‘ClientTest’ do 
+pod 'AFNetworking'
+pod 'UMCommon'
+pod 'UMDevice'
+end
