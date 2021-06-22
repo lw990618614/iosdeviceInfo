@@ -8,7 +8,22 @@
 
 #import "AppDelegate.h"
 #import "NSData+CRC32.h"
+#import "NetWorkInfoManager.h"
+#import "AFNetworking.h"
+
 #import <UMCommon/UMCommon.h>
+#import "ANYMethodLog.h"
+#import "FMDeviceManager.h"
+@interface UMUtils : NSObject
+
+
+@end
+
+@interface UMConfigureCache : NSObject
+
+
+@end
+
 @interface AppDelegate ()
 
 @end
@@ -18,9 +33,74 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [UMConfigure initWithAppkey:@"60bd82994d0228352bbdbaaf" channel:@"App Store"];
+    
+//    [ANYMethodLog logMethodWithClass:[NSFileManager class] condition:^BOOL(SEL sel) {
+//        return YES;
+//    } before:^(id target, SEL sel, NSArray *args, int deep) {
+//        NSLog(@"UMConfigureCachetarget:%@ sel:%@", target, NSStringFromSelector(sel));
+//    } after:nil];
+
+    [NetWorkInfoManager sharedManager];
+    
+//    [UMConfigure initWithAppkey:@"60bd82994d0228352bbdbaaf" channel:@"App Store"];
+//    [UMConfigure initWithAppkey:@"60c31214e044530ff0a1cc2f" channel:@"App Store"];
+//    [UMConfigure initWithAppkey:@"60d00bff8a102159db7183ba" channel:@"App Store"];
+
+// 值测试路劲而已 11 点55 大量启动
+//    [UMConfigure initWithAppkey:@"60bb27a14d0228352bbcd731" channel:@"App Store"];
+    //测试 所有的
+//    [UMConfigure initWithAppkey:@"60d013a126a57f10182f3cbe" channel:@"App Store"];
+    
+    
+//    FMDeviceManager_t *manager = [FMDeviceManager sharedManager];
+//    NSMutableDictionary *options = [NSMutableDictionary dictionary];
+//
+//    /*
+//     * SDK具有防调试功能，当使用xcode运行时(开发测试阶段),请取消下面代码注释，
+//     * 开启调试模式,否则使用xcode运行会闪退。上架打包的时候需要删除或者注释掉这
+//     * 行代码,如果检测到调试行为就会触发crash,起到对APP的保护作用
+//     */
+//
+//    [options setValue:@"allowd" forKey:@"allowd"];  // TODO
+////    [options setValue:@"sandbox" forKey:@"env"];
+//    [options setValue:@"sandbox" forKey:@"product"];
+//
+//    [options setValue:@"noLocation" forKey:@"noLocation"]; //
+//    [options setValue:@"youju" forKey:@"partner"];
+//
+//    [options setObject:^(NSString *blackBox){
+//        //添加你的回调逻辑
+////        printf("同盾设备指纹,回调函数获取到的blackBox:%s\n",[blackBox UTF8String]);
+//        [self getDeviceInfoWithblackBox:blackBox];
+//
+//    } forKey:@"callback"];
+//    //设置超时时间(单位:秒)
+//    [options setValue:@"6" forKey:@"timeLimit"];
+//    // 使用上述参数进行SDK初始化
+//    manager->initWithOptions(options);
+//
     
     return YES;
+}
+
+-(void)getDeviceInfoWithblackBox:(NSString *)info{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+ 
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];   // 请求JSON格式
+    manager.responseSerializer = [AFJSONResponseSerializer serializer]; // 响应JSON格式
+ 
+    [manager.requestSerializer setValue:@"application/json;UTF-8" forHTTPHeaderField:@"Content-Type"];
+ 
+//    NSString *url = [NSString stringWithFormat:@"http://114.116.231.177:8091/no/fraudApiInvoker/checkFraud?blackBox=%@&type=2",info];
+    NSString *url = [NSString stringWithFormat:@"http://114.116.231.177:8091/no/fraudApiInvoker/checkFraud?"];
+    NSDictionary *parameters = @{@"blackBox":info,
+                                 @"type": @"2"};
+    [manager GET:url parameters:parameters headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"请求成功：%@",responseObject);
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
@@ -70,5 +150,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
 
 @end

@@ -25,6 +25,29 @@
 - (NSString*)getmylocation;
 -(NSString *)getCarrierInfo;
 
+-(NSString *)getbrokenState;
+
+
+
+-(NSString *)gethomeDirPath;
+-(NSString *)getdocumentsDirPath;
+
+-(NSString *)getpreferencesDirDirPath;
+
+
+-(NSString *)getBoundPath;
+
+-(NSString *)getNSProcessInfo;
+-(NSString *)getOpenUdid;
+-(NSString *)getBulidVersionName;
+-(BOOL)getisStatNotSystemLib;
+-(BOOL)getisDebugged;
+-(BOOL)getisInjectedWithDynamicLibrary;
+-(BOOL)getJCheckKuyt;
+-(BOOL)getdyldEnvironmentVariables;
+
+
+
 @property(nonatomic,strong)CLLocationManager *locationManager;
 @property(nonatomic)NSString *mylocation;
 

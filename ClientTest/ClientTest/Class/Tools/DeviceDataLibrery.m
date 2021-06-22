@@ -153,8 +153,8 @@ typedef NS_ENUM(NSUInteger, DiviceType) {
     struct utsname systemInfo;
     uname(&systemInfo);
     NSString *machineString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
-    
-    
+//    Darwin Kernel Version 18.2.0: Tue Oct 16 21:02:23 PDT 2018; root:xnu-4903.222.5~1/RELEASE_ARM64_S8000",
+//    "Darwin Kernel Version 18.2.0: Tue Oct 16 21:02:23 PDT 2018; root:xnu-4903.222.5~1/RELEASE_ARM64_S8000"
     if ([machineString isEqualToString:@"iPhone1,1"])   return iPhone_1G;
     if ([machineString isEqualToString:@"iPhone1,2"])   return iPhone_3G;
     if ([machineString isEqualToString:@"iPhone2,1"])   return iPhone_3GS;

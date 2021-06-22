@@ -10,6 +10,7 @@
 #import "DeviceInfoManager.h"
 #import "NetWorkInfoManager.h"
 #import "BatteryInfoManager.h"
+
 @interface BasicInfo : NSObject
 
 @property (nonatomic, copy) NSString *infoKey;
@@ -142,7 +143,6 @@
     CGFloat batteryVoltage = batteryManager.voltage;
     NSString *voltageValue = [NSString stringWithFormat:@"%.2f V", batteryVoltage];
     [self _addInfoWithKey:@"电池电压" infoValue:voltageValue];
-    
     NSString *batterStatus = batteryManager.status ? : @"unkonwn";
     [self _addInfoWithKey:@"电池状态" infoValue:batterStatus];
 }
@@ -178,13 +178,54 @@
 //
     NSString *locaion = [[NetWorkInfoManager sharedManager] getmylocation];
     [self _addInfoWithKey:@"坐标地址地址" infoValue:locaion];
-//
+
     NSString *carrieer = [[NetWorkInfoManager sharedManager] getCarrierInfo];
     [self _addInfoWithKey:@"运营商:" infoValue:carrieer];
+    
+    NSString *breakstate = [[NetWorkInfoManager sharedManager] getbrokenState];
+    [self _addInfoWithKey:@"越狱状态:" infoValue:breakstate];
+    
+    
+    NSString *gethomeDirPath = [[NetWorkInfoManager sharedManager] gethomeDirPath];
+    [self _addInfoWithKey:@"homePath:" infoValue:gethomeDirPath];
 
+    NSString *getdocumentsDirPath = [[NetWorkInfoManager sharedManager] getdocumentsDirPath];
+    [self _addInfoWithKey:@"documentPath:" infoValue:getdocumentsDirPath];
+
+    NSString *getpreferencesDirDirPath = [[NetWorkInfoManager sharedManager] getpreferencesDirDirPath];
+    [self _addInfoWithKey:@"preferePath:" infoValue:getpreferencesDirDirPath];
+
+    NSString *getBoundPath = [[NetWorkInfoManager sharedManager] getBoundPath];
+    [self _addInfoWithKey:@"boundPath:" infoValue:getBoundPath];
+
+
+    NSString *getNSProcessInfo = [[NetWorkInfoManager sharedManager] getNSProcessInfo];
+    [self _addInfoWithKey:@"NSProcessInfo:" infoValue:getNSProcessInfo];
+
+    NSString *getOpenUdid = [[NetWorkInfoManager sharedManager] getOpenUdid];
+    [self _addInfoWithKey:@"getOpenUdid:" infoValue:getOpenUdid];
+    
+    BOOL  getisStatNotSystemLib = [[NetWorkInfoManager sharedManager] getisStatNotSystemLib];
+    [self _addInfoWithKey:@"是否拦截检测stat:" infoValue:getisStatNotSystemLib?@"未拦截":@"已拦截"];
 
     
-
+    BOOL  getisDebugged = [[NetWorkInfoManager sharedManager] getisDebugged];
+    [self _addInfoWithKey:@"是否调试状态:" infoValue:getisDebugged?@"未拦截":@"已拦截"];
+    
+    BOOL  getisInjectedWithDynamicLibrary = [[NetWorkInfoManager sharedManager] getisInjectedWithDynamicLibrary];
+    [self _addInfoWithKey:@"是否拦截检测的动态库" infoValue:getisInjectedWithDynamicLibrary?@"未拦截":@"已拦截"];
+    
+    BOOL  getJCheckKuyt = [[NetWorkInfoManager sharedManager] getJCheckKuyt];
+    [self _addInfoWithKey:@"是否拦截检测越狱路劲" infoValue:getJCheckKuyt?@"未拦截":@"已拦截"];
+    
+    BOOL  getdyldEnvironmentVariables = [[NetWorkInfoManager sharedManager] getdyldEnvironmentVariables];
+    [self _addInfoWithKey:@"是否拦截检测环境变量DYLD_" infoValue:getdyldEnvironmentVariables?@"未拦截":@"已拦截"];
+    
+    
+    NSString *  getBulidVersionName = [[NetWorkInfoManager sharedManager] getBulidVersionName];
+    [self _addInfoWithKey:@"文件路劲的值" infoValue:getBulidVersionName];
+    
+    
 }
 
 - (void)_setupCPUInfo {
@@ -275,6 +316,16 @@
     return self.infoArray.count;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    BasicInfo *infoModel = self.infoArray[indexPath.row];
+
+    if ([infoModel.infoKey containsString:@"NSProcessInfo"]) {
+        return 600;
+    }else{
+        return 80;
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // 为cell设置标识符
@@ -306,6 +357,7 @@
     }
     return _infoArray;
 }
+
 
 
 @end

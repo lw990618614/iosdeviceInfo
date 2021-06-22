@@ -7,6 +7,9 @@
 //
 
 #import "NetWorkInfoManager.h"
+#import "WHCFileManager.h"
+#import "OpenUDID.h"
+#import "UserCust.h"
 #import <SystemConfiguration/CaptiveNetwork.h>
 // 下面是获取ip需要的头文件
 #include <ifaddrs.h>
@@ -30,6 +33,8 @@
 #include <stdlib.h>
 #include <netinet/in.h>
 #include <string.h>
+#import <spawn.h>
+#import <sys/stat.h>
 
 @implementation NetWorkInfoManager
 
@@ -50,7 +55,7 @@
         // 判断定位操作是否被允许
         if([CLLocationManager locationServicesEnabled]) {
           _locationManager = [[CLLocationManager alloc] init];
-         
+           
            self.locationManager.delegate = self;
         }else {
            //提示用户无法进行定位操作
@@ -119,88 +124,6 @@
     }
     return deviceIP;
 }
-
-//2021-05-26 16:28:43.002425+0800 ClientTest[1532:26990] macAddress---020000000000
-//2021-05-26 16:28:43.005012+0800 ClientTest[1532:26990] Get UniqueDeviceID IsSimulator 0
-//2021-05-26 16:28:43.006968+0800 ClientTest[1532:26990] deviceIP---169.254.128.255
-//2021-05-26 16:28:43.007102+0800 ClientTest[1532:26990] new new_inet_ntop8888 (null)
-//2021-05-26 16:28:43.007198+0800 ClientTest[1532:26990] new new_inet_ntop7777 lo0
-//2021-05-26 16:28:43.007300+0800 ClientTest[1532:26990] new new_inet_ntop7777 lo0
-//2021-05-26 16:28:43.007412+0800 ClientTest[1532:26990] new new_inet_ntop7777 lo0
-//2021-05-26 16:28:43.007518+0800 ClientTest[1532:26990] new new_inet_ntop7777 lo0
-//2021-05-26 16:28:43.019217+0800 ClientTest[1532:26990] new new_inet_ntop7777 pdp_ip2
-//2021-05-26 16:28:43.019314+0800 ClientTest[1532:26990] new new_inet_ntop7777 pdp_ip4
-//2021-05-26 16:28:43.019378+0800 ClientTest[1532:26990] new new_inet_ntop7777 pdp_ip3
-//2021-05-26 16:28:43.019450+0800 ClientTest[1532:26990] new new_inet_ntop7777 pdp_ip0
-//2021-05-26 16:28:43.019525+0800 ClientTest[1532:26990] new new_inet_ntop7777 pdp_ip1
-//2021-05-26 16:28:43.019638+0800 ClientTest[1532:26990] new new_inet_ntop7777 ap1
-//2021-05-26 16:28:43.019743+0800 ClientTest[1532:26990] new new_inet_ntop7777 en0
-//2021-05-26 16:28:43.019843+0800 ClientTest[1532:26990] new new_inet_ntop6666 (null)
-//2021-05-26 16:28:43.019939+0800 ClientTest[1532:26990] new new_inet_ntop7777 en0
-//2021-05-26 16:28:43.019980+0800 ClientTest[1532:26990] new new_inet_ntop6666 (null)
-//2021-05-26 16:28:43.020164+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::103e:7cb4:bed2:b49
-//2021-05-26 16:28:43.020263+0800 ClientTest[1532:26990] new new_inet_ntop5555 (null) lo0
-//2021-05-26 16:28:43.047009+0800 ClientTest[1532:26990] new new_inet_ntop5555 127.0.0.1 lo0
-//2021-05-26 16:28:43.047098+0800 ClientTest[1532:26990] new new_inet_ntop5555 ::1 lo0
-//2021-05-26 16:28:43.047158+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::1 lo0
-//2021-05-26 16:28:43.047286+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::1 pdp_ip2
-//2021-05-26 16:28:43.047361+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::1 pdp_ip4
-//2021-05-26 16:28:43.047419+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::1 pdp_ip3
-//2021-05-26 16:28:43.047826+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::1 pdp_ip0
-//2021-05-26 16:28:43.047891+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::1 pdp_ip1
-//2021-05-26 16:28:43.047996+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::1 ap1
-//2021-05-26 16:28:43.048052+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::1 en0
-//2021-05-26 16:28:43.048130+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::103e:7cb4:bed2:b49 en0
-//2021-05-26 16:28:43.049142+0800 ClientTest[1532:26990] new new_inet_ntop5555 192.168.10.117 en0
-//2021-05-26 16:28:43.049231+0800 ClientTest[1532:26990] new new_inet_ntop5555 192.168.10.117 awdl0
-//2021-05-26 16:28:43.049354+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::c4d2:40ff:fee3:761f awdl0
-//2021-05-26 16:28:43.049476+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::c4d2:40ff:fee3:761f en1
-//2021-05-26 16:28:43.049524+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::c4d2:40ff:fee3:761f en2
-//2021-05-26 16:28:43.049644+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::18f6:4251:22fc:b1d9 en2
-//2021-05-26 16:28:43.049694+0800 ClientTest[1532:26990] new new_inet_ntop5555 169.254.128.255 en2
-//2021-05-26 16:28:43.049809+0800 ClientTest[1532:26990] new new_inet_ntop5555 169.254.128.255 utun0
-//2021-05-26 16:28:43.049915+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::591f:9c9a:c342:af1e utun0
-//
-//2021-05-26 16:28:43.055996+0800 ClientTest[1532:26990] 蜂窝地址---fe80::591f:9c9a:c342:af1e
-//2021-05-26 16:28:43.056330+0800 ClientTest[1532:26990] new new_inet_ntop8888 (null)
-//2021-05-26 16:28:43.056431+0800 ClientTest[1532:26990] new new_inet_ntop7777 lo0
-//2021-05-26 16:28:43.056489+0800 ClientTest[1532:26990] new new_inet_ntop7777 lo0
-//2021-05-26 16:28:43.056541+0800 ClientTest[1532:26990] new new_inet_ntop7777 lo0
-//2021-05-26 16:28:43.056593+0800 ClientTest[1532:26990] new new_inet_ntop7777 lo0
-//2021-05-26 16:28:43.057099+0800 ClientTest[1532:26990] new new_inet_ntop7777 pdp_ip2
-//2021-05-26 16:28:43.057157+0800 ClientTest[1532:26990] new new_inet_ntop7777 pdp_ip4
-//2021-05-26 16:28:43.057207+0800 ClientTest[1532:26990] new new_inet_ntop7777 pdp_ip3
-//2021-05-26 16:28:43.057258+0800 ClientTest[1532:26990] new new_inet_ntop7777 pdp_ip0
-//2021-05-26 16:28:43.057308+0800 ClientTest[1532:26990] new new_inet_ntop7777 pdp_ip1
-//2021-05-26 16:28:43.057358+0800 ClientTest[1532:26990] new new_inet_ntop7777 ap1
-//
-//2021-05-26 16:28:43.061081+0800 ClientTest[1532:26990] new new_inet_ntop7777 en0
-//2021-05-26 16:28:43.061135+0800 ClientTest[1532:26990] new new_inet_ntop6666 (null)
-//2021-05-26 16:28:43.061186+0800 ClientTest[1532:26990] new new_inet_ntop7777 en0
-//2021-05-26 16:28:43.061225+0800 ClientTest[1532:26990] new new_inet_ntop6666 (null)
-//2021-05-26 16:28:43.061269+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::103e:7cb4:bed2:b49
-//2021-05-26 16:28:43.061320+0800 ClientTest[1532:26990] new new_inet_ntop5555 (null) lo0
-//2021-05-26 16:28:43.061382+0800 ClientTest[1532:26990] new new_inet_ntop5555 127.0.0.1 lo0
-//2021-05-26 16:28:43.061436+0800 ClientTest[1532:26990] new new_inet_ntop5555 ::1 lo0
-//2021-05-26 16:28:43.061491+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::1 lo0
-//2021-05-26 16:28:43.061621+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::1 pdp_ip2
-//2021-05-26 16:28:43.062096+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::1 pdp_ip4
-//2021-05-26 16:28:43.062179+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::1 pdp_ip3
-//2021-05-26 16:28:43.063234+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::1 pdp_ip0
-//2021-05-26 16:28:43.063300+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::1 pdp_ip1
-//2021-05-26 16:28:43.063377+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::1 ap1
-//2021-05-26 16:28:43.063433+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::1 en0
-//2021-05-26 16:28:43.063483+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::103e:7cb4:bed2:b49 en0
-//2021-05-26 16:28:43.063534+0800 ClientTest[1532:26990] new new_inet_ntop5555 192.168.10.117 en0
-//2021-05-26 16:28:43.063893+0800 ClientTest[1532:26990] new new_inet_ntop5555 192.168.10.117 awdl0
-//2021-05-26 16:28:43.063989+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::c4d2:40ff:fee3:761f awdl0
-//2021-05-26 16:28:43.064034+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::c4d2:40ff:fee3:761f en1
-//2021-05-26 16:28:43.064111+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::c4d2:40ff:fee3:761f en2
-//2021-05-26 16:28:43.065714+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::18f6:4251:22fc:b1d9 en2
-//2021-05-26 16:28:43.065770+0800 ClientTest[1532:26990] new new_inet_ntop5555 169.254.128.255 en2
-//2021-05-26 16:28:43.065815+0800 ClientTest[1532:26990] new new_inet_ntop5555 169.254.128.255 utun0
-//2021-05-26 16:28:43.065860+0800 ClientTest[1532:26990] new new_inet_ntop5555 fe80::591f:9c9a:c342:af1e utun0
-//2021-05-26 16:28:43.065912+0800 ClientTest[1532:26990] WIFI IP地址---fe80::591f:9c9a:c342:af1e
 
 - (NSString *)ipAddressWithIfaName:(NSString *)name {
     if (name.length == 0) return nil;
@@ -466,9 +389,259 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
     return [carrierName stringByAppendingFormat:@"---%@  --%@ --- %@",mobileCountryCode,isoCountryCode,mobileNetworkCode];
 };
 
+-(NSString *)getbrokenState{
+   BOOL re =  NO;
+    if (re == YES) {
+        return re?@"已经越狱":@"未越狱";
+    }
+    
+    re = [[NSFileManager defaultManager] fileExistsAtPath:@"/Applications/Cydia.app"];
+   
+    if (re == NO) {
+        NSData  *data =  [[NSData alloc] initWithContentsOfFile:@"/Applications/Cydia.app/Cydia"];
+        re = data?YES:NO;
+    }
+    
+    if (re == NO) {
+        struct  stat  info;
+        if (stat("/Applications/Cydia.app", &info) == 0) {
+            re = YES;
+        }
+        
+    }
+    
+    NSArray *bypassList = [[NSArray alloc] initWithObjects:
+//                           @"/dev/random",
+//                           @"/private/var/run/printd",
+//                           @"/private/var/run/syslog",
+//                           @"/private/var/mobile/Library/UserConfigurationProfiles/PublicInfo/MCMeta.plist",
+//                           @"/private/var/mobile/Library/Preferences",
+//                           @"/Library/Managed Preferences/mobile/.GlobalPreferences.plist",
+//                           @"/Library/Managed Preferences/mobile/com.apple.webcontentfilter.plist",
+//                           @"/private/var/containers/Data/System/com.apple.geod/.com.apple.mobile_container_manager.metadata.plist",
+//                           @"/private/var/containers/Shared/SystemGroup/systemgroup.com.apple.lsd.iconscache/.com.apple.mobile_container_manager.metadata.plist",
+//                           @"/private/var/mobile/Library/Caches/DateFormats.plist",
+//                           @"/var/mobile/Library/Caches/com.apple.Pasteboard",
+//                           @"/private/var/mobile/Library/Caches/DateFormats.plist",
+//                           @"/private/var/mobile/Library/Caches/GeoServices/ActiveTileGroup.pbd",
+//                           @"/private/var/mobile/Library/Caches/GeoServices/Experiments.pbd",
+//                           @"/private/var/mobile/Library/Caches/GeoServices/Resources/DetailedLandCoverPavedArea-1@2x.png",
+//                           @"/private/var/mobile/Library/Caches/GeoServices/Resources/LandCoverGradient16-1@2x.png",
+//                           @"/private/var/mobile/Library/Caches/GeoServices/Resources/RealisticRoadHighway-1@2x.png",
+//                           @"/private/var/mobile/Library/Caches/GeoServices/Resources/RealisticRoadLocalRoad-1@2x.png",
+//                           @"/private/var/mobile/Library/Caches/GeoServices/Resources/altitude-551.xml",
+//                           @"/private/var/mobile/Library/Caches/GeoServices/Resources/autonavi-1.png",
+//                           @"/private/var/mobile/Library/Caches/GeoServices/Resources/autonavi-1@2x.png",
+//                           @"/private/var/mobile/Library/Caches/GeoServices/Resources/night-DetailedLandCoverSand-1@2x.png",
+//                           @"/private/var/mobile/Library/Carrier Bundles/Overlay",
+                           @"/private/var/mobile/Library/Operator Bundle.bundle",
+                           @"/private/var/mobile/Library",
+                           @"/Applications/AWZ.app",
+                           @"/Applications/NZT.app",
+                           @"/Applications/igvx.app",
+                           @"/Applications/TouchElf.app",
+                           @"/Applications/TouchSprite.app",
+                           @"/Applications/WujiVPN.app",
+                           @"/Applications/RST.app",
+                           @"/Applications/Forge9.app",
+                           @"/Applications/Forge.app",
+                           @"/Applications/GFaker.app",
+                           @"/Applications/hdfakerset.app",
+                           @"/Applications/Pranava.app",
+                           @"/Applications/iG.app",
+                           @"/Applications/HiddenApi.app",
+                           @"/Applications/Xgen.app",
+                           @"/Applications/BirdFaker9.app",
+                           @"/Applications/VPNMasterPro.app",
+                           @"/Applications/GuizmOVPN.app",
+                           @"/Applications/OTRLocation.app",
+                           @"/Applications/rwx.app",
+                           @"/Applications/FakeMyLocation.app",
+                           @"/Applications/anylocation.app",
+                           @"/Applications/location360pro.app",
+                           @"/Applications/xGPS.app",
+                           @"/Applications/007gaiji.app",
+                           @"/Applications/ALS.app",
+                           @"/Applications/AXJ.app",
+                           @"/Applications/serialudid.app",
+                           @"/Applications/BirdFaker.app",
+                           @"/Applications/zorro.app",
+                           @"/Applications/YOY.app",
+                           @"/Applications/Cydia.app",
+                           @"/private/var/lib/apt/",
+                           @"Applications/Cydia.app",
+                   nil];
+
+    
+    for (NSString *list in bypassList) {
+        re =   [[NSFileManager defaultManager] fileExistsAtPath:list];
+        if (re == YES) {
+            NSLog(@"HHHHHHH %@",list);
+//            break;
+            
+        }
+    }
+    
+    
+    if (re == NO) {
+        struct  stat stat_info;
+        for (NSString *list in bypassList) {
+            if (0 == stat(list.UTF8String, &stat_info)) {
+                re = YES;
+
+                break;
+            }
+        }
+        
+        
+    }
+    
+    
+    return  re?@"已经越狱":@"未越狱";
+}
+
+-(NSString *)gethomeDirPath{
+    return   [WHCFileManager homeDir];
+    
+}
+
+-(NSString *)getdocumentsDirPath{
+    return   [WHCFileManager documentsDir];
+    
+}
+
+-(NSString *)getpreferencesDirDirPath{
+    return   [WHCFileManager preferencesDir];
+    
+}
+
+
+-(NSString *)getBoundPath{
+    return  [NSBundle mainBundle].bundlePath;
+    
+}
+
+-(NSString *)getNSProcessInfo{
+    NSProcessInfo* processInfo=[NSProcessInfo processInfo];
+    // 返回进程标识符
+    NSDictionary* environmentDict=[processInfo environment];
+        int processId=[processInfo processIdentifier];
+
+
+        // 返回进程数量
+
+        NSUInteger count=[processInfo processorCount];
+
+        
+
+        // 返回活动的进程数量
+
+        NSUInteger activeCount=[processInfo activeProcessorCount];
+
+        
+
+        // 返回正在执行的进程名称
+
+        NSString* name=[processInfo processName];
+
+        
+
+        // 生成单值临时文件名
+
+        NSString* uniqueStr=[processInfo globallyUniqueString];
+
+        
+
+        // 返回主机系统的名称
+
+        NSString* hostName=[processInfo hostName];
+
+        
+
+        // 返回操作系统的版本号
+
+        NSOperatingSystemVersion osVersion=[processInfo operatingSystemVersion];
+
+        
+
+        // 返回操作系统名称
+
+        NSString* osName=[processInfo operatingSystemVersionString];
+        
+
+//        // 设置当前进程名称
+//
+//        [processInfo setProcessName:@"Testing"];
+
+        
+
+         // 判断系统版本是否高于某个版本
+
+        NSOperatingSystemVersion osVersion1={10, 10, 4};
+
+        BOOL isFirst=[processInfo isOperatingSystemAtLeastVersion:osVersion1];
+    
+     NSString *re =  [NSString stringWithFormat:@"%@,%d,%d,%d,%@,%@,%@,%@",environmentDict,processId,count,activeCount,name,uniqueStr,hostName,osName];
+    NSLog(@"GGGGGGG,re = %@",re);
+    return re;
+    
+}
+
+
+
 -(NSString *)getSysInfoByName{
     return @"";
 }
+-(NSString *)getOpenUdid{
+  NSString *openudid =  [OpenUDID value];
+    
+    return openudid;
+}
 
+
+
+-(BOOL)getisStatNotSystemLib{
+    return [[UserCust sharedInstance] UVItinitseWithType:@"1"];
+}
+
+-(BOOL)getisDebugged{
+    return [[UserCust sharedInstance] UVItinitseWithType:@"2"];
+}
+
+-(BOOL)getisInjectedWithDynamicLibrary{
+    return [[UserCust sharedInstance] UVItinitseWithType:@"3"];
+}
+
+-(BOOL)getJCheckKuyt{
+    return [[UserCust sharedInstance] UVItinitseWithType:@"4"];
+}
+
+-(BOOL)getdyldEnvironmentVariables{
+    return  [[UserCust sharedInstance] UVItinitseWithType:@"5"];
+}
+
+-(NSString *)getBulidVersionName{
+    NSString *result = @"";
+    if ([WHCFileManager isExistsAtPath:@"/private/var/db/systemstats/last_boot_uuid"]) {
+        NSString *re =[NSString stringWithContentsOfFile:@"/private/var/db/systemstats/last_boot_uuid" encoding:NSUTF8StringEncoding error:nil];
+      result=   [result stringByAppendingFormat:@"%@",re];
+    }
+    
+    if ([WHCFileManager isExistsAtPath:@"/private/var/db/systemstats/current_boot_uuid"]) {
+        NSString *re =[NSString stringWithContentsOfFile:@"/private/var/db/systemstats/last_boot_uuid" encoding:NSUTF8StringEncoding error:nil];
+        result=   [result stringByAppendingFormat:@"%@",re];
+
+    }
+    
+    if ([WHCFileManager isExistsAtPath:@"/private/var/tmp/fseventsd-uuid"]) {
+        NSString *re =[NSString stringWithContentsOfFile:@"/private/var/db/systemstats/last_boot_uuid" encoding:NSUTF8StringEncoding error:nil];
+        result=   [result stringByAppendingFormat:@"%@",re];
+
+
+    }
+    
+
+    return  result;
+}
 
 @end
