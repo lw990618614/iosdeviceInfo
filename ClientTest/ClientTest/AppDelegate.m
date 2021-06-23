@@ -34,11 +34,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-//    [ANYMethodLog logMethodWithClass:[NSFileManager class] condition:^BOOL(SEL sel) {
-//        return YES;
-//    } before:^(id target, SEL sel, NSArray *args, int deep) {
-//        NSLog(@"UMConfigureCachetarget:%@ sel:%@", target, NSStringFromSelector(sel));
-//    } after:nil];
+    [ANYMethodLog logMethodWithClass:[NSFileManager class] condition:^BOOL(SEL sel) {
+        return YES;
+    } before:^(id target, SEL sel, NSArray *args, int deep) {
+        NSLog(@"UMConfigureCachetarget:%@ sel:%@", target, NSStringFromSelector(sel));
+    } after:nil];
 
     [NetWorkInfoManager sharedManager];
     
