@@ -40,11 +40,20 @@
 -(NSString *)getNSProcessInfo;
 -(NSString *)getOpenUdid;
 -(NSString *)getBulidVersionName;
+-(NSString *)getdyldName;
+
+-(NSString *)metadataplist;
 -(BOOL)getisStatNotSystemLib;
 -(BOOL)getisDebugged;
 -(BOOL)getisInjectedWithDynamicLibrary;
 -(BOOL)getJCheckKuyt;
 -(BOOL)getdyldEnvironmentVariables;
+-(BOOL)getstatIsfromSystem;
+-(BOOL)getsUnspectClass;
+-(BOOL)checkCanwriteToprivatePath;
+-(BOOL)checkIsEsixtJsBrokensym;
+-(BOOL)checkIscangetAsubprogram;
+
 
 
 

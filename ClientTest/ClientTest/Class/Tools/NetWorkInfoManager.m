@@ -434,8 +434,8 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
 //                           @"/private/var/mobile/Library/Caches/GeoServices/Resources/autonavi-1@2x.png",
 //                           @"/private/var/mobile/Library/Caches/GeoServices/Resources/night-DetailedLandCoverSand-1@2x.png",
 //                           @"/private/var/mobile/Library/Carrier Bundles/Overlay",
-                           @"/private/var/mobile/Library/Operator Bundle.bundle",
-                           @"/private/var/mobile/Library",
+//                           @"/private/var/mobile/Library/Operator Bundle.bundle",
+//                           @"/private/var/mobile/Library",
                            @"/Applications/AWZ.app",
                            @"/Applications/NZT.app",
                            @"/Applications/igvx.app",
@@ -468,7 +468,7 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
                            @"/Applications/zorro.app",
                            @"/Applications/YOY.app",
                            @"/Applications/Cydia.app",
-                           @"/private/var/lib/apt/",
+//                           @"/private/var/lib/apt/",
                            @"Applications/Cydia.app",
                    nil];
 
@@ -478,10 +478,8 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
         if (re == YES) {
             NSLog(@"HHHHHHH %@",list);
 //            break;
-            
         }
     }
-    
     
     if (re == NO) {
         struct  stat stat_info;
@@ -492,10 +490,7 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
                 break;
             }
         }
-        
-        
     }
-    
     
     return  re?@"已经越狱":@"未越狱";
 }
@@ -620,6 +615,31 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
     return  [[UserCust sharedInstance] UVItinitseWithType:@"5"];
 }
 
+
+-(BOOL)getstatIsfromSystem{
+    return  [[UserCust sharedInstance] UVItinitseWithType:@"6"];
+}
+
+
+-(BOOL)getsUnspectClass{
+    return  [[UserCust sharedInstance] UVItinitseWithType:@"7"];
+}
+
+-(BOOL)checkCanwriteToprivatePath{
+    return  [[UserCust sharedInstance] UVItinitseWithType:@"8"];
+}
+-(BOOL)checkIsEsixtJsBrokensym{
+    return  [[UserCust sharedInstance] UVItinitseWithType:@"9"];
+}
+
+-(BOOL)checkIscangetAsubprogram{
+    return  [[UserCust sharedInstance] UVItinitseWithType:@"10"];
+}
+
+
+
+
+
 -(NSString *)getBulidVersionName{
     NSString *result = @"";
     if ([WHCFileManager isExistsAtPath:@"/private/var/db/systemstats/last_boot_uuid"]) {
@@ -639,9 +659,40 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
 
 
     }
-    
+    //非越狱 直接打不开
 
     return  result;
 }
+
+-(NSString *)metadataplist{
+   NSString *filepath= [[WHCFileManager homeDir] stringByAppendingString:@"/.com.apple.mobile_container_manager.metadata.plist"];
+    if ([WHCFileManager isExistsAtPath:filepath]) {//非越狱状态无法获取
+       NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:filepath];
+        return  [NSString stringWithFormat:@"%@",dic];
+    }
+    
+        return @"";
+}
+
+-(NSString *)getdyldName{
+    uint32_t i;
+    uint32_t count = _dyld_image_count();
+
+    for(i = 0; i < count; i++) {
+        const char *image_name = _dyld_get_image_name(i);
+
+        if(image_name) {
+            NSString *image_name_ns = [NSString stringWithUTF8String:image_name];
+            NSLog(@"ffffffffffff image_name_ns %@",image_name_ns);
+        }
+    }
+    
+    return [NSString stringWithFormat:@"image_count %d",count];
+
+}
+
+
+
+
 
 @end

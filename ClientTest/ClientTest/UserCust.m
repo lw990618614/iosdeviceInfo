@@ -13,9 +13,10 @@
 static char *JbPaths[] = {"/Applications/Cydia.app",
     "/usr/sbin/sshd",
     "/bin/bash",
-    "/etc/apt",
-    "/Library/MobileSubstrate",
-    "/User/Applications/"};
+//    "/Library/MobileSubstrate",
+//    "/User/Applications/"
+    
+};
 
 static NSSet *sDylibSet ; // 需要检测的动态库
 static BOOL SCHECK_USER = NO; /// 检测是否越狱
@@ -35,7 +36,6 @@ static BOOL SCHECK_USER = NO; /// 检测是否越狱
                        @"/usr/lib/substrate/SubstrateInserter.dylib",
                        @"/Library/MobileSubstrate/MobileSubstrate.dylib",
                        @"/Library/MobileSubstrate/DynamicLibraries/0Shadow.dylib",
-                  
                   nil];
     _dyld_register_func_for_add_image(_check_image);
   });
@@ -104,6 +104,32 @@ static void _check_image(const struct mach_header *header,
     if (dyldEnvironmentVariables()&&type.intValue == 5) {
         return YES;
     }
+    
+    if (checkInject()&&type.intValue == 6) {
+        return YES;
+    }
+    
+    if (checkIsExistUnspectClass()&&type.intValue == 7) {
+        return YES;
+    }
+    
+    if (checkCanwriteToprivatePath()&&type.intValue == 8) {
+        return YES;
+    }
+    
+    if (checkIsEsixtJsBrokensym()&&type.intValue == 9) {
+        return YES;
+    }
+    
+    if (checkIscangetAsubprogram()&&type.intValue == 10) {
+        return YES;
+    }
+
+
+
+
+
+
 
     return NO;
 }
@@ -161,23 +187,23 @@ BOOL JCheckKuyt()
                        @"/Library/MobileSubstrate/MobileSubstrate.dylib",
                        @"/bin/bash",
                        @"/usr/sbin/sshd",
-                       @"/etc/apt",
+//                       @"/etc/apt",
                        @"/usr/bin/ssh",
-                       @"/private/var/lib/apt",
-                       @"/private/var/lib/cydia",
-                       @"/private/var/tmp/cydia.log",
+//                       @"/private/var/lib/apt",
+//                       @"/private/var/lib/cydia",
+//                       @"/private/var/tmp/cydia.log",
                        @"/Applications/WinterBoard.app",
-                       @"/var/lib/cydia",
+//                       @"/var/lib/cydia",
                        @"/private/etc/dpkg/origins/debian",
                        @"/bin.sh",
-                       @"/private/etc/apt",
+//                       @"/private/etc/apt",
                        @"/etc/ssh/sshd_config",
                        @"/private/etc/ssh/sshd_config",
                        @"/Applications/SBSetttings.app",
                        @"/private/var/mobileLibrary/SBSettingsThemes/",
                        @"/private/var/stash",
                        @"/usr/libexec/sftp-server",
-                       @"/usr/libexec/cydia/",
+//                       @"/usr/libexec/cydia/",
                        @"/usr/sbin/frida-server",
                        @"/usr/bin/cycript",
                        @"/usr/local/bin/cycript",
@@ -290,8 +316,102 @@ BOOL isInjectedWithDynamicLibrary()
 BOOL dyldEnvironmentVariables ()
 {
     if(TARGET_IPHONE_SIMULATOR)return NO;
-    return !(NULL == getenv("DYLD_INSERT_LIBRARIES"));
+    bool re = !(NULL == getenv("DYLD_INSERT_LIBRARIES"));
+    return re;
 }
+
+//查看stat是否出自系统库
+bool checkInject() {
+    int ret ;
+    Dl_info dylib_info;
+    char *dylib_name = "/usr/lib/system/libsystem_kernel.dylib";
+    int (*func_stat)(const char *, struct stat *) = stat;
+    if ((ret = dladdr(func_stat, &dylib_info))) {
+        printf("lib :%s", dylib_info.dli_fname);
+        return strcmp(dylib_info.dli_fname, dylib_name) != 0;
+    }
+    return false;
+}
+
+//检测异常类
+//     查看是否有注入异常的类,比如HBPreferences 是越狱常用的类，这里无法绕过，只要多找一些特征类就可以，注意，很多反越狱插件会混淆，所以可能要通过查关键方法来识别
+BOOL checkIsExistUnspectClass()
+{
+    NSArray *checksClass = [[NSArray alloc] initWithObjects:@"HBPreferences",nil];
+    for(NSString *className in checksClass)
+    {
+      if (NSClassFromString(className) != NULL) {
+        return YES;
+      }
+    }
+    return NO;
+}
+
+
+//是是否可以在私有领域写入
+BOOL checkCanwriteToprivatePath()
+{
+    NSString *path = @"/var/mobile/test.plist";
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        @try {
+            NSError* error;
+            NSString *test = @"AVL was here";
+            [test writeToFile:path atomically:NO encoding:NSStringEncodingConversionAllowLossy error:&error];
+            NSDictionary *di = [[NSDictionary alloc] init];
+            bool re =  [di writeToFile:@"/var/mobile/test.plist" atomically:YES];
+            [fileManager removeItemAtPath:path error:nil];
+            if(re==YES)
+            {
+                return YES;
+            }
+
+            return NO;
+        } @catch (NSException *exception) {
+            return NO;
+        }
+}
+
+
+//我们可以检测这些符号链接是否存在，
+BOOL checkIsEsixtJsBrokensym()
+{
+    //symlink verification
+    struct stat s;
+        if(lstat("/Applications", &s) || lstat("/var/stash/Library/Ringtones", &s) || lstat("/var/stash/Library/Wallpaper", &s)
+           || lstat("/var/stash/usr/include", &s) || lstat("/var/stash/usr/libexec", &s)  || lstat("/var/stash/usr/share", &s)
+           || lstat("/var/stash/usr/arm-apple-darwin9", &s))
+        {
+            if(s.st_mode & S_IFLNK){
+                return YES;
+            }
+        }
+        
+   
+    return NO;
+
+}
+
+
+//我们可以检测这些符号链接是否存在，
+BOOL checkIscangetAsubprogram()
+{
+
+    int pid = fork(); //返回值：子进程返回0，父进程中返回子进程ID，出错则返回-1
+    if(!pid){
+//        exit(0);
+        return YES;
+
+    }
+    if(pid>=0)
+    {
+        return YES;
+    }
+    return NO;
+
+}
+
+
+
 
 #pragma mark 校验当前进程是否为调试模式，hook sysctl方法可以绕过
 // Returns true if the current process is being debugged (either

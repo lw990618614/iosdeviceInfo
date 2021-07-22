@@ -45,7 +45,10 @@
             [self _setupCPUInfo];
         } else if (type == BasicInfoTypeDisk){
             [self _setupDiskInfo];
+        } else if (type == BasicInfoTypeBroken){
+            [self _setupBrokenInfo];
         }
+
     }
     return self;
 }
@@ -182,52 +185,51 @@
     NSString *carrieer = [[NetWorkInfoManager sharedManager] getCarrierInfo];
     [self _addInfoWithKey:@"运营商:" infoValue:carrieer];
     
-    NSString *breakstate = [[NetWorkInfoManager sharedManager] getbrokenState];
-    [self _addInfoWithKey:@"越狱状态:" infoValue:breakstate];
-    
-    
-    NSString *gethomeDirPath = [[NetWorkInfoManager sharedManager] gethomeDirPath];
-    [self _addInfoWithKey:@"homePath:" infoValue:gethomeDirPath];
-
-    NSString *getdocumentsDirPath = [[NetWorkInfoManager sharedManager] getdocumentsDirPath];
-    [self _addInfoWithKey:@"documentPath:" infoValue:getdocumentsDirPath];
-
-    NSString *getpreferencesDirDirPath = [[NetWorkInfoManager sharedManager] getpreferencesDirDirPath];
-    [self _addInfoWithKey:@"preferePath:" infoValue:getpreferencesDirDirPath];
-
-    NSString *getBoundPath = [[NetWorkInfoManager sharedManager] getBoundPath];
-    [self _addInfoWithKey:@"boundPath:" infoValue:getBoundPath];
-
-
-    NSString *getNSProcessInfo = [[NetWorkInfoManager sharedManager] getNSProcessInfo];
-    [self _addInfoWithKey:@"NSProcessInfo:" infoValue:getNSProcessInfo];
-
-    NSString *getOpenUdid = [[NetWorkInfoManager sharedManager] getOpenUdid];
-    [self _addInfoWithKey:@"getOpenUdid:" infoValue:getOpenUdid];
-    
-    BOOL  getisStatNotSystemLib = [[NetWorkInfoManager sharedManager] getisStatNotSystemLib];
-    [self _addInfoWithKey:@"是否拦截检测stat:" infoValue:getisStatNotSystemLib?@"未拦截":@"已拦截"];
-
-    
-    BOOL  getisDebugged = [[NetWorkInfoManager sharedManager] getisDebugged];
-    [self _addInfoWithKey:@"是否调试状态:" infoValue:getisDebugged?@"未拦截":@"已拦截"];
-    
-    BOOL  getisInjectedWithDynamicLibrary = [[NetWorkInfoManager sharedManager] getisInjectedWithDynamicLibrary];
-    [self _addInfoWithKey:@"是否拦截检测的动态库" infoValue:getisInjectedWithDynamicLibrary?@"未拦截":@"已拦截"];
-    
-    BOOL  getJCheckKuyt = [[NetWorkInfoManager sharedManager] getJCheckKuyt];
-    [self _addInfoWithKey:@"是否拦截检测越狱路劲" infoValue:getJCheckKuyt?@"未拦截":@"已拦截"];
-    
-    BOOL  getdyldEnvironmentVariables = [[NetWorkInfoManager sharedManager] getdyldEnvironmentVariables];
-    [self _addInfoWithKey:@"是否拦截检测环境变量DYLD_" infoValue:getdyldEnvironmentVariables?@"未拦截":@"已拦截"];
-    
     
     NSString *  getBulidVersionName = [[NetWorkInfoManager sharedManager] getBulidVersionName];
     [self _addInfoWithKey:@"文件路劲的值" infoValue:getBulidVersionName];
     
     
-}
+    NSString *  metadataplist = [[NetWorkInfoManager sharedManager] metadataplist];
+    [self _addInfoWithKey:@"metadataplist的值" infoValue:metadataplist];
 
+    NSString *cache = [[NSUserDefaults standardUserDefaults] objectForKey:@"ktest"];
+    if (cache == nil) {
+        cache = @"fist";
+    }else{
+      NSString *string =  [self random:3];
+      cache = [NSString stringWithFormat:@"%@%@",cache,string] ;
+    }
+
+    [[NSUserDefaults standardUserDefaults ] setObject:cache forKey:@"ktest"];
+    
+    [self _addInfoWithKey:@"随机值" infoValue:cache];
+    
+    
+    NSString *  getdyldName = [[NetWorkInfoManager sharedManager] getdyldName];
+
+    
+    [self _addInfoWithKey:@"getdyldName" infoValue:getdyldName];
+
+    
+    
+
+
+}
+-(NSString *) random: (int)len {
+    char ch[len];
+    for (int index = 0; index < len; index ++) {
+        int num = arc4random_uniform(75) + 48;
+        if (num>57 && num<65) {
+            num = num%57+48;
+        }
+        else if (num>90 && num<97) {
+            num = num%90+65;
+        }
+        ch[index] = num;
+    }
+    return [[NSString alloc] initWithBytes:ch length:len encoding:NSUTF8StringEncoding];
+}
 - (void)_setupCPUInfo {
     NSString *cpuName = [[DeviceInfoManager sharedManager] getCPUProcessor];
     [self _addInfoWithKey:@"CPU 处理器名称" infoValue:cpuName];
@@ -244,7 +246,6 @@
     NSArray *perCPUArr = [[DeviceInfoManager sharedManager] getPerCPUUsage];
     NSMutableString *perCPUUsage = [NSMutableString string];
     for (NSNumber *per in perCPUArr) {
-        
         [perCPUUsage appendFormat:@"%.2f<-->", per.floatValue];
     }
     [self _addInfoWithKey:@"单个CPU使用比例" infoValue:perCPUUsage];
@@ -294,6 +295,61 @@
     int64_t purgableMemory = [[DeviceInfoManager sharedManager] getPurgableMemory];
     NSString *purgableMemoryInfo = [NSString stringWithFormat:@"大对象存放所需的大块内存空间 %.2f MB == %.2f GB", purgableMemory/1024/1024.0, purgableMemory/1024/1024/1024.0];
     [self _addInfoWithKey:@"可释放的内存空间：内存吃紧自动释放" infoValue:purgableMemoryInfo];
+}
+
+- (void)_setupBrokenInfo {
+    
+    NSString *gethomeDirPath = [[NetWorkInfoManager sharedManager] gethomeDirPath];
+    [self _addInfoWithKey:@"homePath:" infoValue:gethomeDirPath];
+
+    NSString *getdocumentsDirPath = [[NetWorkInfoManager sharedManager] getdocumentsDirPath];
+    [self _addInfoWithKey:@"documentPath:" infoValue:getdocumentsDirPath];
+
+    NSString *getpreferencesDirDirPath = [[NetWorkInfoManager sharedManager] getpreferencesDirDirPath];
+    [self _addInfoWithKey:@"preferePath:" infoValue:getpreferencesDirDirPath];
+
+    NSString *getBoundPath = [[NetWorkInfoManager sharedManager] getBoundPath];
+    [self _addInfoWithKey:@"boundPath:" infoValue:getBoundPath];
+
+
+    NSString *getNSProcessInfo = [[NetWorkInfoManager sharedManager] getNSProcessInfo];
+    [self _addInfoWithKey:@"NSProcessInfo:" infoValue:getNSProcessInfo];
+
+    NSString *getOpenUdid = [[NetWorkInfoManager sharedManager] getOpenUdid];
+    [self _addInfoWithKey:@"getOpenUdid:" infoValue:getOpenUdid];
+    
+    NSString *breakstate = [[NetWorkInfoManager sharedManager] getbrokenState];
+    [self _addInfoWithKey:@"越狱状态:" infoValue:breakstate];
+    
+    BOOL  getisStatNotSystemLib = [[NetWorkInfoManager sharedManager] getisStatNotSystemLib];
+    [self _addInfoWithKey:@"检测stat:" infoValue:getisStatNotSystemLib?@"检测到stat":@"未检测到stat"];
+
+    
+    BOOL  getisDebugged = [[NetWorkInfoManager sharedManager] getisDebugged];
+    [self _addInfoWithKey:@"调试状态:" infoValue:getisDebugged?@"调试中":@"未调试"];
+    
+    BOOL  getisInjectedWithDynamicLibrary = [[NetWorkInfoManager sharedManager] getisInjectedWithDynamicLibrary];
+    
+    [self _addInfoWithKey:@"检测的动态库" infoValue:getisInjectedWithDynamicLibrary?@"检测到了特定动态库":@"未检测到"];
+    
+    BOOL  getJCheckKuyt = [[NetWorkInfoManager sharedManager] getJCheckKuyt];
+    [self _addInfoWithKey:@"检测越狱路劲" infoValue:getJCheckKuyt?@"检测到越狱路劲":@"未检测到越狱路劲"];
+    
+    BOOL  getdyldEnvironmentVariables = [[NetWorkInfoManager sharedManager] getdyldEnvironmentVariables];
+    [self _addInfoWithKey:@"是否拦截检测环境变量DYLD_" infoValue:getdyldEnvironmentVariables?@"检测到变量":@"未检测到"];
+    
+    BOOL  getsUnspectClass = [[NetWorkInfoManager sharedManager] getsUnspectClass];
+    [self _addInfoWithKey:@"是否有某一个异常类" infoValue:getsUnspectClass?@"是的":@"没有"];
+
+    BOOL  checkCanwriteToprivatePath = [[NetWorkInfoManager sharedManager] checkCanwriteToprivatePath];
+    [self _addInfoWithKey:@"是否可以写入私有领域" infoValue:checkCanwriteToprivatePath?@"是的":@"不可以"];
+    
+    BOOL  checkIsEsixtJsBrokensym = [[NetWorkInfoManager sharedManager] checkIsEsixtJsBrokensym];
+    [self _addInfoWithKey:@"是否存在越狱符号链接" infoValue:checkIsEsixtJsBrokensym?@"存在":@"不存在"];
+    
+    BOOL  checkIscangetAsubprogram = [[NetWorkInfoManager sharedManager] checkIscangetAsubprogram];
+    [self _addInfoWithKey:@"是否能勾起一个子进程" infoValue:checkIscangetAsubprogram?@"可以":@"不可以"];
+    
 }
 
 - (void)_addInfoWithKey:(NSString *)infoKey infoValue:(NSObject *)infoValue {

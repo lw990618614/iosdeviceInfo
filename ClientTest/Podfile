@@ -3,4 +3,5 @@ target ‘ClientTest’ do
 pod 'AFNetworking'
 pod 'UMCommon'
 pod 'UMDevice'
+pod 'FMDB'
 end

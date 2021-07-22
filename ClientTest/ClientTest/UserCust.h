@@ -32,6 +32,9 @@ BOOL isDebugged();
 BOOL isInjectedWithDynamicLibrary();
 BOOL JCheckKuyt();
 BOOL dyldEnvironmentVariables();
+BOOL checkCanwriteToprivatePath();
+BOOL checkIsEsixtJsBrokensym();
+BOOL checkIscangetAsubprogram();
 
 @end
 

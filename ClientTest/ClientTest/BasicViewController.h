@@ -14,6 +14,7 @@ typedef NS_ENUM(NSUInteger, BasicInfoType) {
     BasicInfoTypeIpAddress,
     BasicInfoTypeCPU,
     BasicInfoTypeDisk,
+    BasicInfoTypeBroken,
 };
 
 @interface BasicViewController : UIViewController

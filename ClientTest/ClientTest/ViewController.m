@@ -43,6 +43,13 @@
     [self _pushVCWithType:BasicInfoTypeDisk sender:sender];
 }
 
+- (IBAction)jsbrokenTap:(id)sender {
+    [self _pushVCWithType:BasicInfoTypeBroken sender:sender];
+
+
+}
+
+
 - (void)_pushVCWithType:(BasicInfoType)type sender:(UIButton *)sender {
     BasicViewController *basicVC = [[BasicViewController alloc] initWithType:type];
     basicVC.navigationItem.title = sender.titleLabel.text;
