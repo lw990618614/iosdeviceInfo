@@ -40,7 +40,7 @@
 //        NSLog(@"UMConfigureCachetarget:%@ sel:%@", target, NSStringFromSelector(sel));
 //    } after:nil];
 
-    [NetWorkInfoManager sharedManager];
+//    [NetWorkInfoManager sharedManager];
 
 //    [UMConfigure initWithAppkey:@"60bd82994d0228352bbdbaaf" channel:@"App Store"];
 //    [UMConfigure initWithAppkey:@"60c31214e044530ff0a1cc2f" channel:@"App Store"];

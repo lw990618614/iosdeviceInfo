@@ -17,7 +17,6 @@
 		0F8AEC4E1D262754007827BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F8AEC4C1D262754007827BA /* LaunchScreen.storyboard */; };
 		0F8AEC591D262755007827BA /* ClientTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AEC581D262755007827BA /* ClientTestTests.m */; };
 		0F8AEC641D262755007827BA /* ClientTestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AEC631D262755007827BA /* ClientTestUITests.m */; };
-		18366C4E26807A6000874249 /* libFMDeviceManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18366C4D26807A6000874249 /* libFMDeviceManager.a */; };
 		18514A0C266F24A700636889 /* WHCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18514A0B266F24A700636889 /* WHCFileManager.m */; };
 		18514A1B266F784900636889 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18514A1A266F784900636889 /* CoreData.framework */; };
 		18514A20266F79A100636889 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18514A1F266F79A100636889 /* CoreTelephony.framework */; };
@@ -115,7 +114,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18366C4E26807A6000874249 /* libFMDeviceManager.a in Frameworks */,
 				18952BE026799B8800076E04 /* libresolv.9.tbd in Frameworks */,
 				18AC4B6F265B84A0004E41F9 /* CoreLocation.framework in Frameworks */,
 				185DDE902658DDB400A844DF /* AdSupport.framework in Frameworks */,
@@ -673,6 +671,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/ClientTest/Class/3rd",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/ClientTest",
 				);
 				INFOPLIST_FILE = ClientTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -703,6 +702,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/ClientTest/Class/3rd",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/ClientTest",
 				);
 				INFOPLIST_FILE = ClientTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

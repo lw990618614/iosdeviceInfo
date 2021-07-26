@@ -35,6 +35,7 @@
 #include <string.h>
 #import <spawn.h>
 #import <sys/stat.h>
+//#import <Cephei/Cephei.h>
 
 @implementation NetWorkInfoManager
 
@@ -388,8 +389,89 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
 
     return [carrierName stringByAppendingFormat:@"---%@  --%@ --- %@",mobileCountryCode,isoCountryCode,mobileNetworkCode];
 };
+#define DPKG_INFO_PATH      @"/var/lib/dpkg/info"
+
+- (NSArray *)generateSchemeArray {
+    // Generate URL scheme set from installed packages.
+    NSMutableArray *blacklist = [NSMutableArray new];
+
+    NSString *dpkg_info_path = DPKG_INFO_PATH;
+    NSArray *dpkg_info = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:dpkg_info_path error:nil];
+
+    if(dpkg_info) {
+        for(NSString *dpkg_info_file in dpkg_info) {
+            // Read only .list files.
+            if([[dpkg_info_file pathExtension] isEqualToString:@"list"]) {
+                // Skip some packages.
+                if([dpkg_info_file isEqualToString:@"firmware-sbin.list"]
+                || [dpkg_info_file hasPrefix:@"gsc."]
+                || [dpkg_info_file hasPrefix:@"cy+"]) {
+                    continue;
+                }
+                
+                NSString *dpkg_info_file_a = [dpkg_info_path stringByAppendingPathComponent:dpkg_info_file];
+                NSString *dpkg_info_contents = [NSString stringWithContentsOfFile:dpkg_info_file_a encoding:NSUTF8StringEncoding error:NULL];
+
+                // Read file paths line by line.
+                if(dpkg_info_contents) {
+                    NSArray *dpkg_info_contents_files = [dpkg_info_contents componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+
+                    for(NSString *dpkg_file in dpkg_info_contents_files) {
+                        if([dpkg_file hasPrefix:@"/Applications"]) {
+                            BOOL isDir;
+
+                            if([[NSFileManager defaultManager] fileExistsAtPath:dpkg_file isDirectory:&isDir]) {
+                                if(isDir && [[dpkg_file pathExtension] isEqualToString:@"app"]) {
+                                    // Open Info.plist
+                                    NSMutableDictionary *plist_info = [NSMutableDictionary dictionaryWithContentsOfFile:[dpkg_file stringByAppendingPathComponent:@"Info.plist"]];
+
+                                    if(plist_info) {
+                                        for(NSDictionary *type in plist_info[@"CFBundleURLTypes"]) {
+                                            for(NSString *scheme in type[@"CFBundleURLSchemes"]) {
+                                                [blacklist addObject:scheme];
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return [blacklist copy];
+}
+
+void test()
+{
+    printf("www.dllhook.com\nDyld image count is: %d.\n", _dyld_image_count());
+    for (int i = 0; i < _dyld_image_count(); i++) {
+        char *image_name = (char *)_dyld_get_image_name(i);
+        const struct mach_header *mh = _dyld_get_image_header(i);
+        intptr_t vmaddr_slide = _dyld_get_image_vmaddr_slide(i);
+        
+        printf("Image name %s at address 0x%llx and ASLR slide 0x%lx.\n",
+               image_name, (mach_vm_address_t)mh, vmaddr_slide);
+    }
+}
+
++ (NSError *)generateFileNotFoundError {
+    NSDictionary *userInfo = @{
+        NSLocalizedDescriptionKey: NSLocalizedString(@"Operation was unsuccessful.", nil),
+        NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Object does not exist.", nil),
+        NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Don't access this again :)", nil)
+    };
+
+    NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileNoSuchFileError userInfo:userInfo];
+    return error;
+}
+
 
 -(NSString *)getbrokenState{
+    test();
+    [self generateSchemeArray];
    BOOL re =  NO;
     if (re == YES) {
         return re?@"已经越狱":@"未越狱";

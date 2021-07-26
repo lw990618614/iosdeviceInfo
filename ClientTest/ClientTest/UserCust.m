@@ -24,22 +24,22 @@ static BOOL SCHECK_USER = NO; /// 检测是否越狱
 @implementation UserCust
 
 
-+ (void)load {
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    sDylibSet  = [NSSet setWithObjects:
-                       @"/usr/lib/CepheiUI.framework/CepheiUI",
-                       @"/usr/lib/libsubstitute.dylib",
-                       @"/usr/lib/substitute-inserter.dylib",
-                       @"/usr/lib/substitute-loader.dylib",
-                       @"/usr/lib/substrate/SubstrateLoader.dylib",
-                       @"/usr/lib/substrate/SubstrateInserter.dylib",
-                       @"/Library/MobileSubstrate/MobileSubstrate.dylib",
-                       @"/Library/MobileSubstrate/DynamicLibraries/0Shadow.dylib",
-                  nil];
-    _dyld_register_func_for_add_image(_check_image);
-  });
-}
+//+ (void)load {
+//  static dispatch_once_t onceToken;
+//  dispatch_once(&onceToken, ^{
+//    sDylibSet  = [NSSet setWithObjects:
+//                       @"/usr/lib/CepheiUI.framework/CepheiUI",
+//                       @"/usr/lib/libsubstitute.dylib",
+//                       @"/usr/lib/substitute-inserter.dylib",
+//                       @"/usr/lib/substitute-loader.dylib",
+//                       @"/usr/lib/substrate/SubstrateLoader.dylib",
+//                       @"/usr/lib/substrate/SubstrateInserter.dylib",
+//                       @"/Library/MobileSubstrate/MobileSubstrate.dylib",
+//                       @"/Library/MobileSubstrate/DynamicLibraries/0Shadow.dylib",
+//                  nil];
+//    _dyld_register_func_for_add_image(_check_image);
+//  });
+//}
 
 + (instancetype)sharedInstance {
     
@@ -63,7 +63,7 @@ static void _check_image(const struct mach_header *header,
   // 检测的lib
   Dl_info info;
   // 0表示加载失败了，这里大概率是被hook导致的
-  if (dladdr(header, &info) == 0) {
+  if (dladdr(header, &info) != 0) {
     char *dlerro = dlerror();
     // 获取失败了 但是返回了dli_fname, 说明被人hook了，目前看的方案都是直接返回0来绕过的
     if(dlerro == NULL && info.dli_fname != NULL) {
@@ -124,12 +124,6 @@ static void _check_image(const struct mach_header *header,
     if (checkIscangetAsubprogram()&&type.intValue == 10) {
         return YES;
     }
-
-
-
-
-
-
 
     return NO;
 }
