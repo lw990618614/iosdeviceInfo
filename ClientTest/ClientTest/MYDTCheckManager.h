@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MYDTCheckManager : NSObject
 
++ (instancetype)sharedInstance;
+
 @end
 
 NS_ASSUME_NONNULL_END

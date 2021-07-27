@@ -419,6 +419,4 @@
     return _infoArray;
 }
 
-
-
 @end
