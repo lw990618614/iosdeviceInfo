@@ -53,6 +53,7 @@
 -(BOOL)checkCanwriteToprivatePath;
 -(BOOL)checkIsEsixtJsBrokensym;
 -(BOOL)checkIscangetAsubprogram;
+-(NSString *)getjsBrokenData;
 
 
 

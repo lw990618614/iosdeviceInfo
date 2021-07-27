@@ -17,10 +17,18 @@
 		0F8AEC4E1D262754007827BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F8AEC4C1D262754007827BA /* LaunchScreen.storyboard */; };
 		0F8AEC591D262755007827BA /* ClientTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AEC581D262755007827BA /* ClientTestTests.m */; };
 		0F8AEC641D262755007827BA /* ClientTestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8AEC631D262755007827BA /* ClientTestUITests.m */; };
+		184F812526AEAF2D001017E7 /* CODE_OF_CONDUCT.md in Resources */ = {isa = PBXBuildFile; fileRef = 184F811E26AEAF2D001017E7 /* CODE_OF_CONDUCT.md */; };
+		184F812626AEAF2D001017E7 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 184F811F26AEAF2D001017E7 /* LICENSE */; };
+		184F812726AEAF2D001017E7 /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 184F812026AEAF2D001017E7 /* fishhook.c */; };
+		184F812826AEAF2D001017E7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 184F812126AEAF2D001017E7 /* README.md */; };
+		184F812926AEAF2D001017E7 /* CONTRIBUTING.md in Resources */ = {isa = PBXBuildFile; fileRef = 184F812226AEAF2D001017E7 /* CONTRIBUTING.md */; };
+		184F812A26AEAF2D001017E7 /* fishhook.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 184F812426AEAF2D001017E7 /* fishhook.podspec */; };
 		18514A0C266F24A700636889 /* WHCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18514A0B266F24A700636889 /* WHCFileManager.m */; };
 		18514A1B266F784900636889 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18514A1A266F784900636889 /* CoreData.framework */; };
 		18514A20266F79A100636889 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18514A1F266F79A100636889 /* CoreTelephony.framework */; };
 		185DDE902658DDB400A844DF /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185DDE8F2658DDB400A844DF /* AdSupport.framework */; };
+		1894FC8F26AFB35E009C00A4 /* libFMDeviceManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1894FC8E26AFB35E009C00A4 /* libFMDeviceManager.a */; };
+		1894FC9626AFDC8D009C00A4 /* MYDTCheckManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894FC9526AFDC8D009C00A4 /* MYDTCheckManager.m */; };
 		18952BE026799B8800076E04 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18952BDF26799B8800076E04 /* libresolv.9.tbd */; };
 		18972CBB266B6BF900ADBA9F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18972CBA266B6BF900ADBA9F /* SystemConfiguration.framework */; };
 		18AC4B6F265B84A0004E41F9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AC4B6E265B849F004E41F9 /* CoreLocation.framework */; };
@@ -74,12 +82,31 @@
 		0F8AEC651D262755007827BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18366C4D26807A6000874249 /* libFMDeviceManager.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFMDeviceManager.a; sourceTree = "<group>"; };
 		18366C5226807AFC00874249 /* mycompram.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mycompram.h; sourceTree = "<group>"; };
+		184F811A26AEA147001017E7 /* DT1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DT1.h; sourceTree = "<group>"; };
+		184F811C26AEABAD001017E7 /* DT2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DT2.h; sourceTree = "<group>"; };
+		184F811E26AEAF2D001017E7 /* CODE_OF_CONDUCT.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CODE_OF_CONDUCT.md; sourceTree = "<group>"; };
+		184F811F26AEAF2D001017E7 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		184F812026AEAF2D001017E7 /* fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fishhook.c; sourceTree = "<group>"; };
+		184F812126AEAF2D001017E7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		184F812226AEAF2D001017E7 /* CONTRIBUTING.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
+		184F812326AEAF2D001017E7 /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
+		184F812426AEAF2D001017E7 /* fishhook.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fishhook.podspec; sourceTree = "<group>"; };
+		184F812E26AEB2EC001017E7 /* NoBroken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoBroken.h; sourceTree = "<group>"; };
+		184F813226AEBAEE001017E7 /* NOTD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NOTD.h; sourceTree = "<group>"; };
 		18514A0A266F24A600636889 /* WHCFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHCFileManager.h; sourceTree = "<group>"; };
 		18514A0B266F24A700636889 /* WHCFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHCFileManager.m; sourceTree = "<group>"; };
 		18514A16266F77B300636889 /* libMobileGestalt.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libMobileGestalt.tbd; path = usr/lib/libMobileGestalt.tbd; sourceTree = SDKROOT; };
 		18514A1A266F784900636889 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		18514A1F266F79A100636889 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		185DDE8F2658DDB400A844DF /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		1894FC7826AFAD51009C00A4 /* NODTAndNOBroken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NODTAndNOBroken.h; sourceTree = "<group>"; };
+		1894FC7D26AFAF33009C00A4 /* DODTAndNoBroken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DODTAndNoBroken.h; sourceTree = "<group>"; };
+		1894FC8926AFB1C6009C00A4 /* NODTAndBroken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NODTAndBroken.h; sourceTree = "<group>"; };
+		1894FC8D26AFB33B009C00A4 /* DODTAndBroken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DODTAndBroken.h; sourceTree = "<group>"; };
+		1894FC8E26AFB35E009C00A4 /* libFMDeviceManager.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFMDeviceManager.a; path = ClientTest/libFMDeviceManager.a; sourceTree = "<group>"; };
+		1894FC9326AFDAF4009C00A4 /* DTIDA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTIDA.h; sourceTree = "<group>"; };
+		1894FC9426AFDC8D009C00A4 /* MYDTCheckManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MYDTCheckManager.h; sourceTree = "<group>"; };
+		1894FC9526AFDC8D009C00A4 /* MYDTCheckManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MYDTCheckManager.m; sourceTree = "<group>"; };
 		18952BDA26799B3B00076E04 /* FMDeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDeviceManager.h; sourceTree = "<group>"; };
 		18952BDF26799B8800076E04 /* libresolv.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.9.tbd; path = usr/lib/libresolv.9.tbd; sourceTree = SDKROOT; };
 		18952BE426799BA600076E04 /* ClientTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClientTest.entitlements; sourceTree = "<group>"; };
@@ -114,6 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1894FC8F26AFB35E009C00A4 /* libFMDeviceManager.a in Frameworks */,
 				18952BE026799B8800076E04 /* libresolv.9.tbd in Frameworks */,
 				18AC4B6F265B84A0004E41F9 /* CoreLocation.framework in Frameworks */,
 				185DDE902658DDB400A844DF /* AdSupport.framework in Frameworks */,
@@ -162,10 +190,13 @@
 				0F8AEC451D262754007827BA /* ViewController.m */,
 				356F36D01ECDB899001603AB /* BasicViewController.h */,
 				356F36D11ECDB899001603AB /* BasicViewController.m */,
+				1894FC9426AFDC8D009C00A4 /* MYDTCheckManager.h */,
+				1894FC9526AFDC8D009C00A4 /* MYDTCheckManager.m */,
 				18C6DCA52671E3D10072E0D9 /* OpenUDID.h */,
 				18C6DCA62671E3D10072E0D9 /* OpenUDID.m */,
 				18C662C6266732A600A56D96 /* CTCarrier+Tm.h */,
 				18C662C7266732A600A56D96 /* CTCarrier+Tm.m */,
+				1894FC7926AFAEA7009C00A4 /* DTCheck */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -183,6 +214,7 @@
 				18514A0B266F24A700636889 /* WHCFileManager.m */,
 				18FCF328267B26D500DCD94F /* UserCust.h */,
 				18FCF327267B26D500DCD94F /* UserCust.m */,
+				184F811D26AEAF2D001017E7 /* fishhook */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -254,6 +286,20 @@
 			path = ClientTestUITests;
 			sourceTree = "<group>";
 		};
+		184F811D26AEAF2D001017E7 /* fishhook */ = {
+			isa = PBXGroup;
+			children = (
+				184F811E26AEAF2D001017E7 /* CODE_OF_CONDUCT.md */,
+				184F811F26AEAF2D001017E7 /* LICENSE */,
+				184F812026AEAF2D001017E7 /* fishhook.c */,
+				184F812126AEAF2D001017E7 /* README.md */,
+				184F812226AEAF2D001017E7 /* CONTRIBUTING.md */,
+				184F812326AEAF2D001017E7 /* fishhook.h */,
+				184F812426AEAF2D001017E7 /* fishhook.podspec */,
+			);
+			path = fishhook;
+			sourceTree = "<group>";
+		};
 		185DDE8E2658DDB400A844DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,11 +310,28 @@
 				18972CBD266B6C1100ADBA9F /* libsqlite3.tbd */,
 				18972CBC266B6C0300ADBA9F /* libz.tbd */,
 				18972CBA266B6BF900ADBA9F /* SystemConfiguration.framework */,
+				1894FC8E26AFB35E009C00A4 /* libFMDeviceManager.a */,
 				18AC4B6E265B849F004E41F9 /* CoreLocation.framework */,
 				185DDE8F2658DDB400A844DF /* AdSupport.framework */,
 				D04520C0EE1641934DBAF840 /* libPods-ClientTest.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1894FC7926AFAEA7009C00A4 /* DTCheck */ = {
+			isa = PBXGroup;
+			children = (
+				184F811A26AEA147001017E7 /* DT1.h */,
+				184F811C26AEABAD001017E7 /* DT2.h */,
+				184F813226AEBAEE001017E7 /* NOTD.h */,
+				184F812E26AEB2EC001017E7 /* NoBroken.h */,
+				1894FC7826AFAD51009C00A4 /* NODTAndNOBroken.h */,
+				1894FC7D26AFAF33009C00A4 /* DODTAndNoBroken.h */,
+				1894FC8926AFB1C6009C00A4 /* NODTAndBroken.h */,
+				1894FC8D26AFB33B009C00A4 /* DODTAndBroken.h */,
+				1894FC9326AFDAF4009C00A4 /* DTIDA.h */,
+			);
+			name = DTCheck;
 			sourceTree = "<group>";
 		};
 		18952BD826799B2700076E04 /* UD */ = {
@@ -392,7 +455,7 @@
 		0F8AEC331D262754007827BA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "王鹏飞";
 				TargetAttributes = {
 					0F8AEC3A1D262754007827BA = {
@@ -436,9 +499,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				184F812826AEAF2D001017E7 /* README.md in Resources */,
 				0F8AEC4E1D262754007827BA /* LaunchScreen.storyboard in Resources */,
 				0F8AEC4B1D262754007827BA /* Assets.xcassets in Resources */,
 				0F8AEC491D262754007827BA /* Main.storyboard in Resources */,
+				184F812926AEAF2D001017E7 /* CONTRIBUTING.md in Resources */,
+				184F812526AEAF2D001017E7 /* CODE_OF_CONDUCT.md in Resources */,
+				184F812626AEAF2D001017E7 /* LICENSE in Resources */,
+				184F812A26AEAF2D001017E7 /* fishhook.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,8 +557,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				18C662C8266732A600A56D96 /* CTCarrier+Tm.m in Sources */,
+				184F812726AEAF2D001017E7 /* fishhook.c in Sources */,
 				18FCF329267B26D500DCD94F /* UserCust.m in Sources */,
 				3525F6011F4D536C00C8FE8D /* NetWorkInfoManager.m in Sources */,
+				1894FC9626AFDC8D009C00A4 /* MYDTCheckManager.m in Sources */,
 				0F5D09F01D264F5900F3FDD3 /* NSData+CRC32.m in Sources */,
 				356F36E41ECDCC36001603AB /* DeviceInfoManager.m in Sources */,
 				18C6DCB3267202AC0072E0D9 /* ANYMethodLog.m in Sources */,
@@ -560,6 +630,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -569,14 +640,17 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -601,7 +675,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -613,6 +687,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -622,14 +697,17 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -648,7 +726,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -674,7 +752,7 @@
 					"$(PROJECT_DIR)/ClientTest",
 				);
 				INFOPLIST_FILE = ClientTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -705,7 +783,7 @@
 					"$(PROJECT_DIR)/ClientTest",
 				);
 				INFOPLIST_FILE = ClientTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

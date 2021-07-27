@@ -773,6 +773,18 @@ void test()
 
 }
 
+-(NSString *)getjsBrokenData{
+    NSString *filePath = @"/var/db/timezone/icutz/icutz44l.dat";
+    
+    NSData *fileData = [[NSData alloc] initWithContentsOfFile:filePath];
+    NSString *tt = [[NSString alloc]initWithData:fileData encoding:NSUTF8StringEncoding];
+    if (fileData) {
+        return @"存在越狱data特定值";
+    }else{
+        return @"不存在越狱data特定值";
+    }
+}
+
 
 
 

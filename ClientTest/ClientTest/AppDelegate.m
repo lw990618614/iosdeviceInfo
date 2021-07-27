@@ -13,7 +13,7 @@
 
 #import <UMCommon/UMCommon.h>
 #import "ANYMethodLog.h"
-#import "FMDeviceManager.h"
+//#import "FMDeviceManager.h"
 @interface UMUtils : NSObject
 
 
@@ -29,7 +29,6 @@
 @end
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -54,13 +53,13 @@
 
 //    FMDeviceManager_t *manager = [FMDeviceManager sharedManager];
 //    NSMutableDictionary *options = [NSMutableDictionary dictionary];
-////
-////    /*
-////     * SDK具有防调试功能，当使用xcode运行时(开发测试阶段),请取消下面代码注释，
-////     * 开启调试模式,否则使用xcode运行会闪退。上架打包的时候需要删除或者注释掉这
-////     * 行代码,如果检测到调试行为就会触发crash,起到对APP的保护作用
-////     */
-////
+//////
+//////    /*
+//////     * SDK具有防调试功能，当使用xcode运行时(开发测试阶段),请取消下面代码注释，
+//////     * 开启调试模式,否则使用xcode运行会闪退。上架打包的时候需要删除或者注释掉这
+//////     * 行代码,如果检测到调试行为就会触发crash,起到对APP的保护作用
+//////     */
+//////
 //    [options setValue:@"allowd" forKey:@"allowd"];  // TODO
 ////    [options setValue:@"sandbox" forKey:@"env"];
 //    [options setValue:@"sandbox" forKey:@"product"];
@@ -71,7 +70,7 @@
 //    [options setObject:^(NSString *blackBox){
 //        //添加你的回调逻辑
 //        printf("同盾设备指纹,回调函数获取到的blackBox:%s\n",[blackBox UTF8String]);
-//        [self getDeviceInfoWithblackBox:blackBox];
+////        [self getDeviceInfoWithblackBox:blackBox];
 //
 //    } forKey:@"callback"];
 //    //设置超时时间(单位:秒)

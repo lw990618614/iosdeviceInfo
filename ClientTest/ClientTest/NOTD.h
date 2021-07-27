@@ -1,0 +1,47 @@
+orig_stat /private/var/containers/Bundle/Application/A0FA33CE-FCBA-4BF5-82FA-A6589B2FF6F1/ClientTest.app
+orig_stat /private/var/containers/Bundle/Application/A0FA33CE-FCBA-4BF5-82FA-A6589B2FF6F1/ClientTest.app/ClientTest
+ replaced_fopen /etc/passwd
+ orig_lstat /private/var
+ orig_lstat /private/var/containers
+orig_lstat /private/var/containers
+ orig_lstat /private/var/containers/Bundle
+ orig_lstat /private/var/containers/Bundle/Application
+orig_lstat /private/var/containers/Bundle
+orig_lstat /private/var/containers/Bundle/Application/A0FA33CE-FCBA-4BF5-82FA-A6589B2FF6F1
+orig_lstat /private/var/containers/Bundle/Application/A0FA33CE-FCBA-4BF5-82FA-A6589B2FF6F1
+ orig_lstat /private/var/containers/Bundle/Application/A0FA33CE-FCBA-4BF5-82FA-A6589B2FF6F1/ClientTest.app
+orig_lstat /private/var/containers/Bundle/Application/A0FA33CE-FCBA-4BF5-82FA-A6589B2FF6F1/ClientTest.app
+orig_stat /var/containers/Bundle/Application/A0FA33CE-FCBA-4BF5-82FA-A6589B2FF6F1/Cl2021-07-26
+orig_stat /var/containers/Bundle/Application/A0FA33CE-FCBA-4BF5-82FA-A6589B2FF6F1/ClientTest.app
+orig_stat /var/containers/Bundle/Application/A0FA33CE-FCBA-4BF5-82FA-A6589B2FF6F1/ClientTest.app
+orig_stat /var/containers/Bundle/Application/A0FA33CE-FCBA-4BF5-82FA-A6589B2FF6F1/ClientTest.app
+orig_stat /var/containers/Bundle/Application/A0FA33CE-FCBA-4BF5-82FA-A6589B2FF6F1/ClientTest.app/ClientTest
+orig_stat /System/Library/CoreServices/SystemVersion.bundle
+orig_stat /usr/share/icu/icudt64l.dat
+ orig_stat /var/mobile/Containers/Data/Application/9C00D5A0-CCCC-4C0D-99E1-9F4054E93E40
+orig_stat /var/mobile/Containers/Data/Application/9C00D5A0-CCCC-4C0D-99E1-9F4054E93E40
+orig_stat /var/mobile/Containers/Data/Application/9C00D5A0-CCCC-4C0D-99E1-9F4054E93E40
+orig_lstat /var/mobile/Library/Fonts/AddedFontCache.plist
+orig_lstat /System
+orig_lstat /System/Library
+orig_lstat /System/Library/CoreServices
+orig_lstat /System/Library/CoreServices/CoreGlyphs.bundle
+orig_stat /System/Library/CoreServices/CoreGlyphs.bundle
+orig_stat /System/Library/CoreServices/CoreGlyphs.bundle
+orig_lstat /System/Library/PrivateFrameworks
+ orig_lstat /System/Library/PrivateFrameworks/UIKitCore.framework
+orig_lstat /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+orig_stat /System/Library/PrivateFrameworks/UIKitCore.framework
+orig_stat /System/Library/PrivateFrameworks/UIKitCore.framework
+orig_stat /System/Library/PrivateFrameworks/UIKitCore.framework
+orig_stat /System/Library/PrivateFrameworks/CoreMaterial.framework
+orig_stat /System/Library/PrivateFrameworks/CoreMaterial.framework
+ orig_stat /System/Library/PrivateFrameworks/CoreMaterial.framework/CoreMaterial
+orig_lstat /System/Library/PrivateFrameworks/CoreMaterial.framework
+orig_stat /System/Library/PrivateFrameworks/CoreMaterial.framework
+orig_stat /var/containers/Bundle/Application/A0FA33CE-FCBA-4BF5-82FA-A6589B2FF6F1/ClientTest.app
+orig_stat /var/mobile/Containers/Data/Application/9C00D5A0-CCCC-4C0D-99E1-9F4054E93E40
+orig_stat /var/mobile/Containers/Data/Application/9C00D5A0-CCCC-4C0D-99E1-9F4054E93E40/Library/Saved Application State
+orig_stat /var/mobile/Containers/Data/Application/9C00D5A0-CCCC-4C0D-99E1-9F4054E93E40/Library/Saved Application State/com.mhytesssfffkk.savedState
+orig_stat /var/mobile/Containers/Data/Application/9C00D5A0-CCCC-4C0D-99E1-9F4054E93E40/Library/Saved Application State/com.mhytesssfffkk.savedState/KnownSceneSessions
+orig_stat /var/mobile/Containers/Data/Application/9C00D5A0-CCCC-4C0D-99E1-9F4054E93E40

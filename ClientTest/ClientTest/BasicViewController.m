@@ -350,6 +350,11 @@
     BOOL  checkIscangetAsubprogram = [[NetWorkInfoManager sharedManager] checkIscangetAsubprogram];
     [self _addInfoWithKey:@"是否能勾起一个子进程" infoValue:checkIscangetAsubprogram?@"可以":@"不可以"];
     
+    NSString *  getjsBrokenData = [[NetWorkInfoManager sharedManager] getjsBrokenData];
+    [self _addInfoWithKey:@"越狱data值" infoValue:getjsBrokenData];
+    
+
+    
 }
 
 - (void)_addInfoWithKey:(NSString *)infoKey infoValue:(NSObject *)infoValue {
