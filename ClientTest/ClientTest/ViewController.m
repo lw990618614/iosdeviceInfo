@@ -24,6 +24,7 @@
 
 #pragma mark - Event Response
 - (IBAction)hardWareInfoButtonTapped:(id)sender {
+    
     [self _pushVCWithType:BasicInfoTypeHardWare sender:sender];
 }
 
