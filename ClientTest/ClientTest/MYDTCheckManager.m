@@ -16,6 +16,8 @@
     static id sharedInstance;
     dispatch_once(&once, ^{
         sharedInstance = [[self alloc] init];
+        NSMutableArray *tt;
+        ;
         
     });
     return sharedInstance;

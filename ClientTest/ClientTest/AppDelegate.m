@@ -421,79 +421,79 @@ static  const char * replaced_strstr(const char * big, const char * little){
     [testArray addObject:[NSString stringWithFormat:@"replaced_strstr %s %s",big, little]];
     return orig_strstr(big,little);
 }
-+(void)load{
-    testArray = [NSMutableArray new];
-
-    rebind_symbols((struct rebinding[1]){{"stat",  (void *)replaced_stat, (void **)&orig_stat}}, 1);
-    rebind_symbols((struct rebinding[1]){{"lstat",  (void *)replaced_lstat, (void **)&orig_lstat}}, 1);
-    rebind_symbols((struct rebinding[1]){{"fopen",  (void *)replaced_fopen, (void **)&orig_fopen}}, 1);
-    rebind_symbols((struct rebinding[1]){{"fgets",  (void *)replaced_fgetc, (void **)&orig_fgetc}}, 1);
-    rebind_symbols((struct rebinding[1]){{"fgetc",  (void *)replaced_fgets, (void **)&orig_fgets}}, 1);
-    
-
-    rebind_symbols((struct rebinding[1]){{"write",  (void *)replaced_write, (void **)&orig_write}}, 1);
-    rebind_symbols((struct rebinding[1]){{"open",  (void *)replaced_open, (void **)&orig_open}}, 1);
-    rebind_symbols((struct rebinding[1]){{"chown",  (void *)replaced_chown, (void **)&orig_chown}}, 1);
-    rebind_symbols((struct rebinding[1]){{"link",  (void *)replaced_link, (void **)&orig_link}}, 1);
-    rebind_symbols((struct rebinding[1]){{"unlink",  (void *)replaced_unlink, (void **)&orig_unlink}}, 1);
-
-
-    rebind_symbols((struct rebinding[1]){{"chdir",  (void *)replaced_chdir, (void **)&orig_chdir}}, 1);
-    rebind_symbols((struct rebinding[1]){{"chroot",  (void *)replaced_chroot, (void **)&orig_chroot}}, 1);
-    rebind_symbols((struct rebinding[1]){{"fork",  (void *)replaced_fork, (void **)&orig_fork}}, 1);
-    rebind_symbols((struct rebinding[1]){{"fchdir",  (void *)replaced_fchdir, (void **)&orig_fchdir}}, 1);
-    rebind_symbols((struct rebinding[1]){{"mknod",  (void *)replaced_mknod, (void **)&orig_mknod}}, 1);
-  
-
-    
-    rebind_symbols((struct rebinding[1]){{"fstat",  (void *)replaced_fstat, (void **)&orig_fstat}}, 1);
-    rebind_symbols((struct rebinding[1]){{"mkdir",  (void *)replaced_mkdir, (void **)&orig_mkdir}}, 1);
-    rebind_symbols((struct rebinding[1]){{"mkfifo",  (void *)replaced_mkfifo, (void **)&orig_mkfifo}}, 1);
-    rebind_symbols((struct rebinding[1]){{"exp2",  (void *)replaced_exp2, (void **)&orig_exp2}}, 1);
-    rebind_symbols((struct rebinding[1]){{"sprintf",  (void *)replaced_sprintf, (void **)&orig_sprintf}}, 1);
-
-
-    
-    rebind_symbols((struct rebinding[1]){{"getegid",  (void *)replaced_getegid, (void **)&orig_getegid}}, 1);
-    rebind_symbols((struct rebinding[1]){{"geteuid",  (void *)replaced_geteuid, (void **)&orig_geteuid}}, 1);
-    rebind_symbols((struct rebinding[1]){{"getgid",  (void *)replaced_getgid, (void **)&orig_getgid}}, 1);
-    rebind_symbols((struct rebinding[1]){{"getppid",  (void *)replaced_getppid, (void **)&orig_getppid}}, 1);
-    rebind_symbols((struct rebinding[1]){{"getservbyport",  (void *)replaced_getservbyport, (void **)&orig_getservbyport}}, 1);
-
-    
-    
-    rebind_symbols((struct rebinding[1]){{"host_processor_info",  (void *)replaced_host_processor_info, (void **)&orig_host_processor_info}}, 1);
-    rebind_symbols((struct rebinding[1]){{"host_statistics",  (void *)replaced_host_statistics, (void **)&orig_host_statistics}}, 1);
-    rebind_symbols((struct rebinding[1]){{"hstrerror",  (void *)replaced_hstrerror, (void **)&orig_hstrerror}}, 1);
-    rebind_symbols((struct rebinding[1]){{"if_indextoname",  (void *)replaced_if_indextoname, (void **)&orig_if_indextoname}}, 1);
-    rebind_symbols((struct rebinding[1]){{"inet_addr",  (void *)replaced_inet_addr, (void **)&orig_inet_addr}}, 1);
-
-    
-    rebind_symbols((struct rebinding[1]){{"inet_ntoa",  (void *)replaced_inet_ntoa, (void **)&orig_inet_ntoa}}, 1);
-    rebind_symbols((struct rebinding[1]){{"inet_ntop",  (void *)replaced_inet_ntop, (void **)&orig_inet_ntop}}, 1);
-    rebind_symbols((struct rebinding[1]){{"inet_pton",  (void *)replaced_inet_pton, (void **)&orig_inet_pton}}, 1);
-    rebind_symbols((struct rebinding[1]){{"ioctl",  (void *)replaced_ioctl, (void **)&orig_ioctl}}, 1);
-    rebind_symbols((struct rebinding[1]){{"isatty",  (void *)replaced_isatty, (void **)&orig_isatty}}, 1);
-
-
-    rebind_symbols((struct rebinding[1]){{"isatty",  (void *)replaced_isatty, (void **)&orig_isatty}}, 1);
-    rebind_symbols((struct rebinding[1]){{"kill",  (void *)replaced_kill, (void **)&orig_kill}}, 1);
-    rebind_symbols((struct rebinding[1]){{"memmove",  (void *)replaced_memmove, (void **)&orig_memmove}}, 1);
-    rebind_symbols((struct rebinding[1]){{"read",  (void *)replaced_read, (void **)&orig_read}}, 1);
-    rebind_symbols((struct rebinding[1]){{"realloc",  (void *)replaced_realloc, (void **)&orig_realloc}}, 1);
-    
-    
-    rebind_symbols((struct rebinding[1]){{"sendto",  (void *)replaced_sendto, (void **)&orig_sendto}}, 1);
-    rebind_symbols((struct rebinding[1]){{"sigaction",  (void *)replaced_sigaction, (void **)&orig_sigaction}}, 1);
-    rebind_symbols((struct rebinding[1]){{"socket",  (void *)replaced_socket, (void **)&orig_socket}}, 1);
-    rebind_symbols((struct rebinding[1]){{"sscanf",  (void *)replaced_sscanf, (void **)&orig_sscanf}}, 1);
-    rebind_symbols((struct rebinding[1]){{"strchr",  (void *)replaced_strchr, (void **)&orig_strchr}}, 1);
-
-
-    rebind_symbols((struct rebinding[1]){{"strcspn",  (void *)replaced_strcspn, (void **)&orig_strcspn}}, 1);
-    rebind_symbols((struct rebinding[1]){{"strstr",  (void *)replaced_strstr, (void **)&orig_strstr}}, 1);
-    
-}
+//+(void)load{
+//    testArray = [NSMutableArray new];
+//
+//    rebind_symbols((struct rebinding[1]){{"stat",  (void *)replaced_stat, (void **)&orig_stat}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"lstat",  (void *)replaced_lstat, (void **)&orig_lstat}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"fopen",  (void *)replaced_fopen, (void **)&orig_fopen}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"fgets",  (void *)replaced_fgetc, (void **)&orig_fgetc}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"fgetc",  (void *)replaced_fgets, (void **)&orig_fgets}}, 1);
+//
+//
+//    rebind_symbols((struct rebinding[1]){{"write",  (void *)replaced_write, (void **)&orig_write}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"open",  (void *)replaced_open, (void **)&orig_open}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"chown",  (void *)replaced_chown, (void **)&orig_chown}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"link",  (void *)replaced_link, (void **)&orig_link}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"unlink",  (void *)replaced_unlink, (void **)&orig_unlink}}, 1);
+//
+//
+//    rebind_symbols((struct rebinding[1]){{"chdir",  (void *)replaced_chdir, (void **)&orig_chdir}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"chroot",  (void *)replaced_chroot, (void **)&orig_chroot}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"fork",  (void *)replaced_fork, (void **)&orig_fork}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"fchdir",  (void *)replaced_fchdir, (void **)&orig_fchdir}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"mknod",  (void *)replaced_mknod, (void **)&orig_mknod}}, 1);
+//
+//
+//
+//    rebind_symbols((struct rebinding[1]){{"fstat",  (void *)replaced_fstat, (void **)&orig_fstat}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"mkdir",  (void *)replaced_mkdir, (void **)&orig_mkdir}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"mkfifo",  (void *)replaced_mkfifo, (void **)&orig_mkfifo}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"exp2",  (void *)replaced_exp2, (void **)&orig_exp2}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"sprintf",  (void *)replaced_sprintf, (void **)&orig_sprintf}}, 1);
+//
+//
+//
+//    rebind_symbols((struct rebinding[1]){{"getegid",  (void *)replaced_getegid, (void **)&orig_getegid}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"geteuid",  (void *)replaced_geteuid, (void **)&orig_geteuid}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"getgid",  (void *)replaced_getgid, (void **)&orig_getgid}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"getppid",  (void *)replaced_getppid, (void **)&orig_getppid}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"getservbyport",  (void *)replaced_getservbyport, (void **)&orig_getservbyport}}, 1);
+//
+//
+//
+//    rebind_symbols((struct rebinding[1]){{"host_processor_info",  (void *)replaced_host_processor_info, (void **)&orig_host_processor_info}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"host_statistics",  (void *)replaced_host_statistics, (void **)&orig_host_statistics}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"hstrerror",  (void *)replaced_hstrerror, (void **)&orig_hstrerror}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"if_indextoname",  (void *)replaced_if_indextoname, (void **)&orig_if_indextoname}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"inet_addr",  (void *)replaced_inet_addr, (void **)&orig_inet_addr}}, 1);
+//
+//
+//    rebind_symbols((struct rebinding[1]){{"inet_ntoa",  (void *)replaced_inet_ntoa, (void **)&orig_inet_ntoa}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"inet_ntop",  (void *)replaced_inet_ntop, (void **)&orig_inet_ntop}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"inet_pton",  (void *)replaced_inet_pton, (void **)&orig_inet_pton}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"ioctl",  (void *)replaced_ioctl, (void **)&orig_ioctl}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"isatty",  (void *)replaced_isatty, (void **)&orig_isatty}}, 1);
+//
+//
+//    rebind_symbols((struct rebinding[1]){{"isatty",  (void *)replaced_isatty, (void **)&orig_isatty}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"kill",  (void *)replaced_kill, (void **)&orig_kill}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"memmove",  (void *)replaced_memmove, (void **)&orig_memmove}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"read",  (void *)replaced_read, (void **)&orig_read}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"realloc",  (void *)replaced_realloc, (void **)&orig_realloc}}, 1);
+//
+//
+//    rebind_symbols((struct rebinding[1]){{"sendto",  (void *)replaced_sendto, (void **)&orig_sendto}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"sigaction",  (void *)replaced_sigaction, (void **)&orig_sigaction}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"socket",  (void *)replaced_socket, (void **)&orig_socket}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"sscanf",  (void *)replaced_sscanf, (void **)&orig_sscanf}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"strchr",  (void *)replaced_strchr, (void **)&orig_strchr}}, 1);
+//
+//
+//    rebind_symbols((struct rebinding[1]){{"strcspn",  (void *)replaced_strcspn, (void **)&orig_strcspn}}, 1);
+//    rebind_symbols((struct rebinding[1]){{"strstr",  (void *)replaced_strstr, (void **)&orig_strstr}}, 1);
+//
+//}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     // Override point for customization after application launch.
@@ -515,53 +515,38 @@ static  const char * replaced_strstr(const char * big, const char * little){
     //测试 所有的
 //    [UMConfigure initWithAppkey:@"60d013a126a57f10182f3cbe" channel:@"App Store"];
 
-//
-//   NSString *tt= [[NSUserDefaults standardUserDefaults]objectForKey:@"indekey"];
-//    if (tt.intValue==0) {
-//    }else if (tt.intValue ==1){
-////        tt = [NSString stringWithFormat:@"%d",tt.intValue +1];
-////        [[NSUserDefaults standardUserDefaults] setObject:tt forKey:@"indekey"];
-//
-//    }else if (tt.intValue ==2){
-//        FMDeviceManager_t *manager = [FMDeviceManager sharedManager];
-//        NSMutableDictionary *options = [NSMutableDictionary dictionary];
-//    //
-//    //    /*
-//    //     * SDK具有防调试功能，当使用xcode运行时(开发测试阶段),请取消下面代码注释，
-//    //     * 开启调试模式,否则使用xcode运行会闪退。上架打包的时候需要删除或者注释掉这
-//    //     * 行代码,如果检测到调试行为就会触发crash,起到对APP的保护作用
-//    //     */
-//    //
-//        [options setValue:@"allowd" forKey:@"allowd"];  // TODO
-//    //    [options setValue:@"sandbox" forKey:@"env"];
-//        [options setValue:@"sandbox" forKey:@"product"];
-//
-//        [options setValue:@"noLocation" forKey:@"noLocation"]; //
-//        [options setValue:@"youju" forKey:@"partner"];
-//
-//        [options setObject:^(NSString *blackBox){
-//            //添加你的回调逻辑
-//            printf("同盾设备指纹,回调函数获取到的blackBox:%s\n",[blackBox UTF8String]);
-//            [self getDeviceInfoWithblackBox:blackBox];
-//
-//        } forKey:@"callback"];
-//        //设置超时时间(单位:秒)
-//        [options setValue:@"6" forKey:@"timeLimit"];
-//        // 使用上述参数进行SDK初始化
-//        manager->initWithOptions(options);
-//
-//    }
-//    tt = [NSString stringWithFormat:@"%d",tt.intValue +1];
-//    [[NSUserDefaults standardUserDefaults] setObject:tt forKey:@"indekey"];
-    [self performSelector:@selector(test) withObject:nil afterDelay:5];
 
+//    FMDeviceManager_t *manager = [FMDeviceManager sharedManager];
+//    NSMutableDictionary *options = [NSMutableDictionary dictionary];
+////
+////    /*
+////     * SDK具有防调试功能，当使用xcode运行时(开发测试阶段),请取消下面代码注释，
+////     * 开启调试模式,否则使用xcode运行会闪退。上架打包的时候需要删除或者注释掉这
+////     * 行代码,如果检测到调试行为就会触发crash,起到对APP的保护作用
+////     */
+////
+//    [options setValue:@"allowd" forKey:@"allowd"];  // TODO
+////    [options setValue:@"sandbox" forKey:@"env"];
+//    [options setValue:@"sandbox" forKey:@"product"];
+//
+//    [options setValue:@"noLocation" forKey:@"noLocation"]; //
+//    [options setValue:@"youju" forKey:@"partner"];
+//
+//    [options setObject:^(NSString *blackBox){
+//        //添加你的回调逻辑
+//        printf("同盾设备指纹,回调函数获取到的blackBox:%s\n",[blackBox UTF8String]);
+//        [self getDeviceInfoWithblackBox:blackBox];
+//
+//    } forKey:@"callback"];
+//    //设置超时时间(单位:秒)
+//    [options setValue:@"6" forKey:@"timeLimit"];
+//    // 使用上述参数进行SDK初始化
+//    manager->initWithOptions(options);
     return YES;
 }
 -(void)test{
-   NSString *homePaht =  [[WHCFileManager homeDir] stringByAppendingFormat:@"/tesss"];
-    NSArray *file = [[NSArray alloc] initWithContentsOfFile:homePaht];
-    
-//    [testArray writeToFile:homePaht atomically:YES];
+   NSString *homePaht =  [[WHCFileManager homeDir] stringByAppendingFormat:@"tesss"];
+    [testArray writeToFile:homePaht atomically:YES];
 
 }
 
@@ -632,7 +617,5 @@ static  const char * replaced_strstr(const char * big, const char * little){
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
-
 
 @end

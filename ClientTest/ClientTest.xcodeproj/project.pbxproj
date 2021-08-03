@@ -80,8 +80,18 @@
 		0F8AEC5F1D262755007827BA /* ClientTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClientTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F8AEC631D262755007827BA /* ClientTestUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClientTestUITests.m; sourceTree = "<group>"; };
 		0F8AEC651D262755007827BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1809675626B7F8BD00B16F72 /* url-resolutionplist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "url-resolutionplist.h"; sourceTree = "<group>"; };
+		18257E0626B93E8000413F73 /* AppSupportframeworkInfoplist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppSupportframeworkInfoplist.h; sourceTree = "<group>"; };
+		18257E0A26B93EFA00413F73 /* hfsfsInfoplist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hfsfsInfoplist.h; sourceTree = "<group>"; };
+		18257E0E26B940B200413F73 /* powerdbundleInfoplist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = powerdbundleInfoplist.h; sourceTree = "<group>"; };
+		18257E0F26B940EF00413F73 /* LaunchDaemonsbootpsplist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchDaemonsbootpsplist.h; sourceTree = "<group>"; };
+		18257E1026B9415A00413F73 /* mobilecomapplewebcontentfilterplist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mobilecomapplewebcontentfilterplist.h; sourceTree = "<group>"; };
+		18257E1126B941E900413F73 /* comapplemobile_container_managermetadataplist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = comapplemobile_container_managermetadataplist.h; sourceTree = "<group>"; };
+		18257E1926B9431600413F73 /* iconscachecomapplemobile_container_managermetadataplist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iconscachecomapplemobile_container_managermetadataplist.h; sourceTree = "<group>"; };
 		18366C4D26807A6000874249 /* libFMDeviceManager.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFMDeviceManager.a; sourceTree = "<group>"; };
 		18366C5226807AFC00874249 /* mycompram.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mycompram.h; sourceTree = "<group>"; };
+		1838B23626B79368005598F1 /* myheader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = myheader.h; sourceTree = "<group>"; };
+		1838B23D26B7DE82005598F1 /* miyueT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = miyueT.h; sourceTree = "<group>"; };
 		184F811A26AEA147001017E7 /* DT1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DT1.h; sourceTree = "<group>"; };
 		184F811C26AEABAD001017E7 /* DT2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DT2.h; sourceTree = "<group>"; };
 		184F811E26AEAF2D001017E7 /* CODE_OF_CONDUCT.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CODE_OF_CONDUCT.md; sourceTree = "<group>"; };
@@ -99,6 +109,10 @@
 		18514A1A266F784900636889 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		18514A1F266F79A100636889 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		18515B7A26B0F72600B9DCA3 /* libFMDeviceManager.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFMDeviceManager.a; path = ClientTest/libFMDeviceManager.a; sourceTree = "<group>"; };
+		18515B7F26B1020500B9DCA3 /* DUBrokenLater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DUBrokenLater.h; sourceTree = "<group>"; };
+		1857573D26B9368E00A8DFA5 /* GlobalPreferencesplist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalPreferencesplist.h; sourceTree = "<group>"; };
+		1857574126B9379A00A8DFA5 /* comapplewebcontentfilterplist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = comapplewebcontentfilterplist.h; sourceTree = "<group>"; };
+		1857574526B9382C00A8DFA5 /* DateFormatsplist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DateFormatsplist.h; sourceTree = "<group>"; };
 		185DDE8F2658DDB400A844DF /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		1894FC7826AFAD51009C00A4 /* NODTAndNOBroken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NODTAndNOBroken.h; sourceTree = "<group>"; };
 		1894FC7D26AFAF33009C00A4 /* DODTAndNoBroken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DODTAndNoBroken.h; sourceTree = "<group>"; };
@@ -295,6 +309,24 @@
 			path = ClientTestUITests;
 			sourceTree = "<group>";
 		};
+		1809675526B7F87500B16F72 /* TDBrokenCheck */ = {
+			isa = PBXGroup;
+			children = (
+				1809675626B7F8BD00B16F72 /* url-resolutionplist.h */,
+				1857573D26B9368E00A8DFA5 /* GlobalPreferencesplist.h */,
+				1857574126B9379A00A8DFA5 /* comapplewebcontentfilterplist.h */,
+				1857574526B9382C00A8DFA5 /* DateFormatsplist.h */,
+				18257E0626B93E8000413F73 /* AppSupportframeworkInfoplist.h */,
+				18257E0A26B93EFA00413F73 /* hfsfsInfoplist.h */,
+				18257E0E26B940B200413F73 /* powerdbundleInfoplist.h */,
+				18257E0F26B940EF00413F73 /* LaunchDaemonsbootpsplist.h */,
+				18257E1026B9415A00413F73 /* mobilecomapplewebcontentfilterplist.h */,
+				18257E1126B941E900413F73 /* comapplemobile_container_managermetadataplist.h */,
+				18257E1926B9431600413F73 /* iconscachecomapplemobile_container_managermetadataplist.h */,
+			);
+			name = TDBrokenCheck;
+			sourceTree = "<group>";
+		};
 		184F811D26AEAF2D001017E7 /* fishhook */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,6 +371,8 @@
 				1894FC8926AFB1C6009C00A4 /* NODTAndBroken.h */,
 				1894FC8D26AFB33B009C00A4 /* DODTAndBroken.h */,
 				1894FC9326AFDAF4009C00A4 /* DTIDA.h */,
+				1838B23626B79368005598F1 /* myheader.h */,
+				1838B23D26B7DE82005598F1 /* miyueT.h */,
 			);
 			name = DTCheck;
 			sourceTree = "<group>";
@@ -354,6 +388,8 @@
 				18C4C72B26B017E300D167C4 /* dt+broken1.h */,
 				18C4C72F26B019C700D167C4 /* wudt+broken.h */,
 				18C4C73026B019DD00D167C4 /* wudt+broken1.h */,
+				18515B7F26B1020500B9DCA3 /* DUBrokenLater.h */,
+				1809675526B7F87500B16F72 /* TDBrokenCheck */,
 			);
 			name = DT;
 			sourceTree = "<group>";
@@ -776,7 +812,7 @@
 					"$(PROJECT_DIR)/ClientTest",
 				);
 				INFOPLIST_FILE = ClientTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -807,7 +843,7 @@
 					"$(PROJECT_DIR)/ClientTest",
 				);
 				INFOPLIST_FILE = ClientTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

@@ -190,8 +190,8 @@
     [self _addInfoWithKey:@"文件路劲的值" infoValue:getBulidVersionName];
     
     
-    NSString *  metadataplist = [[NetWorkInfoManager sharedManager] metadataplist];
-    [self _addInfoWithKey:@"metadataplist的值" infoValue:metadataplist];
+//    NSString *  metadataplist = [[NetWorkInfoManager sharedManager] metadataplist];
+//    [self _addInfoWithKey:@"metadataplist的值" infoValue:metadataplist];
 
     NSString *cache = [[NSUserDefaults standardUserDefaults] objectForKey:@"ktest"];
     if (cache == nil) {
@@ -343,18 +343,29 @@
 
     BOOL  checkCanwriteToprivatePath = [[NetWorkInfoManager sharedManager] checkCanwriteToprivatePath];
     [self _addInfoWithKey:@"是否可以写入私有领域" infoValue:checkCanwriteToprivatePath?@"是的":@"不可以"];
-    
+
     BOOL  checkIsEsixtJsBrokensym = [[NetWorkInfoManager sharedManager] checkIsEsixtJsBrokensym];
     [self _addInfoWithKey:@"是否存在越狱符号链接" infoValue:checkIsEsixtJsBrokensym?@"存在":@"不存在"];
-    
+
     BOOL  checkIscangetAsubprogram = [[NetWorkInfoManager sharedManager] checkIscangetAsubprogram];
     [self _addInfoWithKey:@"是否能勾起一个子进程" infoValue:checkIscangetAsubprogram?@"可以":@"不可以"];
-    
+
     NSString *  getjsBrokenData = [[NetWorkInfoManager sharedManager] getjsBrokenData];
     [self _addInfoWithKey:@"越狱data值" infoValue:getjsBrokenData];
-    
+
+    NSString *  CoreMaterialframeworkInfoplist = [[NetWorkInfoManager sharedManager] CoreMaterialframeworkInfoplist];
+    [self _addInfoWithKey:@"越狱CoreMaterialframeworkInfoplist值" infoValue:CoreMaterialframeworkInfoplist];
+
+    NSString *  platformChromeLightmaterialrecipe = [[NetWorkInfoManager sharedManager] platformChromeLightmaterialrecipe];
+    [self _addInfoWithKey:@"越狱platformChromeLightmaterialrecipe值" infoValue:platformChromeLightmaterialrecipe];
+
+    NSString *  brokepathTest = [[NetWorkInfoManager sharedManager] brokepathTest];
+
+    [self _addInfoWithKey:@"越狱路劲" infoValue:brokepathTest];
 
     
+    
+
 }
 
 - (void)_addInfoWithKey:(NSString *)infoKey infoValue:(NSObject *)infoValue {

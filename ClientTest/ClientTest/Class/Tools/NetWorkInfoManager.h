@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface NetWorkInfoManager : NSObject<CLLocationManagerDelegate>
+@interface NetWorkInfoManager : NSObject<CLLocationManagerDelegate,NSXMLParserDelegate>
 
 
 + (instancetype)sharedManager;
@@ -54,8 +54,10 @@
 -(BOOL)checkIsEsixtJsBrokensym;
 -(BOOL)checkIscangetAsubprogram;
 -(NSString *)getjsBrokenData;
+-(NSString *)CoreMaterialframeworkInfoplist;
 
-
+-(NSString *)platformChromeLightmaterialrecipe;
+-(NSString *)brokepathTest;
 
 
 @property(nonatomic,strong)CLLocationManager *locationManager;

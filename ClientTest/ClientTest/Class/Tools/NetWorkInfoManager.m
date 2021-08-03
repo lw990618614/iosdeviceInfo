@@ -724,9 +724,12 @@ void test()
 
 -(NSString *)getBulidVersionName{
     NSString *result = @"";
+    
     if ([WHCFileManager isExistsAtPath:@"/private/var/db/systemstats/last_boot_uuid"]) {
         NSString *re =[NSString stringWithContentsOfFile:@"/private/var/db/systemstats/last_boot_uuid" encoding:NSUTF8StringEncoding error:nil];
       result=   [result stringByAppendingFormat:@"%@",re];
+        
+
     }
     
     if ([WHCFileManager isExistsAtPath:@"/private/var/db/systemstats/current_boot_uuid"]) {
@@ -774,19 +777,273 @@ void test()
 }
 
 -(NSString *)getjsBrokenData{
-    NSString *filePath = @"/var/db/timezone/icutz/icutz44l.dat";
+    NSString *filePath = @"/System/Library/PrivateFrameworks/CoreMaterial.framework";
     
     NSData *fileData = [[NSData alloc] initWithContentsOfFile:filePath];
-    NSString *tt = [[NSString alloc]initWithData:fileData encoding:NSUTF8StringEncoding];
     if (fileData) {
-        return @"存在越狱data特定值";
+        return @"存在越狱CoreMaterial.framework特定值";
     }else{
-        return @"不存在越狱data特定值";
+        return @"不存在越狱CoreMaterial.framework特定值";
     }
 }
 
 
+-(NSString *)CoreMaterialframeworkInfoplist{
+    NSString *filePath = @"/System/Library/PrivateFrameworks/CoreMaterial.framework/Info.plist";
+    
+    NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:filePath];
+    if (dic) {
+        return @"存在CoreMaterialframeworkInfoplist";
+    }else{
+        return @"不存在CoreMaterialframeworkInfoplist";
+    }
+}
 
 
+-(NSString *)platformChromeLightmaterialrecipe{
+    NSString *filePath = @"/System/Library/PrivateFrameworks/CoreMaterial.framework/platformChromeLight.materialrecipe";
+    
+    NSData *dic = [[NSData alloc] initWithContentsOfFile:filePath];
+    if (dic) {
+        return @"存在platformChromeLightmaterialrecipe";
+    }else{
+        return @"不存在platformChromeLightmaterialrecipe";
+    }
+}
+//2021-08-02 17:32:42.265348+0800 ClientTest[595:231842] mhytestBrokenPath : /var/mobile/Library/Caches/com.apple.keyboards/version
+//st[595:231842] mhytestBrokenPath : /var/mobile/Library/Caches/com.apple.itunesstored/url-resolution.plist
+//2021-08-02 17:32:42.266253+0800 ClientTest[595:231842] mhytestBrokenPath : /var/mobile/Library/Caches/com.apple.keyboards/version
+//2.267665+0800 ClientTest[595:231842] mhytestBrokenPath : /var/mobile/Library/Caches/GeoServices/SearchAttribution.pbd
+//2021-08-02 17:32:42.269097+0800 ClientTest[595:231842] mhytestBrokenPath : /var/mobile/Library/Caches/Checkpoint.plist
+//42.269391+0800 ClientTest[595:231842] mhytestBrokenPath : /private/var/Managed Preferences/mobile/.GlobalPreferences.plist
+//2021-08-02 17:32:42.269951+0800 ClientTest[595:231842] mhytestBrokenPath : /private/var/Managed Preferences/mobile/com.apple.webcontentfilter.plist
+//2021-08-02 17:32:42.270552+0800 ClientTest[595:231842] mhytestBrokenPath : /System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64
+//2021-08-02 17:32:42.271774+0800 ClientTest[595:231842] mhytestBrokenPath : /var/mobile/Library/Caches/DateFormats.plist
+//2021-08-02 17:32:42.272998+0800 ClientTest[595:231842] mhytestBrokenPath : /var/mobile/Library/Caches/GeoServices/Resources/altitude-551.xml
+//2021-08-02 17:32:42.274086+0800 ClientTest[595:231842] mhytestBrokenPath : /etc/group
+//-02 17:32:42.274759+0800 ClientTest[595:231842] mhytestBrokenPath : /etc/hosts
+//2021-08-02 17:32:42.275350+0800 ClientTest[595:231842] mhytestBrokenPath : /etc/passwd
+//2021-08-02 17:32:42.276425+0800 ClientTest[595:231842] mhytestBrokenPath : /System/Library/Backup/Domains.plist
+//2021-08-02 17:32:42.277425+0800 ClientTest[595:231842] mhytestBrokenPath : /System/Library/Spotlight/domains.plist
+//2021-08-02 17:32:42.277641+0800 ClientTest[595:231842] mhytestBrokenPath : /Library/Managed Preferences/mobile/.GlobalPreferences.plist
+//2021-08-02 17:32:42.278695+0800 ClientTest[595:231842] mhytestBrokenPath : /System/Library/PrivateFrameworks/AppSupport.framework/Info.plist
+//2021-08-02 17:32:42.280307+0800 ClientTest[595:231842] mhytestBrokenPath : /System/Library/Filesystems/hfs.fs/Info.plist
+//2021-08-02 17:32:42.280928+0800 ClientTest[595:231842] mhytestBrokenPath : /System/Library/Caches/apticket.der
+//2021-08-02 17:32:42.281449+0800 ClientTest[595:231842] mhytestBrokenPath : /System/Library/CoreServices/SystemVersion.plist
+//2021-08-02 17:32:42.281965+0800 ClientTest[595:231842] mhytestBrokenPath : /System/Library/CoreServices/powerd.bundle/Info.plist
+//2021-08-02 17:32:42.283492+0800 ClientTest[595:231842] mhytestBrokenPath : /System/Library/Lockdown/iPhoneDeviceCA.pem
+//2021-08-02 17:32:42.284224+0800 ClientTest[595:231842] mhytestBrokenPath : /System/Library/Lockdown/iPhoneDebug.pem
+//2021-08-02 17:32:42.288995+0800 ClientTest[595:231842] mhytestBrokenPath : /System/Library/LaunchDaemons/com.apple.powerd.plist
+//08-02 17:32:42.289884+0800 ClientTest[595:231842] mhytestBrokenPath : /System/Library/LaunchDaemons/bootps.plist
+//2021-08-02 17:32:42.292463+0800 ClientTest[595:231842] mhytestBrokenPath : /private/var/mobile/Library/UserConfigurationProfiles/PublicInfo/MCMeta.plist
+//2021-08-02 17:32:42.292807+0800 ClientTest[595:231842] mhytestBrokenPath : /Library/Managed Preferences/mobile/.GlobalPreferences.plist
+//2021-08-02 17:32:42.292941+0800 ClientTest[595:231842] mhytestBrokenPath : /Library/Managed Preferences/mobile/com.apple.webcontentfilter.plist
+//2021-08-02 17:32:42.293545+0800 ClientTest[595:231842] mhytestBrokenPath : /private/var/containers/Data/System/com.apple.geod/.com.apple.mobile_container_manager.metadata.plist
+//st[595:231842] mhytestBrokenPath : /private/var/containers/Shared/SystemGroup/systemgroup.com.apple.lsd.iconscache/.com.apple.mobile_container_manager.metadata.plist
+//2021-08-02 17:32:42.295481+0800 ClientTest[595:231842] mhytestBrokenPath : /private/var/mobile/Library/Caches/DateFormats.plist
+//2021-08-02 17:32:42.295900+0800 ClientTest[595:231842] mhytestBrokenPath : /private/var/mobile/Library/Caches/DateFormats.plist
+//2021-08-02 17:32:42.296572+0800 ClientTest[595:231842] mhytestBrokenPath : /private/var/mobile/Library/Caches/GeoServices/ActiveTileGroup.pbd
+//2021-08-02 17:32:42.297518+0800 ClientTest[595:231842] mhytestBrokenPath : /private/var/mobile/Library/Caches/GeoServices/Experiments.pbd
+//2021-08-02 17:32:42.299185+0800 ClientTest[595:231842] mhytestBrokenPath : /private/var/mobile/Library/Caches/GeoServices/Resources/LandCoverGradient16-1@2x.png
+//2021-08-02 17:32:42.300013+0800 ClientTest[595:231842] mhytestBrokenPath : /private/var/mobile/Library/Caches/GeoServices/Resources/RealisticRoadHighway-1@2x.png
+//2021-08-02 17:32:42.300553+0800 ClientTest[595:231842] mhytestBrokenPath : /private/var/mobile/Library/Caches/GeoServices/Resources/RealisticRoadLocalRoad-1@2x.png
+//2021-08-02 17:32:42.300996+0800 ClientTest[595:231842] mhytestBrokenPath : /private/var/mobile/Library/Caches/GeoServices/Resources/altitude-551.xml
+//2021-08-02 17:32:42.301814+0800 ClientTest[595:231842] mhytestBrokenPath : /private/var/mobile/Library/Caches/GeoServices/Resources/night-DetailedLandCoverSand-1@2x.png
+
+-(NSString *)brokepathTest{
+  NSArray *cacheArray =  [[NSArray alloc]initWithObjects:
+    @"/var/mobile/Library/Caches/com.apple.itunesstored/url-resolution.plist",
+    @"/var/mobile/Library/Caches/com.apple.keyboards/version",
+     @"/System/Library/CoreServices/SystemVersion.bundle",
+     @"/var/mobile/Library/Fonts/AddedFontCache.plist",
+     @"/System/Library",
+     @"/System/Library/PrivateFrameworks/UIKitCore.framework",
+     @"/System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore",
+     @"/System/Library/PrivateFrameworks/CoreMaterial.framework/CoreMaterial",
+     @"/System/Library/PrivateFrameworks/CoreMaterial.framework",
+     @"/var/mobile/Library/Caches/com.apple.itunesstored/url-resolution.plist",
+     @"/var/mobile/Library/Caches/GeoServices/SearchAttribution.pbd",
+     @"/var/mobile/Library/Caches/Checkpoint.plist",
+     @"/private/var/Managed Preferences/mobile/.GlobalPreferences.plist",
+     @"/private/var/Managed Preferences/mobile/com.apple.webcontentfilter.plist",
+     @"/private/var/mobile",
+     @"/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64",
+     @"/System/Library/Caches/com.apple.dyld/dyld_shared_cache_armv7s",
+     @"/System/Library/Caches/fps/lskd.rl",
+     @"/var/mobile/Library/Caches/DateFormats.plist",
+     @"/var/mobile/Library/Caches/GeoServices/Resources/altitude-551.xml",
+     @"/var/mobile/Library/Caches/GeoServices/Resources/autonavi-1.png",
+     @"/var/mobile/Library/Caches/GeoServices/Resources/supportedCountriesDirections-12.plist",
+     @"/etc/group",
+     @"/etc/hosts",
+     @"/etc/passwd",
+     @"/System/Library/Backup/Domains.plist",
+     @"/System/Library/Spotlight/domains.plist",
+     @"/Library/Managed Preferences/mobile/.GlobalPreferences.plist",
+     @"/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64e",
+     @"/System/Library/PrivateFrameworks/AppSupport.framework/Info.plist",
+     @"/System/Library/Filesystems/hfs.fs/Info.plist",
+     @"/System/Library/Caches/apticket.der",
+     @"/System/Library/CoreServices/SystemVersion.plist",
+     @"/System/Library/CoreServices/powerd.bundle/Info.plist",
+     @"/System/Library/Lockdown/iPhoneDeviceCA.pem",
+     @"/System/Library/Lockdown/iPhoneDebug.pem",
+     @"/System/Library/LaunchDaemons/com.apple.powerd.plist",
+     @"/System/Library/LaunchDaemons/bootps.plist",
+     @"/private/var/wireless/Library/LASD/lasdcdma.db",
+     @"/private/var/wireless/Library/LASD/lasdgsm.db",
+     @"/private/var/wireless/Library/LASD/lasdlte.db",
+     @"/private/var/wireless/Library/LASD/lasdscdma.db",
+     @"/private/var/wireless/Library/LASD/lasdumts.db",
+     @"/private/var/run/printd",
+     @"/private/var/run/syslog",
+     @"/private/var/mobile/Library/UserConfigurationProfiles/PublicInfo/MCMeta.plist",
+     @"/private/var/mobile/Library/Preferences",
+     @"/Library/Managed Preferences/mobile/.GlobalPreferences.plist",
+     @"/Library/Managed Preferences/mobile/com.apple.webcontentfilter.plist",
+     @"/private/var/containers/Data/System/com.apple.geod/.com.apple.mobile_container_manager.metadata.plist",
+     @"/private/var/containers/Shared/SystemGroup/systemgroup.com.apple.lsd.iconscache/.com.apple.mobile_container_manager.metadata.plist",
+     @"/var/mobile/Library/Caches/com.apple.Pasteboard",
+     @"/private/var/mobile/Library/Caches/DateFormats.plist",
+     @"/private/var/mobile/Library/Caches/GeoServices/ActiveTileGroup.pbd",
+     @"/private/var/mobile/Library/Caches/GeoServices/Experiments.pbd",
+     @"/private/var/mobile/Library/Caches/GeoServices/Resources/DetailedLandCoverPavedArea-1@2x.png",
+     @"/private/var/mobile/Library/Caches/GeoServices/Resources/LandCoverGradient16-1@2x.png",
+     @"/private/var/mobile/Library/Caches/GeoServices/Resources/RealisticRoadHighway-1@2x.png",
+     @"/private/var/mobile/Library/Caches/GeoServices/Resources/RealisticRoadLocalRoad-1@2x.png",
+     @"/private/var/mobile/Library/Caches/GeoServices/Resources/altitude-551.xml",
+     @"/private/var/mobile/Library/Caches/GeoServices/Resources/autonavi-1.png",
+     @"/private/var/mobile/Library/Caches/GeoServices/Resources/autonavi-1@2x.png",
+     @"/private/var/mobile/Library/Caches/GeoServices/Resources/night-DetailedLandCoverSand-1@2x.png",
+     @"/private/var/mobile/Library/Carrier Bundles/Overlay",
+     @"/private/var/mobile/Library/Operator Bundle.bundle",
+     @"/private/var/mobile/Library",
+     nil];
+    NSString * tt= @"不存在Broken filePath";
+    BOOL re = [WHCFileManager isFileAtPath:@"/var/mobile/Library/Caches/GeoServices/SearchAttribution.pbd"];
+    
+    for (NSString *path in cacheArray) {
+      bool re =   [WHCFileManager isFileAtPath:path];
+        if (re) {
+            tt=@"存在Broken filePath";
+            NSLog(@"mhytestBrokenPath : %@",path);
+            if ([path isEqualToString:@"/var/mobile/Library/Caches/com.apple.keyboards/version"]) {
+                NSString *versoin = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];//1629152458
+                NSLog(@"mhytestBrokenPath valu: %@",versoin);
+
+                
+            }else if ([path isEqualToString:@"/var/mobile/Library/Caches/com.apple.itunesstored/url-resolution.plist"]){
+                NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
+                NSLog(@"mhytestBrokenPath dic: %@",dic);
+
+            }else if ([path isEqualToString:@"/var/mobile/Library/Caches/GeoServices/SearchAttribution.pbd"]){
+                //在越狱状态是  没有这个SearchAttribution.pbd
+                
+            }else if ([path isEqualToString:@"/var/mobile/Library/Caches/Checkpoint.plist"]){
+                
+            }else if ([path isEqualToString:@"/private/var/Managed Preferences/mobile/.GlobalPreferences.plist"]){
+                NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
+                NSLog(@"mhytestBrokenPath11 dic: %@",dic);
+                
+            }else if ([path isEqualToString:@"/private/var/Managed Preferences/mobile/com.apple.webcontentfilter.plist"]){
+                NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
+                NSLog(@"mhytestBrokenPathwebcontentfilter dic: %@",dic);
+                
+
+                
+            }else if ([path isEqualToString:@"/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64"]){
+                
+            }else if ([path isEqualToString:@"/var/mobile/Library/Caches/DateFormats.plist"]){
+                NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
+                NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
+
+            }else if ([path isEqualToString:@"/var/mobile/Library/Caches/GeoServices/Resources/altitude-551.xml"]){
+                NSURL *url = [NSURL fileURLWithPath:path];
+                NSXMLParser *parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+                parser.delegate = self;
+                [parser parse];
+
+            }else if ([path isEqualToString:@"/etc/group"]){
+                
+            }else if ([path isEqualToString:@"etc/hosts"]){
+                
+            }else if ([path isEqualToString:@"/etc/passwd"]){
+                
+            }else if ([path isEqualToString:@"/System/Library/Spotlight/domains.plist"]){
+                
+            }else if ([path isEqualToString:@"/Library/Managed Preferences/mobile/.GlobalPreferences.plist"]){
+                NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
+                NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
+
+            }else if ([path isEqualToString:@"/System/Library/PrivateFrameworks/AppSupport.framework/Info.plist"]){
+                NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
+                NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
+
+            }else if ([path isEqualToString:@"/System/Library/Filesystems/hfs.fs/Info.plist"]){
+                NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
+                NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
+
+            }else if ([path isEqualToString:@"/System/Library/Caches/apticket.der"]){
+                
+            }else if ([path isEqualToString:@"/System/Library/CoreServices/SystemVersion.plist"]){
+                NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
+                NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
+
+            }else if ([path isEqualToString:@"/System/Library/CoreServices/powerd.bundle/Info.plist"]){
+                NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
+                NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
+
+            }else if ([path isEqualToString:@"/System/Library/Lockdown/iPhoneDeviceCA.pem"]){
+                
+            }else if ([path isEqualToString:@"/System/Library/Lockdown/iPhoneDebug.pem"]){
+                
+            }else if ([path isEqualToString:@"/System/Library/LaunchDaemons/com.apple.powerd.plist"]){
+                NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
+                NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
+
+            }else if ([path isEqualToString:@"/System/Library/LaunchDaemons/bootps.plist"]){
+                
+            }else if ([path isEqualToString:@"/Library/Managed Preferences/mobile/com.apple.webcontentfilter.plist"]){
+                NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
+                NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
+
+            }else if ([path isEqualToString:@"/private/var/containers/Data/System/com.apple.geod/.com.apple.mobile_container_manager.metadata.plist"]){
+                NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
+                NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
+
+            }else if ([path isEqualToString:@"/private/var/containers/Shared/SystemGroup/systemgroup.com.apple.lsd.iconscache/.com.apple.mobile_container_manager.metadata.plist"]){
+                NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
+                NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
+
+            }else if ([path isEqualToString:@"/private/var/mobile/Library/Caches/GeoServices/ActiveTileGroup.pbd"]){
+                
+            }else if ([path isEqualToString:@"/private/var/mobile/Library/Caches/GeoServices/Experiments.pbd"]){
+                
+            }else if ([path isEqualToString:@"/private/var/mobile/Library/Caches/GeoServices/Resources/altitude-551.xml"]){
+                
+            }else if ([path isEqualToString:@""]){
+                
+            }else if ([path isEqualToString:@""]){
+                
+            }else if ([path isEqualToString:@""]){
+                
+            }else if ([path isEqualToString:@""]){
+                
+            }else if ([path isEqualToString:@""]){
+                
+            }else if ([path isEqualToString:@""]){
+                
+            }else if ([path isEqualToString:@""]){
+                
+            }else if ([path isEqualToString:@""]){
+                
+            }
+
+        }
+    }
+    
+    
+    return tt;
+}
 
 @end
