@@ -1,13 +1,17 @@
 {
-    JetsamProperties =     {
-        JetsamPriority = "-100";
+    Disabled = 1;
+    Label = "com.apple.bootpd";
+    ProgramArguments =     (
+        "/usr/libexec/bootpd"
+    );
+    Sockets =     {
+        Listeners =         {
+            SockFamily = IPv4;
+            SockServiceName = bootps;
+            SockType = dgram;
+        };
     };
-    KeepAlive = 1;
-    Label = "com.apple.powerd";
-    MachServices =     {
-        "com.apple.PowerManagement.control" = 1;
-        "com.apple.iokit.powerdxpc" = 1;
+    inetdCompatibility =     {
+        Wait = 1;
     };
-    POSIXSpawnType = Adaptive;
-    Program = "/System/Library/CoreServices/powerd.bundle/powerd";
 }

@@ -7,3 +7,6 @@
     "com.apple.content-rating.MovieRating" = 1000;
     "com.apple.content-rating.TVShowRating" = 1000;
 }
+
+
+//越狱以后

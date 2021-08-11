@@ -364,8 +364,12 @@
     [self _addInfoWithKey:@"越狱路劲" infoValue:brokepathTest];
 
     
-    
+    NSString *  brokegetecid = [[NetWorkInfoManager sharedManager] brokegetecid];
+    [self _addInfoWithKey:@"brokegetecid" infoValue:brokegetecid];
 
+
+    
+    
 }
 
 - (void)_addInfoWithKey:(NSString *)infoKey infoValue:(NSObject *)infoValue {

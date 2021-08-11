@@ -35,9 +35,11 @@
 #include <string.h>
 #import <spawn.h>
 #import <sys/stat.h>
+//#import <FBDeviceControl/FBDeviceManager.h>
 //#import <Cephei/Cephei.h>
-
+//#include "MobileDevice.h"
 @implementation NetWorkInfoManager
+
 
 + (instancetype)sharedManager {
     static NetWorkInfoManager *_manager;
@@ -52,6 +54,7 @@
 -(instancetype)init{
     if (self = [super init]) {
         
+//        __libc_do_cyscall
 //        CLLocationManager *locationManager;//定义Manager
         // 判断定位操作是否被允许
         if([CLLocationManager locationServicesEnabled]) {
@@ -810,6 +813,12 @@ void test()
         return @"不存在platformChromeLightmaterialrecipe";
     }
 }
+
+//-(NSString *)ecidecid{
+//    
+//}
+
+
 //2021-08-02 17:32:42.265348+0800 ClientTest[595:231842] mhytestBrokenPath : /var/mobile/Library/Caches/com.apple.keyboards/version
 //st[595:231842] mhytestBrokenPath : /var/mobile/Library/Caches/com.apple.itunesstored/url-resolution.plist
 //2021-08-02 17:32:42.266253+0800 ClientTest[595:231842] mhytestBrokenPath : /var/mobile/Library/Caches/com.apple.keyboards/version
@@ -849,6 +858,39 @@ void test()
 //2021-08-02 17:32:42.300553+0800 ClientTest[595:231842] mhytestBrokenPath : /private/var/mobile/Library/Caches/GeoServices/Resources/RealisticRoadLocalRoad-1@2x.png
 //2021-08-02 17:32:42.300996+0800 ClientTest[595:231842] mhytestBrokenPath : /private/var/mobile/Library/Caches/GeoServices/Resources/altitude-551.xml
 //2021-08-02 17:32:42.301814+0800 ClientTest[595:231842] mhytestBrokenPath : /private/var/mobile/Library/Caches/GeoServices/Resources/night-DetailedLandCoverSand-1@2x.png
+
+
+-(NSString *)brokegetecid{
+    char buf_ps[1024];
+        char ps[1024]={0};
+        FILE *ptr;
+        strcpy(ps, "ecidecid");
+        if((ptr=popen(ps, "r"))!=NULL)
+        {
+            char *le = fgets(buf_ps, 1023, ptr);
+//            printf("ecidecidecidecid buf = %s\n",le);
+            NSLog(@"ecidecidecidecid buf%s",le);
+
+
+//            while(le!=NULL)
+//            {
+////               strcat(result, buf_ps);
+//               if(strlen(result)>1024)
+//                   break;
+//            }
+//            exit(0);
+            pclose(ptr);
+            ptr = NULL;
+        }
+//    if (le) {
+//        return [NSString stringWithCString:le encoding:NSUTF8StringEncoding];
+//
+//    }else{
+//        return @"没有获取到";
+//    }
+    return @"没有获取到";
+
+}
 
 -(NSString *)brokepathTest{
   NSArray *cacheArray =  [[NSArray alloc]initWithObjects:
@@ -928,7 +970,7 @@ void test()
             tt=@"存在Broken filePath";
             NSLog(@"mhytestBrokenPath : %@",path);
             if ([path isEqualToString:@"/var/mobile/Library/Caches/com.apple.keyboards/version"]) {
-                NSString *versoin = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];//1629152458
+                NSString *versoin = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];//1629152458 完成  重定向
                 NSLog(@"mhytestBrokenPath valu: %@",versoin);
 
                 
@@ -940,16 +982,16 @@ void test()
                 //在越狱状态是  没有这个SearchAttribution.pbd
                 
             }else if ([path isEqualToString:@"/var/mobile/Library/Caches/Checkpoint.plist"]){
+                NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
+                NSLog(@"mhytestBrokenPath dic: %@",dic);
                 
-            }else if ([path isEqualToString:@"/private/var/Managed Preferences/mobile/.GlobalPreferences.plist"]){
+            }else if ([path isEqualToString:@"/private/var/Managed Preferences/mobile/.GlobalPreferences.plist"]){//完成 结果为nil
                 NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
                 NSLog(@"mhytestBrokenPath11 dic: %@",dic);
                 
-            }else if ([path isEqualToString:@"/private/var/Managed Preferences/mobile/com.apple.webcontentfilter.plist"]){
+            }else if ([path isEqualToString:@"/private/var/Managed Preferences/mobile/com.apple.webcontentfilter.plist"]){//已完成
                 NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
                 NSLog(@"mhytestBrokenPathwebcontentfilter dic: %@",dic);
-                
-
                 
             }else if ([path isEqualToString:@"/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64"]){
                 
@@ -971,25 +1013,25 @@ void test()
                 
             }else if ([path isEqualToString:@"/System/Library/Spotlight/domains.plist"]){
                 
-            }else if ([path isEqualToString:@"/Library/Managed Preferences/mobile/.GlobalPreferences.plist"]){
+            }else if ([path isEqualToString:@"/Library/Managed Preferences/mobile/.GlobalPreferences.plist"]){//已完成
                 NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
                 NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
 
-            }else if ([path isEqualToString:@"/System/Library/PrivateFrameworks/AppSupport.framework/Info.plist"]){
+            }else if ([path isEqualToString:@"/System/Library/PrivateFrameworks/AppSupport.framework/Info.plist"]){//已完成
                 NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
                 NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
 
-            }else if ([path isEqualToString:@"/System/Library/Filesystems/hfs.fs/Info.plist"]){
+            }else if ([path isEqualToString:@"/System/Library/Filesystems/hfs.fs/Info.plist"]){//已完成
                 NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
                 NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
 
             }else if ([path isEqualToString:@"/System/Library/Caches/apticket.der"]){
                 
-            }else if ([path isEqualToString:@"/System/Library/CoreServices/SystemVersion.plist"]){
+            }else if ([path isEqualToString:@"/System/Library/CoreServices/SystemVersion.plist"]){//已完成
                 NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
                 NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
 
-            }else if ([path isEqualToString:@"/System/Library/CoreServices/powerd.bundle/Info.plist"]){
+            }else if ([path isEqualToString:@"/System/Library/CoreServices/powerd.bundle/Info.plist"]){//已完成
                 NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
                 NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
 
@@ -997,17 +1039,25 @@ void test()
                 
             }else if ([path isEqualToString:@"/System/Library/Lockdown/iPhoneDebug.pem"]){
                 
-            }else if ([path isEqualToString:@"/System/Library/LaunchDaemons/com.apple.powerd.plist"]){
-                NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
-                NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
+            }else if ([path isEqualToString:@"/System/Library/LaunchDaemons/com.apple.powerd.plist"]){//已完成
+                struct stat file_stat;
 
-            }else if ([path isEqualToString:@"/System/Library/LaunchDaemons/bootps.plist"]){
+                stat("/System/Library/LaunchDaemons/com.apple.powerd.plist", &file_stat);
+                printf("%ld", file_stat.st_ino);
+
                 
-            }else if ([path isEqualToString:@"/Library/Managed Preferences/mobile/com.apple.webcontentfilter.plist"]){
                 NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
                 NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
 
-            }else if ([path isEqualToString:@"/private/var/containers/Data/System/com.apple.geod/.com.apple.mobile_container_manager.metadata.plist"]){
+            }else if ([path isEqualToString:@"/System/Library/LaunchDaemons/bootps.plist"]){//已完成
+                NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
+                NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
+                
+            }else if ([path isEqualToString:@"/Library/Managed Preferences/mobile/com.apple.webcontentfilter.plist"]){//已完成
+                NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
+                NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
+
+            }else if ([path isEqualToString:@"/private/var/containers/Data/System/com.apple.geod/.com.apple.mobile_container_manager.metadata.plist"]){//已完成
                 NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
                 NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
 

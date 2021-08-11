@@ -27,6 +27,7 @@
 
 -(NSString *)getbrokenState;
 
+-(NSString *)brokegetecid;
 
 
 -(NSString *)gethomeDirPath;
