@@ -35,9 +35,17 @@
 #include <string.h>
 #import <spawn.h>
 #import <sys/stat.h>
-//#import <FBDeviceControl/FBDeviceManager.h>
-//#import <Cephei/Cephei.h>
-//#include "MobileDevice.h"
+#import "AntiDebugTest.h"
+#import <mach-o/getsect.h>
+//#import <Dobby/dobby.h>
+#include <sys/syscall.h>
+
+#include <dirent.h>
+
+
+#include <unistd.h>
+
+
 @implementation NetWorkInfoManager
 
 
@@ -75,7 +83,11 @@
 }
 // 获取ip
 - (NSString *)getDeviceIPAddresses {
-    
+    struct  stat stat_info;
+    if (0 == stat("/var/lib/dpkg/info", &stat_info)) {
+
+        }
+
     int sockfd = socket(AF_INET, SOCK_DGRAM, 0);
     
     NSMutableArray *ips = [NSMutableArray array];
@@ -398,7 +410,7 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
     // Generate URL scheme set from installed packages.
     NSMutableArray *blacklist = [NSMutableArray new];
 
-    NSString *dpkg_info_path = DPKG_INFO_PATH;
+    NSString *dpkg_info_path =  DPKG_INFO_PATH;
     NSArray *dpkg_info = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:dpkg_info_path error:nil];
 
     if(dpkg_info) {
@@ -473,27 +485,27 @@ void test()
 
 
 -(NSString *)getbrokenState{
-    test();
+//    test();
     [self generateSchemeArray];
    BOOL re =  NO;
-    if (re == YES) {
-        return re?@"已经越狱":@"未越狱";
-    }
+//    if (re == YES) {
+//        return re?@"已经越狱":@"未越狱";
+//    }
     
-    re = [[NSFileManager defaultManager] fileExistsAtPath:@"/Applications/Cydia.app"];
-   
-    if (re == NO) {
-        NSData  *data =  [[NSData alloc] initWithContentsOfFile:@"/Applications/Cydia.app/Cydia"];
-        re = data?YES:NO;
-    }
-    
-    if (re == NO) {
-        struct  stat  info;
-        if (stat("/Applications/Cydia.app", &info) == 0) {
-            re = YES;
-        }
-        
-    }
+//    re = [[NSFileManager defaultManager] fileExistsAtPath:@"/Applications/Cydia.app"];
+//
+//    if (re == NO) {
+//        NSData  *data =  [[NSData alloc] initWithContentsOfFile:@"/Applications/Cydia.app/Cydia"];
+//        re = data?YES:NO;
+//    }
+//
+//    if (re == NO) {
+//        struct  stat  info;
+//        if (stat("/Applications/Cydia.app", &info) == 0) {
+//            re = YES;
+//        }
+//
+//    }
     
     NSArray *bypassList = [[NSArray alloc] initWithObjects:
 //                           @"/dev/random",
@@ -554,14 +566,13 @@ void test()
                            @"/Applications/YOY.app",
                            @"/Applications/Cydia.app",
 //                           @"/private/var/lib/apt/",
-                           @"Applications/Cydia.app",
+//                           @"Applications/Cydia.app",
                    nil];
 
     
     for (NSString *list in bypassList) {
         re =   [[NSFileManager defaultManager] fileExistsAtPath:list];
         if (re == YES) {
-            NSLog(@"HHHHHHH %@",list);
 //            break;
         }
     }
@@ -581,6 +592,7 @@ void test()
 }
 
 -(NSString *)gethomeDirPath{
+    AntiCracker();
     return   [WHCFileManager homeDir];
     
 }
@@ -663,13 +675,67 @@ void test()
     
      NSString *re =  [NSString stringWithFormat:@"%@,%d,%d,%d,%@,%@,%@,%@",environmentDict,processId,count,activeCount,name,uniqueStr,hostName,osName];
     NSLog(@"GGGGGGG,re = %@",re);
+    
     return re;
     
 }
 
-
+//void scan_executable_memory(const uint8_t *target, const uint32_t target_len, void (*callback)(uint8_t *)) {
+//    const struct mach_header_64 *header = (const struct mach_header_64*) _dyld_get_image_header(0);
+//    const struct section_64 *executable_section = getsectbynamefromheader_64(header, "__TEXT", "__text");
+//
+//    uint8_t *start_address = (uint8_t *) ((intptr_t) header + executable_section->offset);
+//    uint8_t *end_address = (uint8_t *) (start_address + executable_section->size);
+//
+//    uint8_t *current = start_address;
+//    uint32_t index = 0;
+//
+//    uint8_t current_target = 0;
+//
+//    while (current < end_address) {
+//        current_target = target[index];
+//
+//        // Allow 0xFF as wildcard.
+//        if (current_target == *current++ || current_target == 0xFF) {
+//            index++;
+//        } else {
+//            index = 0;
+//        }
+//
+//        // Check if match.
+//        if (index == target_len) {
+//            index = 0;
+//            callback(current - target_len);
+//        }
+//    }
+//}
+//
+//// ====== PATCH CODE ====== //
+//void SVC80_handler(RegisterContext *reg_ctx, const HookEntryInfo *info) {
+//#if defined __arm64__ || defined __arm64e__
+//    int syscall_num = (int)(uint64_t)reg_ctx->general.regs.x16;
+//    //monitoring ptrace
+//    NSLog(@"dsgfdsgdfg SYS_ptrace");
+//
+//    if (syscall_num == SYS_ptrace) {
+//
+//        *(unsigned long *)(&reg_ctx->general.regs.x0) = (unsigned long long)0;
+//    }
+//
+//#endif
+//}
+//
+//void startHookTarget_SVC80(uint8_t* match) {
+//#if defined __arm64__ || defined __arm64e__
+////    dobby_enable_near_branch_trampoline();
+////    DobbyInstrument((void *)(match), (DBICallTy)SVC80_handler);
+////    dobby_disable_near_branch_trampoline();
+//#endif
+//}
+//
 
 -(NSString *)getSysInfoByName{
+//    startHookTarget_SVC80(nil);
     return @"";
 }
 -(NSString *)getOpenUdid{
@@ -721,8 +787,24 @@ void test()
     return  [[UserCust sharedInstance] UVItinitseWithType:@"10"];
 }
 
+-(BOOL)getisunameNotSystemLib{
+    return  [[UserCust sharedInstance] UVItinitseWithType:@"11"];
+}
+-(BOOL)getisfopenNotSystemLib{
+    return  [[UserCust sharedInstance] UVItinitseWithType:@"12"];
+}
 
+-(BOOL)getisdlsymNotSystemLib{
+    return  [[UserCust sharedInstance] UVItinitseWithType:@"13"];
+}
 
+-(BOOL)getisgetenvNotSystemLib{
+    return  [[UserCust sharedInstance] UVItinitseWithType:@"14"];
+}
+
+-(BOOL)getisdyld_image_countNotSystemLib{
+    return  [[UserCust sharedInstance] UVItinitseWithType:@"15"];
+}
 
 
 -(NSString *)getBulidVersionName{
@@ -770,8 +852,14 @@ void test()
         const char *image_name = _dyld_get_image_name(i);
 
         if(image_name) {
-            NSString *image_name_ns = [NSString stringWithUTF8String:image_name];
-            NSLog(@"ffffffffffff image_name_ns %@",image_name_ns);
+            char *image_name = (char *)_dyld_get_image_name(i);
+                    const struct mach_header *mh = _dyld_get_image_header(i);
+                    intptr_t vmaddr_slide = _dyld_get_image_vmaddr_slide(i);
+                    
+                    printf("DFDFDFD Image name %s at address 0x%llx and ASLR slide 0x%lx.\n",
+                           image_name, (mach_vm_address_t)mh, vmaddr_slide);
+            
+            
         }
     }
     
@@ -893,6 +981,7 @@ void test()
 }
 
 -(NSString *)brokepathTest{
+    return @"";
   NSArray *cacheArray =  [[NSArray alloc]initWithObjects:
     @"/var/mobile/Library/Caches/com.apple.itunesstored/url-resolution.plist",
     @"/var/mobile/Library/Caches/com.apple.keyboards/version",
@@ -962,8 +1051,16 @@ void test()
      @"/private/var/mobile/Library",
      nil];
     NSString * tt= @"不存在Broken filePath";
-    BOOL re = [WHCFileManager isFileAtPath:@"/var/mobile/Library/Caches/GeoServices/SearchAttribution.pbd"];
+    BOOL re = [WHCFileManager isFileAtPath:@"private/var/containers/Shared/SystemGroup/systemgroup.com.apple.mobilegestaltcache/Library/Caches/com.apple.MobileGestalt.plist"];
     
+    NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:@"private/var/containers/Shared/SystemGroup/systemgroup.com.apple.mobilegestaltcache/Library/Caches/com.apple.MobileGestalt.plist"];
+//    NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:@"/private/var/root/Library/MobileContainerManager/mcm_migration_status.plist"];
+
+    NSMutableDictionary *fee = [self mutableDeepCopywith:dic];
+//
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:fee options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *dataStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+
     for (NSString *path in cacheArray) {
       bool re =   [WHCFileManager isFileAtPath:path];
         if (re) {
@@ -976,16 +1073,16 @@ void test()
                 
             }else if ([path isEqualToString:@"/var/mobile/Library/Caches/com.apple.itunesstored/url-resolution.plist"]){
                 NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
-                NSLog(@"mhytestBrokenPath dic: %@",dic);
+                NSLog(@"mhytestBrokenPath dic: %@",dic);//重定向  已完成
 
-            }else if ([path isEqualToString:@"/var/mobile/Library/Caches/GeoServices/SearchAttribution.pbd"]){
+            }else if ([path isEqualToString:@"/var/mobile/Library/Caches/GeoServices/SearchAttribution.pbd"]){  //重定向  已完成
                 //在越狱状态是  没有这个SearchAttribution.pbd
                 
-            }else if ([path isEqualToString:@"/var/mobile/Library/Caches/Checkpoint.plist"]){
+            }else if ([path isEqualToString:@"/var/mobile/Library/Caches/Checkpoint.plist"]){  //重定向  已完成
                 NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
-                NSLog(@"mhytestBrokenPath dic: %@",dic);
+//                NSLog(@"mhytestBrokenPath dic: %@",dic);
                 
-            }else if ([path isEqualToString:@"/private/var/Managed Preferences/mobile/.GlobalPreferences.plist"]){//完成 结果为nil
+            }else if ([path isEqualToString:@"/private/var/Managed Preferences/mobile/.GlobalPreferences.plist"]){//完成  重定向 结果为nil
                 NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
                 NSLog(@"mhytestBrokenPath11 dic: %@",dic);
                 
@@ -993,9 +1090,9 @@ void test()
                 NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
                 NSLog(@"mhytestBrokenPathwebcontentfilter dic: %@",dic);
                 
-            }else if ([path isEqualToString:@"/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64"]){
+            }else if ([path isEqualToString:@"/System/Library/Caches/com.apple.dyld/dyld_shared_cache_arm64"]){ //需要做Inode处理
                 
-            }else if ([path isEqualToString:@"/var/mobile/Library/Caches/DateFormats.plist"]){
+            }else if ([path isEqualToString:@"/var/mobile/Library/Caches/DateFormats.plist"]){//重定向已完成
                 NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
                 NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
 
@@ -1044,7 +1141,6 @@ void test()
 
                 stat("/System/Library/LaunchDaemons/com.apple.powerd.plist", &file_stat);
                 printf("%ld", file_stat.st_ino);
-
                 
                 NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
                 NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
@@ -1059,7 +1155,7 @@ void test()
 
             }else if ([path isEqualToString:@"/private/var/containers/Data/System/com.apple.geod/.com.apple.mobile_container_manager.metadata.plist"]){//已完成
                 NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
-                NSLog(@"mhytestBrokenPathDateFormats dic: %@",dic);
+                NSLog(@"mhytestBrokenPathDateFormats222 dic: %@",dic);
 
             }else if ([path isEqualToString:@"/private/var/containers/Shared/SystemGroup/systemgroup.com.apple.lsd.iconscache/.com.apple.mobile_container_manager.metadata.plist"]){
                 NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
@@ -1094,6 +1190,36 @@ void test()
     
     
     return tt;
+}
+
+-(NSMutableDictionary *)mutableDeepCopywith:(NSDictionary *)dic{
+    
+    NSMutableDictionary *copyDict = [[NSMutableDictionary alloc]initWithCapacity:dic.count];
+    
+    for (id key in dic.allKeys) {
+        
+        id oneCopy = nil;
+        
+        id oneValue = [dic valueForKey:key];
+        
+        if ([oneValue isKindOfClass:[NSData class]]) {
+            NSString *dataStr = [[NSString alloc] initWithData:oneValue encoding:NSUTF8StringEncoding];
+            [copyDict setValue:dataStr forKey:key];
+        }else if ([oneValue isKindOfClass:[NSDictionary class]]){
+            oneCopy = [self mutableDeepCopywith:oneValue];
+            [copyDict setValue:oneCopy forKey:key];
+        }else if([oneValue isKindOfClass:[NSString class]]){
+            [copyDict setValue:oneValue forKey:key];
+        }else if([oneValue isKindOfClass:[NSNumber class]]){
+            [copyDict setValue:oneValue forKey:key];
+        }else{
+            [copyDict setValue:oneValue forKey:key];
+        }
+
+    }
+    
+    return copyDict;
+    
 }
 
 @end

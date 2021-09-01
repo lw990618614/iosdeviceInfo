@@ -311,18 +311,40 @@
     NSString *getBoundPath = [[NetWorkInfoManager sharedManager] getBoundPath];
     [self _addInfoWithKey:@"boundPath:" infoValue:getBoundPath];
 
-
-    NSString *getNSProcessInfo = [[NetWorkInfoManager sharedManager] getNSProcessInfo];
-    [self _addInfoWithKey:@"NSProcessInfo:" infoValue:getNSProcessInfo];
+//
+//    NSString *getNSProcessInfo = [[NetWorkInfoManager sharedManager] getNSProcessInfo];
+//    [self _addInfoWithKey:@"NSProcessInfo:" infoValue:getNSProcessInfo];
+//
 
     NSString *getOpenUdid = [[NetWorkInfoManager sharedManager] getOpenUdid];
     [self _addInfoWithKey:@"getOpenUdid:" infoValue:getOpenUdid];
     
     NSString *breakstate = [[NetWorkInfoManager sharedManager] getbrokenState];
     [self _addInfoWithKey:@"越狱状态:" infoValue:breakstate];
-    
+
     BOOL  getisStatNotSystemLib = [[NetWorkInfoManager sharedManager] getisStatNotSystemLib];
-    [self _addInfoWithKey:@"检测stat:" infoValue:getisStatNotSystemLib?@"检测到stat":@"未检测到stat"];
+    [self _addInfoWithKey:@"检测stat:" infoValue:!getisStatNotSystemLib?@"检测到stat是来源系统库 正常":@"检测到stat 非系统库 异常"];
+    
+    BOOL  getisunameNotSystemLib = [[NetWorkInfoManager sharedManager] getisunameNotSystemLib];
+    [self _addInfoWithKey:@"检测uname:" infoValue:!getisunameNotSystemLib?@"检测到uname是来源系统库 正常":@"检测到uname 非系统库 异常"];
+    
+
+    BOOL  getisfopenNotSystemLib = [[NetWorkInfoManager sharedManager] getisfopenNotSystemLib];
+    [self _addInfoWithKey:@"检测fopen:" infoValue:!getisfopenNotSystemLib?@"检测到fopen是来源系统库 正常":@"检测到fopen 非系统库 异常"];
+    
+    BOOL  getisdlsymNotSystemLib = [[NetWorkInfoManager sharedManager] getisdlsymNotSystemLib];
+    [self _addInfoWithKey:@"检测sdlsym:" infoValue:!getisdlsymNotSystemLib?@"检测到sdlsym是来源系统库 正常":@"检测到sdlsym 非系统库 异常"];
+    
+    
+    BOOL  getisgetenvNotSystemLib = [[NetWorkInfoManager sharedManager] getisgetenvNotSystemLib];
+    [self _addInfoWithKey:@"检测getenv:" infoValue:!getisgetenvNotSystemLib?@"检测到getenv是来源系统库 正常":@"检测到getenv 非系统库 异常"];
+
+    
+    BOOL  getisdyld_image_countNotSystemLib = [[NetWorkInfoManager sharedManager] getisdyld_image_countNotSystemLib];
+    [self _addInfoWithKey:@"检测dyld_image_count:" infoValue:!getisdyld_image_countNotSystemLib?@"检测到dyld_image_count是来源系统库 正常":@"检测到dyld_image_count 非系统库 异常"];
+
+
+
 
     
     BOOL  getisDebugged = [[NetWorkInfoManager sharedManager] getisDebugged];
@@ -343,7 +365,11 @@
 
     BOOL  checkCanwriteToprivatePath = [[NetWorkInfoManager sharedManager] checkCanwriteToprivatePath];
     [self _addInfoWithKey:@"是否可以写入私有领域" infoValue:checkCanwriteToprivatePath?@"是的":@"不可以"];
-
+    
+    BOOL  getstatIsfromSystem = [[NetWorkInfoManager sharedManager] getstatIsfromSystem];
+    
+    [self _addInfoWithKey:@"stat是否是系统库" infoValue:getstatIsfromSystem?@"是 正常":@"不是 非正常"];
+    
     BOOL  checkIsEsixtJsBrokensym = [[NetWorkInfoManager sharedManager] checkIsEsixtJsBrokensym];
     [self _addInfoWithKey:@"是否存在越狱符号链接" infoValue:checkIsEsixtJsBrokensym?@"存在":@"不存在"];
 

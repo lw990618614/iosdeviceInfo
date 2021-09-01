@@ -12,7 +12,8 @@
 
 /** 能否打电话 */
 @property (nonatomic, assign, readonly) BOOL canMakePhoneCall NS_EXTENSION_UNAVAILABLE_IOS("");
-
+@property (strong, nonatomic) NSArray <NSDictionary *> *mgCopyAnswerArray;
+@property (strong, nonatomic) NSArray <NSDictionary *> *mgCopyAnswerNullArray;
 + (instancetype)sharedManager;
 
 

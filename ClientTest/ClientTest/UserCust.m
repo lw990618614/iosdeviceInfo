@@ -10,6 +10,12 @@
 #import <dlfcn.h>
 #import <sys/types.h>
 
+#import "sys/utsname.h"
+#include "AntiMSHookFunctionARM.h"
+#include "MSHookFunctionARMCheck.h"
+#include "fishhook.h"
+
+
 static char *JbPaths[] = {"/Applications/Cydia.app",
     "/usr/sbin/sshd",
     "/bin/bash",
@@ -21,25 +27,26 @@ static char *JbPaths[] = {"/Applications/Cydia.app",
 static NSSet *sDylibSet ; // 需要检测的动态库
 static BOOL SCHECK_USER = NO; /// 检测是否越狱
 
+
 @implementation UserCust
 
-
-//+ (void)load {
-//  static dispatch_once_t onceToken;
-//  dispatch_once(&onceToken, ^{
-//    sDylibSet  = [NSSet setWithObjects:
-//                       @"/usr/lib/CepheiUI.framework/CepheiUI",
-//                       @"/usr/lib/libsubstitute.dylib",
-//                       @"/usr/lib/substitute-inserter.dylib",
-//                       @"/usr/lib/substitute-loader.dylib",
-//                       @"/usr/lib/substrate/SubstrateLoader.dylib",
-//                       @"/usr/lib/substrate/SubstrateInserter.dylib",
-//                       @"/Library/MobileSubstrate/MobileSubstrate.dylib",
-//                       @"/Library/MobileSubstrate/DynamicLibraries/0Shadow.dylib",
-//                  nil];
-//    _dyld_register_func_for_add_image(_check_image);
-//  });
-//}
++ (void)load {
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    sDylibSet  = [NSSet setWithObjects:
+                       @"/usr/lib/CepheiUI.framework/CepheiUI",
+                       @"/usr/lib/libsubstitute.dylib",
+                       @"/usr/lib/substitute-inserter.dylib",
+                       @"/usr/lib/substitute-loader.dylib",
+                       @"/usr/lib/substrate/SubstrateLoader.dylib",
+                       @"/usr/lib/substrate/SubstrateInserter.dylib",
+                       @"/Library/MobileSubstrate/MobileSubstrate.dylib",
+                  @"/Library/MobileSubstrate/DynamicLibraries/0Shadow.dylib",
+                  @"/Library/MobileSubstrate/DynamicLibraries/CGDevice.dylib",
+                  nil];
+    _dyld_register_func_for_add_image(_check_image);
+  });
+}
 
 + (instancetype)sharedInstance {
     
@@ -55,15 +62,15 @@ static BOOL SCHECK_USER = NO; /// 检测是否越狱
 static void _check_image(const struct mach_header *header,
                                       intptr_t slide) {
   // hook Image load
-  if (SCHECK_USER) {
-    // 检测后就不在检测
-    return;
-  }
+//  if (SCHECK_USER) {
+//    // 检测后就不在检测
+//    return;
+//  }
 
   // 检测的lib
   Dl_info info;
   // 0表示加载失败了，这里大概率是被hook导致的
-  if (dladdr(header, &info) != 0) {
+  if (dladdr(header, &info) == 0) {
     char *dlerro = dlerror();
     // 获取失败了 但是返回了dli_fname, 说明被人hook了，目前看的方案都是直接返回0来绕过的
     if(dlerro == NULL && info.dli_fname != NULL) {
@@ -84,46 +91,46 @@ static void _check_image(const struct mach_header *header,
 //    if (SCHECK_USER) {
 //      return YES;
 //    }
+    if (type.intValue == 1) {
+        return isStatNotSystemLib();
+    }else if (type.intValue == 2){
+        return isDebugged();
+    }else if (type.intValue == 3){
+        return isInjectedWithDynamicLibrary();
+    }else if (type.intValue == 4){
+        return JCheckKuyt();
+    }else if (type.intValue == 5){
+        return dyldEnvironmentVariables();
 
-    if (isStatNotSystemLib()&&type.intValue == 1) {
-        return YES;
+    }else if (type.intValue == 6){
+        return checkInject();
+
+    }else if (type.intValue == 7){
+        return checkIsExistUnspectClass();
+
+    }else if (type.intValue == 8){
+        return checkCanwriteToprivatePath();
+
+    }else if (type.intValue == 9){
+        return checkIsEsixtJsBrokensym();
+
+    }else if (type.intValue == 10){
+        return checkIscangetAsubprogram();
+    }else if (type.intValue == 11){
+        return isunameNotSystemLib();
+    }else if (type.intValue == 12){
+        return isfopenNotSystemLib();
+    }else if (type.intValue == 13){
+        return isdlsymNotSystemLib();
+    }else if (type.intValue == 14){
+        return isgetenvNotSystemLib();
+    }else if (type.intValue == 15){
+        return isdyld_image_countNotSystemLib();
     }
 
-    if (isDebugged()&&type.intValue == 2) {
-        return YES;
-    }
 
-    if (isInjectedWithDynamicLibrary()&&type.intValue == 3) {
-        return YES;
-    }
 
-    if (JCheckKuyt()&&type.intValue == 4) {
-        return YES;
-    }
 
-    if (dyldEnvironmentVariables()&&type.intValue == 5) {
-        return YES;
-    }
-    
-    if (checkInject()&&type.intValue == 6) {
-        return YES;
-    }
-    
-    if (checkIsExistUnspectClass()&&type.intValue == 7) {
-        return YES;
-    }
-    
-    if (checkCanwriteToprivatePath()&&type.intValue == 8) {
-        return YES;
-    }
-    
-    if (checkIsEsixtJsBrokensym()&&type.intValue == 9) {
-        return YES;
-    }
-    
-    if (checkIscangetAsubprogram()&&type.intValue == 10) {
-        return YES;
-    }
 
     return NO;
 }
@@ -322,7 +329,8 @@ bool checkInject() {
     int (*func_stat)(const char *, struct stat *) = stat;
     if ((ret = dladdr(func_stat, &dylib_info))) {
         printf("lib :%s", dylib_info.dli_fname);
-        return strcmp(dylib_info.dli_fname, dylib_name) != 0;
+        BOOL restr = strcmp(dylib_info.dli_fname, dylib_name) == 0;
+        return restr;
     }
     return false;
 }
@@ -432,21 +440,17 @@ BOOL isDebugged()
 BOOL isStatNotSystemLib() {
     if(TARGET_IPHONE_SIMULATOR)return NO;
     int ret ;
-    Dl_info dylib_info;
-    int (*func_stat)(const char *, struct stat *) = stat;
-    if ((ret = dladdr(func_stat, &dylib_info))) {
-        NSString *fName = [NSString stringWithUTF8String: dylib_info.dli_fname];
-        if(![fName isEqualToString:@"/usr/lib/system/libsystem_kernel.dylib"]){
-            return YES;
-        }
-    }
     
-    for (int i = 0;i < sizeof(JbPaths) / sizeof(char *);i++) {
-        struct stat stat_info;
-        if (0 == stat(JbPaths[i], &stat_info)) {
-            return YES;
-        }
+    Dl_info dylib_info;
+//    int (*func_stat)(const char *, struct stat *) = stat;
+    int re = dladdr(stat, &dylib_info);
+    NSString *fName = [NSString stringWithUTF8String: dylib_info.dli_fname];
+    
+
+    if(![fName isEqualToString:@"/usr/lib/system/libsystem_kernel.dylib"]){
+        return YES;
     }
+
     
     return NO;
 }
@@ -465,6 +469,84 @@ typedef int (*ptrace_ptr_t)(int _request, pid_t _pid, caddr_t _addr, int _data);
     ptrace_ptr(PT_DENY_ATTACH, 0, 0, 0);
     dlclose(handle);
 }
+
+BOOL isunameNotSystemLib() {
+    int ret ;
+    Dl_info dylib_info;
+    int re = dladdr(uname, &dylib_info);
+    NSString *fName = [NSString stringWithUTF8String: dylib_info.dli_fname];
+    if(![fName isEqualToString:@"/usr/lib/system/libsystem_c.dylib"]){
+        return YES;
+    }
+    return NO;
+
+
+}
+
+BOOL isfopenNotSystemLib() {
+    int ret ;
+    Dl_info dylib_info;
+    int re = dladdr(fopen, &dylib_info);
+    NSString *fName = [NSString stringWithUTF8String: dylib_info.dli_fname];
+    if(![fName isEqualToString:@"/usr/lib/system/libsystem_c.dylib"]){
+        return YES;
+    }
+
+    return NO;
+
+
+}
+
+BOOL isdlsymNotSystemLib(){
+    int ret ;
+    Dl_info dylib_info;
+    int re = dladdr(dlsym, &dylib_info);
+    NSString *fName = [NSString stringWithUTF8String: dylib_info.dli_fname];
+    if(![fName isEqualToString:@"/usr/lib/system/libdyld.dylib"]){
+        return YES;
+    }
+
+    return NO;
+
+}
+BOOL isgetenvNotSystemLib(){
+    int ret ;
+    Dl_info dylib_info;
+    int re = dladdr(getenv, &dylib_info);
+    NSString *fName = [NSString stringWithUTF8String: dylib_info.dli_fname];
+    if(![fName isEqualToString:@"/usr/lib/system/libsystem_c.dylib"]){
+        return YES;
+    }
+    return NO;
+}
+
+BOOL isdyld_image_countNotSystemLib(){
+    int ret ;
+    Dl_info dylib_info;
+    int re = dladdr(_dyld_image_count, &dylib_info);
+    NSString *fName = [NSString stringWithUTF8String: dylib_info.dli_fname];
+    if(![fName isEqualToString:@"/usr/lib/system/libdyld.dylib"]){
+        return YES;
+    }
+    return NO;
+
+}
+//
+-(BOOL)antiMSHook{
+//    if (orig_antiDebug == NULL) {
+//        printf("[+++] Not MSHook");
+//        antiDebug();
+//    } else {
+//        printf("[+++] AntiMSHook 🚀🚀🚀");
+//        typedef void AntiDebug(void);
+//        AntiDebug *_antiDebug = (AntiDebug *)orig_antiDebug;
+//        _antiDebug();
+//    }
+
+    return NO;
+}
+
+
 
 @end
 

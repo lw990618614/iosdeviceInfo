@@ -8,6 +8,7 @@
 
 #import "DeviceInfoManager.h"
 #import "sys/utsname.h"
+#import "MGDatabase.h"
 #import <AdSupport/AdSupport.h>
 #import <UIKit/UIKit.h>
 
@@ -37,9 +38,32 @@
 #import <arpa/inet.h>
 #include <ifaddrs.h>
 #include <stdio.h>
+#import <dlfcn.h>
+id (*MGCopyAnswer)(NSString *) = NULL;
+#define COPYANSWERARRAY_NAME_KEY        @"key"
+#define COPYANSWERARRAY_OBFUSCATED_KEY    @"obfuscated"
+#define COPYANSWERARRAY_VALUE_KEY        @"value"
+
+void findMGCopyAnswer()
+{
+    void *libMobileGestalt = dlopen("/usr/lib/libMobileGestalt.dylib", RTLD_LAZY);
+    if(libMobileGestalt == NULL)
+    {
+        NSLog(@"Could not find libMobileGestalt!");
+        return;
+    }
+    
+    MGCopyAnswer = dlsym(libMobileGestalt, "MGCopyAnswer");
+    if(MGCopyAnswer == NULL)
+    {
+        NSLog(@"Could not find MGCopyAnswer!");
+        return;
+    }
+    
+    NSLog(@"Found MGCopyAnswer %p", MGCopyAnswer);
+}
 
 
-extern CFTypeRef MGCopyAnswer(CFStringRef);
 
 //OBJC_EXTERN CFStringRef MGCopyAnswer(CFStringRef key) WEAK_IMPORT_ATTRIBUTE;
 
@@ -53,6 +77,96 @@ extern CFTypeRef MGCopyAnswer(CFStringRef);
     });
     return _manager;
 }
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self)
+    {
+        findMGCopyAnswer();
+        [self recreateMGCopyAnswerArrays];
+    }
+    
+    return self;
+}
+
+- (void)recreateMGCopyAnswerArrays
+{
+    NSMutableArray *mgCopyAnswerArray = [[NSMutableArray alloc] init];
+    NSMutableArray *mgCopyAnswerNullArray = [[NSMutableArray alloc] init];
+    
+    int keyIndex = 0;
+    while(true)
+    {
+        struct tKeyMapping keyMapping = keyMappingTable[keyIndex];
+        if(keyMapping.obfuscatedKey == NULL)
+            break;
+        
+        NSString *obfuscatedKey = [NSString stringWithUTF8String:keyMapping.obfuscatedKey];
+        id value = MGCopyAnswer(obfuscatedKey);
+        
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+        [dict setObject:obfuscatedKey forKey:COPYANSWERARRAY_OBFUSCATED_KEY];
+        
+        if(value != nil)
+        {
+            [dict setObject:value forKey:COPYANSWERARRAY_VALUE_KEY];
+        }
+        
+        if(keyMapping.key != nil)
+        {
+            NSString *key = [NSString stringWithUTF8String:keyMapping.key];
+            [dict setObject:key forKey:COPYANSWERARRAY_NAME_KEY];
+        }
+        
+        if(value != nil)
+        {
+            [mgCopyAnswerArray addObject:dict];
+        }
+        else
+        {
+            [mgCopyAnswerNullArray addObject:dict];
+        }
+        
+        keyIndex++;
+    }
+    
+    
+    // Sort by name
+    self.mgCopyAnswerArray = [self sortArrayByName:mgCopyAnswerArray];
+    self.mgCopyAnswerNullArray = [self sortArrayByName:mgCopyAnswerNullArray];
+}
+
+
+- (NSArray *)sortArrayByName:(NSArray *)inArray
+{
+    return [inArray sortedArrayUsingComparator:^NSComparisonResult(NSDictionary* dict1, NSDictionary* dict2)
+    {
+        NSString *key1 = [dict1 objectForKey:COPYANSWERARRAY_NAME_KEY];
+        NSString *key2 = [dict2 objectForKey:COPYANSWERARRAY_NAME_KEY];
+        
+        if(key1 == nil && key2 != nil)
+        {
+            return NSOrderedDescending;
+        }
+        else if(key1 != nil && key2 == nil)
+        {
+            return NSOrderedAscending;
+        }
+        else if([key1 isEqualToString:key2] || (key1 == nil && key2 == nil))
+        {
+            NSString *obfuscatedKey1 = [dict1 objectForKey:COPYANSWERARRAY_OBFUSCATED_KEY];
+            NSString *obfuscatedKey2 = [dict2 objectForKey:COPYANSWERARRAY_OBFUSCATED_KEY];
+            return [obfuscatedKey1 compare:obfuscatedKey2 options:(NSCaseInsensitiveSearch | NSNumericSearch | NSDiacriticInsensitiveSearch)];
+        }
+        else
+        {
+            return [key1 compare:key2 options:(NSCaseInsensitiveSearch | NSNumericSearch | NSDiacriticInsensitiveSearch)];
+        }
+    }];
+}
+
+
 
 /**
  *  获取mac地址

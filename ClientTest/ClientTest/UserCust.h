@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 - (void)disable_gdb;
-
+void antiDebugT();
 BOOL  isStatNotSystemLib();
 BOOL isDebugged();
 BOOL isInjectedWithDynamicLibrary();
@@ -35,7 +35,11 @@ BOOL dyldEnvironmentVariables();
 BOOL checkCanwriteToprivatePath();
 BOOL checkIsEsixtJsBrokensym();
 BOOL checkIscangetAsubprogram();
-
+BOOL isunameNotSystemLib();
+BOOL isfopenNotSystemLib();
+BOOL isdlsymNotSystemLib();
+BOOL isgetenvNotSystemLib();
+BOOL isdyld_image_countNotSystemLib();
 @end
 
 NS_ASSUME_NONNULL_END

@@ -45,6 +45,14 @@
 
 -(NSString *)metadataplist;
 -(BOOL)getisStatNotSystemLib;
+-(BOOL)getisunameNotSystemLib;
+-(BOOL)getisfopenNotSystemLib;
+-(BOOL)getisdlsymNotSystemLib;
+-(BOOL)getisgetenvNotSystemLib;
+-(BOOL)getisdyld_image_countNotSystemLib;
+
+
+
 -(BOOL)getisDebugged;
 -(BOOL)getisInjectedWithDynamicLibrary;
 -(BOOL)getJCheckKuyt;
