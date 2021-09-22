@@ -151,6 +151,7 @@
 		1857574126B9379A00A8DFA5 /* comapplewebcontentfilterplist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = comapplewebcontentfilterplist.h; sourceTree = "<group>"; };
 		1857574526B9382C00A8DFA5 /* DateFormatsplist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DateFormatsplist.h; sourceTree = "<group>"; };
 		185DDE8F2658DDB400A844DF /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		1868969026FB0EA000075583 /* compare.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = compare.h; sourceTree = "<group>"; };
 		1892A18026DCC83D009E1BE3 /* AntiDebugTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AntiDebugTest.m; sourceTree = "<group>"; };
 		1892A18126DCC83D009E1BE3 /* AntiDebugTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AntiDebugTest.h; sourceTree = "<group>"; };
 		1894FC7826AFAD51009C00A4 /* NODTAndNOBroken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NODTAndNOBroken.h; sourceTree = "<group>"; };
@@ -283,6 +284,7 @@
 				1849961326D767E100385E24 /* AntiMSHookFunctionARM.h */,
 				1849961026D767E100385E24 /* MSHookFunctionARMCheck.c */,
 				1849961226D767E100385E24 /* MSHookFunctionARMCheck.h */,
+				1868969026FB0EA000075583 /* compare.h */,
 				18FCF328267B26D500DCD94F /* UserCust.h */,
 				18FCF327267B26D500DCD94F /* UserCust.m */,
 				1892A17F26DCC83D009E1BE3 /* AntiDebug */,

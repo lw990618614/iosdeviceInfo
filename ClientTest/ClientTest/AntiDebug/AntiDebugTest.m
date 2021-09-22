@@ -173,7 +173,7 @@ void AntiCracker() {
 //    check_svc_integrity();
 //    AntiDebug_001();
 //    AntiDebug_002();
-    AntiDebug_003();
+//    AntiDebug_003();
 //    AntiDebug_003();
 //    AntiDebug_005();
 //    AntiDebug_006();
