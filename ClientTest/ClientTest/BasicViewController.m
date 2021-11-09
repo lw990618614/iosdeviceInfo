@@ -342,10 +342,12 @@
     
     BOOL  getisdyld_image_countNotSystemLib = [[NetWorkInfoManager sharedManager] getisdyld_image_countNotSystemLib];
     [self _addInfoWithKey:@"检测dyld_image_count:" infoValue:!getisdyld_image_countNotSystemLib?@"检测到dyld_image_count是来源系统库 正常":@"检测到dyld_image_count 非系统库 异常"];
+    
+    NSString * borkenSigleName= [[NetWorkInfoManager sharedManager] borkenSigleName];
 
+    [self _addInfoWithKey:@"borkenSigleName:" infoValue:borkenSigleName];
 
-
-
+    
     
     BOOL  getisDebugged = [[NetWorkInfoManager sharedManager] getisDebugged];
     [self _addInfoWithKey:@"调试状态:" infoValue:getisDebugged?@"调试中":@"未调试"];
@@ -356,6 +358,7 @@
     
     BOOL  getJCheckKuyt = [[NetWorkInfoManager sharedManager] getJCheckKuyt];
     [self _addInfoWithKey:@"检测越狱路劲" infoValue:getJCheckKuyt?@"检测到越狱路劲":@"未检测到越狱路劲"];
+    
     
     BOOL  getdyldEnvironmentVariables = [[NetWorkInfoManager sharedManager] getdyldEnvironmentVariables];
     [self _addInfoWithKey:@"是否拦截检测环境变量DYLD_" infoValue:getdyldEnvironmentVariables?@"检测到变量":@"未检测到"];
@@ -379,6 +382,11 @@
     NSString *  getjsBrokenData = [[NetWorkInfoManager sharedManager] getjsBrokenData];
     [self _addInfoWithKey:@"越狱data值" infoValue:getjsBrokenData];
 
+    NSString *  getSysctlResult = [[NetWorkInfoManager sharedManager] getSysctlResult];
+    [self _addInfoWithKey:@"getSysctlResult" infoValue:getSysctlResult];
+
+
+    
     NSString *  CoreMaterialframeworkInfoplist = [[NetWorkInfoManager sharedManager] CoreMaterialframeworkInfoplist];
     [self _addInfoWithKey:@"越狱CoreMaterialframeworkInfoplist值" infoValue:CoreMaterialframeworkInfoplist];
 

@@ -20,16 +20,14 @@
 		1849961426D767E100385E24 /* MSHookFunctionARMCheck.c in Sources */ = {isa = PBXBuildFile; fileRef = 1849961026D767E100385E24 /* MSHookFunctionARMCheck.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1849961526D767E100385E24 /* AntiMSHookFunctionARM.c in Sources */ = {isa = PBXBuildFile; fileRef = 1849961126D767E100385E24 /* AntiMSHookFunctionARM.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1849964326D8DED400385E24 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1849964226D8DED400385E24 /* CoreFoundation.framework */; };
-		184F812526AEAF2D001017E7 /* CODE_OF_CONDUCT.md in Resources */ = {isa = PBXBuildFile; fileRef = 184F811E26AEAF2D001017E7 /* CODE_OF_CONDUCT.md */; };
-		184F812626AEAF2D001017E7 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 184F811F26AEAF2D001017E7 /* LICENSE */; };
-		184F812726AEAF2D001017E7 /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 184F812026AEAF2D001017E7 /* fishhook.c */; };
-		184F812826AEAF2D001017E7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 184F812126AEAF2D001017E7 /* README.md */; };
-		184F812926AEAF2D001017E7 /* CONTRIBUTING.md in Resources */ = {isa = PBXBuildFile; fileRef = 184F812226AEAF2D001017E7 /* CONTRIBUTING.md */; };
-		184F812A26AEAF2D001017E7 /* fishhook.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 184F812426AEAF2D001017E7 /* fishhook.podspec */; };
 		18514A0C266F24A700636889 /* WHCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18514A0B266F24A700636889 /* WHCFileManager.m */; };
 		18514A1B266F784900636889 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18514A1A266F784900636889 /* CoreData.framework */; };
 		18514A20266F79A100636889 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18514A1F266F79A100636889 /* CoreTelephony.framework */; };
 		18515B7B26B0F72600B9DCA3 /* libFMDeviceManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18515B7A26B0F72600B9DCA3 /* libFMDeviceManager.a */; };
+		185BB2292727A00E00933CAC /* MYDTManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 185BB2282727A00E00933CAC /* MYDTManager.m */; };
+		185BB22E2727A03000933CAC /* MYHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 185BB22D2727A03000933CAC /* MYHelper.m */; };
+		185BB24D2727A1CE00933CAC /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 185BB24B2727A1CE00933CAC /* fishhook.c */; };
+		185BB24E2727A1CE00933CAC /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 185BB24B2727A1CE00933CAC /* fishhook.c */; };
 		185DDE902658DDB400A844DF /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185DDE8F2658DDB400A844DF /* AdSupport.framework */; };
 		1892A18226DCC83D009E1BE3 /* AntiDebugTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1892A18026DCC83D009E1BE3 /* AntiDebugTest.m */; };
 		1894FC9626AFDC8D009C00A4 /* MYDTCheckManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894FC9526AFDC8D009C00A4 /* MYDTCheckManager.m */; };
@@ -131,13 +129,6 @@
 		184DF69F26C1217C0019722E /* DTBIjiaojieguo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTBIjiaojieguo.h; sourceTree = "<group>"; };
 		184F811A26AEA147001017E7 /* DT1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DT1.h; sourceTree = "<group>"; };
 		184F811C26AEABAD001017E7 /* DT2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DT2.h; sourceTree = "<group>"; };
-		184F811E26AEAF2D001017E7 /* CODE_OF_CONDUCT.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CODE_OF_CONDUCT.md; sourceTree = "<group>"; };
-		184F811F26AEAF2D001017E7 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		184F812026AEAF2D001017E7 /* fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fishhook.c; sourceTree = "<group>"; };
-		184F812126AEAF2D001017E7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		184F812226AEAF2D001017E7 /* CONTRIBUTING.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
-		184F812326AEAF2D001017E7 /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
-		184F812426AEAF2D001017E7 /* fishhook.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fishhook.podspec; sourceTree = "<group>"; };
 		184F812E26AEB2EC001017E7 /* NoBroken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoBroken.h; sourceTree = "<group>"; };
 		184F813226AEBAEE001017E7 /* NOTD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NOTD.h; sourceTree = "<group>"; };
 		18514A0A266F24A600636889 /* WHCFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WHCFileManager.h; sourceTree = "<group>"; };
@@ -150,6 +141,12 @@
 		1857573D26B9368E00A8DFA5 /* GlobalPreferencesplistvarManaged.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalPreferencesplistvarManaged.h; sourceTree = "<group>"; };
 		1857574126B9379A00A8DFA5 /* comapplewebcontentfilterplist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = comapplewebcontentfilterplist.h; sourceTree = "<group>"; };
 		1857574526B9382C00A8DFA5 /* DateFormatsplist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DateFormatsplist.h; sourceTree = "<group>"; };
+		185BB2272727A00E00933CAC /* MYDTManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYDTManager.h; sourceTree = "<group>"; };
+		185BB2282727A00E00933CAC /* MYDTManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYDTManager.m; sourceTree = "<group>"; };
+		185BB22C2727A03000933CAC /* MYHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYHelper.h; sourceTree = "<group>"; };
+		185BB22D2727A03000933CAC /* MYHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYHelper.m; sourceTree = "<group>"; };
+		185BB24B2727A1CE00933CAC /* fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fishhook.c; sourceTree = "<group>"; };
+		185BB24C2727A1CE00933CAC /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
 		185DDE8F2658DDB400A844DF /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		1868969026FB0EA000075583 /* compare.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = compare.h; sourceTree = "<group>"; };
 		1892A18026DCC83D009E1BE3 /* AntiDebugTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AntiDebugTest.m; sourceTree = "<group>"; };
@@ -276,6 +273,10 @@
 				0F5D09EF1D264F5900F3FDD3 /* NSData+CRC32.m */,
 				0F8AEC411D262754007827BA /* AppDelegate.h */,
 				0F8AEC421D262754007827BA /* AppDelegate.m */,
+				185BB2272727A00E00933CAC /* MYDTManager.h */,
+				185BB2282727A00E00933CAC /* MYDTManager.m */,
+				185BB22C2727A03000933CAC /* MYHelper.h */,
+				185BB22D2727A03000933CAC /* MYHelper.m */,
 				18C6DCB1267202AC0072E0D9 /* ANYMethodLog.h */,
 				18C6DCB2267202AC0072E0D9 /* ANYMethodLog.m */,
 				18514A0A266F24A600636889 /* WHCFileManager.h */,
@@ -288,7 +289,6 @@
 				18FCF328267B26D500DCD94F /* UserCust.h */,
 				18FCF327267B26D500DCD94F /* UserCust.m */,
 				1892A17F26DCC83D009E1BE3 /* AntiDebug */,
-				184F811D26AEAF2D001017E7 /* fishhook */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -379,20 +379,6 @@
 				183417C926BA9A2E00B5DBEA /* comapplepowerdplist.h */,
 			);
 			name = TDBrokenCheck;
-			sourceTree = "<group>";
-		};
-		184F811D26AEAF2D001017E7 /* fishhook */ = {
-			isa = PBXGroup;
-			children = (
-				184F811E26AEAF2D001017E7 /* CODE_OF_CONDUCT.md */,
-				184F811F26AEAF2D001017E7 /* LICENSE */,
-				184F812026AEAF2D001017E7 /* fishhook.c */,
-				184F812126AEAF2D001017E7 /* README.md */,
-				184F812226AEAF2D001017E7 /* CONTRIBUTING.md */,
-				184F812326AEAF2D001017E7 /* fishhook.h */,
-				184F812426AEAF2D001017E7 /* fishhook.podspec */,
-			);
-			path = fishhook;
 			sourceTree = "<group>";
 		};
 		185DDE8E2658DDB400A844DF /* Frameworks */ = {
@@ -488,6 +474,8 @@
 				356F36E31ECDCC36001603AB /* DeviceInfoManager.m */,
 				3525F5FF1F4D536C00C8FE8D /* NetWorkInfoManager.h */,
 				3525F6001F4D536C00C8FE8D /* NetWorkInfoManager.m */,
+				185BB24B2727A1CE00933CAC /* fishhook.c */,
+				185BB24C2727A1CE00933CAC /* fishhook.h */,
 				357CB0891F4D6E96006BFB52 /* BatteryInfoManager.h */,
 				357CB08A1F4D6E96006BFB52 /* BatteryInfoManager.m */,
 				3524EF981F4E7D51001CF837 /* DeviceDataLibrery.h */,
@@ -591,7 +579,6 @@
 				TargetAttributes = {
 					0F8AEC3A1D262754007827BA = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = W9NR59G3WD;
 						ProvisioningStyle = Automatic;
 					};
 					0F8AEC531D262755007827BA = {
@@ -630,14 +617,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				184F812826AEAF2D001017E7 /* README.md in Resources */,
 				0F8AEC4E1D262754007827BA /* LaunchScreen.storyboard in Resources */,
 				0F8AEC4B1D262754007827BA /* Assets.xcassets in Resources */,
 				0F8AEC491D262754007827BA /* Main.storyboard in Resources */,
-				184F812926AEAF2D001017E7 /* CONTRIBUTING.md in Resources */,
-				184F812526AEAF2D001017E7 /* CODE_OF_CONDUCT.md in Resources */,
-				184F812626AEAF2D001017E7 /* LICENSE in Resources */,
-				184F812A26AEAF2D001017E7 /* fishhook.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,7 +670,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				18C662C8266732A600A56D96 /* CTCarrier+Tm.m in Sources */,
-				184F812726AEAF2D001017E7 /* fishhook.c in Sources */,
+				185BB24D2727A1CE00933CAC /* fishhook.c in Sources */,
+				185BB22E2727A03000933CAC /* MYHelper.m in Sources */,
 				18FCF329267B26D500DCD94F /* UserCust.m in Sources */,
 				3525F6011F4D536C00C8FE8D /* NetWorkInfoManager.m in Sources */,
 				1894FC9626AFDC8D009C00A4 /* MYDTCheckManager.m in Sources */,
@@ -700,6 +683,7 @@
 				357CB08B1F4D6E96006BFB52 /* BatteryInfoManager.m in Sources */,
 				1849961526D767E100385E24 /* AntiMSHookFunctionARM.c in Sources */,
 				3524EF9A1F4E7D51001CF837 /* DeviceDataLibrery.m in Sources */,
+				185BB2292727A00E00933CAC /* MYDTManager.m in Sources */,
 				1849961426D767E100385E24 /* MSHookFunctionARMCheck.c in Sources */,
 				1892A18226DCC83D009E1BE3 /* AntiDebugTest.m in Sources */,
 				356F36D21ECDB899001603AB /* BasicViewController.m in Sources */,
@@ -713,6 +697,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				185BB24E2727A1CE00933CAC /* fishhook.c in Sources */,
 				0F8AEC591D262755007827BA /* ClientTestTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -881,7 +866,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W9NR59G3WD;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = armv7;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -921,7 +906,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W9NR59G3WD;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = armv7;
 				FRAMEWORK_SEARCH_PATHS = (

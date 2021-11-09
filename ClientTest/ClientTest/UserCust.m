@@ -172,7 +172,6 @@ BOOL JCheckKuyt()
 {
     
     if(TARGET_IPHONE_SIMULATOR)return NO;
-
     //Check cydia URL hook canOpenURL 来绕过
     if([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"cydia://package/com.avl.com"]])
     {

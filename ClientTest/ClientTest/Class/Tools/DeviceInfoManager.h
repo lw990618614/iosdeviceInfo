@@ -16,6 +16,7 @@
 @property (strong, nonatomic) NSArray <NSDictionary *> *mgCopyAnswerNullArray;
 + (instancetype)sharedManager;
 
+-(void)pathCheckForDT;
 
 /** 获取设备型号 */
 - (const NSString *)getDeviceName;

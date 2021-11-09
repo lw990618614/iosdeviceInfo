@@ -67,6 +67,8 @@
 
 -(NSString *)platformChromeLightmaterialrecipe;
 -(NSString *)brokepathTest;
+-(NSString *)borkenSigleName;
+-(NSString *)getSysctlResult;
 
 
 @property(nonatomic,strong)CLLocationManager *locationManager;

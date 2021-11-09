@@ -28,7 +28,7 @@
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 
 #import <sys/sysctl.h>
-
+#include <sys/mount.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <netinet/in.h>
@@ -44,7 +44,10 @@
 
 
 #include <unistd.h>
-
+#include <sys/socket.h>
+#include <sys/sysctl.h>
+#include <net/if.h>
+#include <net/if_dl.h>
 
 @implementation NetWorkInfoManager
 
@@ -188,7 +191,69 @@
     freeifaddrs(addrs);
     return address ? address : @"该设备不存在该ip地址";
 }
+-(NSString *)borkenSigleName{
+//    struct statfs buf1= {0};
+//   int fd =  open("/", O_RDONLY);
+//    DIR * resss = opendir("/");
+//   void *p = dlopen("/", O_RDONLY);
+//    struct dirent *readd1 =readdir(resss);
+//    fstatfs(1, &buf1);
 
+//    {
+//      f_bsize = 4096
+//      f_iosize = 1048576
+//      f_blocks = 7809929
+//      f_bfree = 7488373
+//      f_bavail = 6214183
+//      f_files = 312397160
+//      f_ffree = 312372381
+//      f_fsid = {
+//        val = ([0] = 16777218, [1] = 22)
+//      }
+//      f_owner = 0
+//      f_type = 22
+//      f_flags = 343969944
+//      f_fssubtype = 0
+//      f_fstypename = "apfs"
+//      f_mntonname = "/private/var"
+//      f_mntfromname = "/dev/disk0s1s2"
+//      f_flags_ext = 0
+//      f_reserved = ([0] = 0, [1] = 0, [2] = 0, [3] = 0, [4] = 0, [5] = 0, [6] = 0)
+//    }
+    
+//    {
+//      f_bsize = 4096
+//      f_iosize = 1048576
+//      f_blocks = 7809929
+//      f_bfree = 5144461
+//      f_bavail = 3724750
+//      f_files = 312397160
+//      f_ffree = 312314052
+//      f_fsid = {
+//        val = ([0] = 16777219, [1] = 22)
+//      }
+//      f_owner = 0
+//      f_type = 22
+//      f_flags = 343969944
+//      f_fssubtype = 0
+//      f_fstypename = "apfs"
+//      f_mntonname = "/private/var"
+//      f_mntfromname = "/dev/disk0s1s2"
+//      f_flags_ext = 0
+//      f_reserved = ([0] = 0, [1] = 0, [2] = 0, [3] = 0, [4] = 0, [5] = 0, [6] = 0)
+//    }
+    struct statfs buf;
+      statfs("/", &buf);
+    NSLog(@"%s", buf.f_mntfromname); //"/dev/disk0s1s1
+    char* prefix = "com.apple.os.update-";
+    if(strstr(buf.f_mntfromname, prefix)) {
+        NSLog(@"未越狱, 设备唯一识别码=%s", buf.f_mntfromname);
+        return [NSString stringWithFormat:@"未越狱, 设备唯一识别码 %s",buf.f_mntfromname];
+    } else {
+        return  @"已越狱, 没有设备唯一识别码";
+    }
+
+}
 //const char *iinet_ntop(int family, const void *addrptr, char *strptr, size_t len)
 //{
 //    const u_char *p = (const u_char*)addrptr;
@@ -229,8 +294,329 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
 - (NSString *)getIpAddressCell {
     return [self ipAddressWithIfaName:@"pdp_ip0"];
 }
+//(
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "1 1",
+//    "1 10",
+//    "1 2",
+//    "1 4",
+//    "6 1",
+//    "1 14",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "4 17",
+//    "1 1",
+//    "1 2",
+//    "1 29"
+//)
 
 
+- (NSArray *)getAllProcess
+{
+    int         myPid = [[NSProcessInfo processInfo] processIdentifier];
+    const char* myProcessName = [[[NSProcessInfo processInfo] processName] UTF8String];
+    int mib[4] = { CTL_KERN, KERN_PROC, KERN_PROC_ALL, 0 };
+    struct kinfo_proc* info;
+    size_t length;
+    int count, i;
+    
+    // KERN_PROC_ALL has 3 elements, all others have 4
+    unsigned level = 4;
+    
+    if (sysctl(mib, level, NULL, &length, NULL, 0) < 0)
+//        return nil;
+    
+    // Allocate memory for info structure:
+    if (!(info = NSZoneMalloc(NULL, length))) return nil;
+    if (sysctl(mib, level, info, &length, NULL, 0) < 0) {
+//        NSZoneFree(NULL, info);
+//        return nil;
+    }
+    
+    // Calculate number of processes:
+    count = length / sizeof(struct kinfo_proc);
+    for (i = 0; i < count; i++) {
+        char* command = info[i].kp_proc.p_comm;
+        pid_t pid = info[i].kp_proc.p_pid;
+        //NSLog(@"Found running command: '%s'", command);
+        // Test, if this command is called like us:
+        if (pid!=myPid && strncmp(myProcessName, command, MAXCOMLEN)==0) {
+            // Actually kill it:
+            if (kill(pid, SIGTERM) !=0) {
+                NSLog(@"Error while killing process: Error was '%s'", strerror(errno));
+            }
+        }
+    }
+    return nil;
+}
+- (NSUInteger) getSysInfo: (uint) typeSpecifier
+{
+    size_t size = sizeof(int);
+    int results;
+    int mib[2] = {CTL_HW, typeSpecifier};
+    sysctl(mib, 2, &results, &size, NULL, 0);
+    return (NSUInteger) results;
+}
+
+-(void)getkerinfo{
+    NSUInteger sysinfo =   [self getSysInfo:HW_CPU_FREQ];
+    NSUInteger sysinfo1 =  [self getSysInfo:HW_BUS_FREQ];
+    NSUInteger sysinfo2 =  [self getSysInfo:HW_NCPU];
+    NSUInteger sysinfo3 =  [self getSysInfo:HW_PHYSMEM];
+    NSUInteger sysinfo4 =  [self getSysInfo:HW_USERMEM];
+    NSUInteger sysinfo5=  [self getSysInfo:KIPC_MAXSOCKBUF];
+    NSUInteger sysinfo6=  [self getSysInfo:HW_PAGESIZE];
+
+}
+
+-(void)getreplaced_sysctlbyname{
+    [self getkerinfo];
+
+    size_t size;
+    sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+    char *model = malloc(size);
+    sysctlbyname("hw.machine", model, &size, NULL, 0);
+    NSString *deviceModel = [NSString stringWithCString:model];//iphone9.1
+    
+    size_t size1;
+    sysctlbyname("kern.osproductversion", NULL, &size1, NULL, 0);
+    char *model1 = malloc(size1);
+    sysctlbyname("kern.osproductversion", model1, &size1, NULL, 0);
+    NSString *deviceModel1 = [NSString stringWithCString:model1];//13.51
+   
+    
+    sysctlbyname("hw.model", NULL, &size, NULL, 0);
+    char* name1 = (char*)malloc(size);
+    sysctlbyname("hw.model", name1, &size, NULL, 0);
+    NSString* machine1 = [NSString stringWithCString:name1];//D10AP
+
+    
+    sysctlbyname("kern.osrelease", NULL, &size, NULL, 0);
+    char* name2 = (char*)malloc(size);
+    sysctlbyname("kern.osrelease", name2, &size, NULL, 0);
+    NSString* machine2 = [NSString stringWithCString:name2];//19.5.0
+    
+    sysctlbyname("kern.bootsessionuuid", NULL, &size, NULL, 0);
+    char* name3 = (char*)malloc(size);
+    sysctlbyname("kern.bootsessionuuid", name3, &size, NULL, 0);
+    NSString* machine3 = [NSString stringWithCString:name3];//类似 uuid
+    
+    sysctlbyname("kern.hostname", NULL, &size, NULL, 0);
+    char* name4 = (char*)malloc(size);
+    sysctlbyname("kern.hostname", name4, &size, NULL, 0);
+    NSString* machine4 = [NSString stringWithCString:name4];//iphone1111
+
+    
+    sysctlbyname("kern.ostype", NULL, &size, NULL, 0);
+    char* name5 = (char*)malloc(size);
+    sysctlbyname("kern.ostype", name5, &size, NULL, 0);
+    NSString* machine5 = [NSString stringWithCString:name5];//Darwin
+
+    
+    sysctlbyname("kern.version", NULL, &size, NULL, 0);
+    char* name6 = (char*)malloc(size);
+    sysctlbyname("kern.version", name6, &size, NULL, 0);
+    NSString* machine6 = [NSString stringWithCString:name6];//Darwin ker>>>
+
+    
+    sysctlbyname("security.mac.sandbox.sentinel", NULL, &size, NULL, 0);
+    char* name7 = (char*)malloc(size);
+    sysctlbyname("security.mac.sandbox.sentinel", name7, &size, NULL, 0);
+    NSString* machine7 = [NSString stringWithCString:name7];//.sb-107cf39d
+
+    
+    
+    struct timeval bootTime;//
+    size_t size2 = sizeof(bootTime); // tvsec:124234235  tvuse :23543536534,
+    sysctlbyname("kern.boottime", &bootTime, &size2, NULL, 0);
+    
+    struct timeval waketime;// // tvsec:5436456  tvuse :235455675663536534
+    size_t size3 = sizeof(waketime);
+    sysctlbyname("kern.waketime", &waketime, &size3, NULL, 0);
+
+    
+    struct timeval monotonicclock_usecs;// // tvsec:5436456  tvuse :235455676534
+    size_t size4 = sizeof(monotonicclock_usecs);
+    sysctlbyname("kern.monotonicclock_usecs", &monotonicclock_usecs, &size4, NULL, 0);
+    
+    
+    unsigned int ncpu;//2
+    size_t len = sizeof(ncpu);
+    sysctlbyname("hw.activecpu", &ncpu, &len, NULL, 0);
+    
+    unsigned int ncpucout;//2
+    size_t len1 = sizeof(ncpucout);
+    sysctlbyname("hw.ncpu", &ncpucout, &len1, NULL, 0);
+    
+    
+    unsigned int memsize;//2099249152
+    size_t len2 = sizeof(memsize);
+    sysctlbyname("hw.memsize", &memsize, &len2, NULL, 0);
+
+    unsigned int logicalcpu_max;//2
+    size_t len3 = sizeof(logicalcpu_max);
+    sysctlbyname("hw.logicalcpu_max", &logicalcpu_max, &len3, NULL, 0);
+    
+    unsigned int secure_kernel;//1
+    size_t len4 = sizeof(secure_kernel);
+    sysctlbyname("kern.secure_kernel", &secure_kernel, &len4, NULL, 0);
+    
+    unsigned int availcpu;//1
+    size_t len5 = sizeof(availcpu);
+    sysctlbyname("hw.availcpu", &availcpu, &len5, NULL, 0);
+    
+    unsigned int physmem;//2099229152
+    size_t len6 = sizeof(physmem);
+    sysctlbyname("hw.physmem", &physmem, &len6, NULL, 0);
+    
+    unsigned int cachelinesize;//2099229152
+    size_t len7 = sizeof(cachelinesize);
+    sysctlbyname("hw.cachelinesize", &cachelinesize, &len7, NULL, 0);
+
+
+    int32_t value = 0;
+    size_t length = sizeof(value);
+    sysctlbyname("hw.cpusubtype", &value, &length, NULL, 0);
+
+    
+    
+    
+}
+
+-(NSString *)getSysctlResult{
+    
+//    [self getreplaced_sysctlbyname];
+//
+  NSArray *reuslt  =  [self  getAllProcess];
+//    struct kinfo_proc *proc;
+
+    
+    
+    char sysversion[128]={0} ;//DarWin
+    int mib1[2] = {CTL_KERN,KERN_OSTYPE};
+    size_t size1 = sizeof(sysversion);
+    if (sysctl(mib1, 2, &sysversion, &size1, NULL, 0) != -1) {
+        
+    };
+    
+    struct timeval bootTime;
+    int mib2[2] = {CTL_KERN,KERN_BOOTTIME};
+    size_t size2 = sizeof(bootTime);
+    int result =  sysctl(mib2, 2, &bootTime, &size2, NULL, 0);
+//    if (sysctl(mib2, 2, &bootTime, &size2, NULL, 0) != -1) {
+//         bootTime.tv_sec;///秒
+//    };
+
+    char kerninfo[128]={0};////DarWin dddd
+    int mib3[2] = {CTL_KERN,KERN_VERSION};
+    size_t size3 = sizeof(kerninfo);
+    if (sysctl(mib3, 2, &kerninfo, &size3, NULL, 0) != -1) {
+        
+    };
+    
+    char kernhostName[128]={0} ;//iphone
+    int mib4[4] = {CTL_KERN, KERN_HOSTNAME};
+    size_t size4 = sizeof(kernhostName);
+    if (sysctl(mib4, 2, &kernhostName, &size4, NULL, 0) != -1) {
+
+    };
+    
+    char kernosrelse[128]={0} ;//18.20
+    int min[4] = {CTL_KERN, KERN_OSRELEASE};
+    if (sysctl(min, 2, &kernosrelse, &size4, NULL, 0) != -1) {
+
+    };
+
+    int  kernmaxpoc=0 ;//10240
+    int min6[4] = {CTL_KERN, KERN_MAXFILESPERPROC};
+    if (sysctl(min6, 2, &kernmaxpoc, &size4, NULL, 0) != -1) {
+
+    };
+    
+//    int mibss[4] = {CTL_KERN, KERN_PROC, KERN_PROC_ALL, 0};
+//    int miblen = 4;
+//    size_t size;
+//    int st = sysctl(mibss, miblen, NULL, &size, NULL, 0);
+
+    [self macAddr];
+    
+
+    return @"";
+}
+- (NSString *)macAddr{
+    int mib[6];
+    size_t len;
+    char *buffer;
+    unsigned char *addr_ptr;
+    struct if_msghdr *msghdr;
+    struct sockaddr_dl *sockaddr;
+    
+    mib[0] = CTL_NET;
+    mib[1] = AF_ROUTE;
+    mib[2] = 0;
+    mib[3] = 0;
+    mib[4] = NET_RT_IFLIST;
+    mib[5] = 0;
+
+    if((mib[5] = if_nametoindex("en0")) == 0) {
+        return @"";
+    }
+    
+    if(sysctl(mib, 6, NULL, &len, NULL, 0) < 0) {
+        return @"";
+    }
+    
+    if((buffer = (char *)malloc(len)) == NULL){
+        return @"";
+    }
+    
+    if(sysctl(mib, 6, buffer, &len, NULL, 0) < 0){
+        free(buffer);
+        return @"";
+    }
+    
+    msghdr = (struct if_msghdr *)buffer;
+    sockaddr = (struct sockaddr_dl *)(msghdr + 1);
+    addr_ptr = (unsigned char *)LLADDR(sockaddr);
+    
+    NSMutableString *addr = [NSMutableString string];
+    [addr appendFormat:@"%02x", *addr_ptr];
+    for(int i = 1; i < 6; i ++){
+        [addr appendFormat:@":%02x", *(addr_ptr + i)];
+    }
+
+    free(buffer);
+    
+    return [addr copy];
+}
 - (NSString*)getIpMywifi
 {
 //    NSArray *ifs = (__bridge id)CNCopySupportedInterfaces();
@@ -249,51 +635,51 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
 //
 //        return ssid;
     
-//    int                 mib[6];
-//      size_t              len;
-//      char                *buf;
-//      unsigned char       *ptr;
-//      struct if_msghdr    *ifm;
-//      struct sockaddr_dl  *sdl;
-//
-//      mib[0] = CTL_NET;
-//      mib[1] = AF_ROUTE;
-//      mib[2] = 0;
-//      mib[3] = AF_LINK;
-//      mib[4] = NET_RT_IFLIST;
-//
-//      if ((mib[5] = if_nametoindex("en0")) == 0) {
-//          printf("Error: if_nametoindex error/n");
-//          return NULL;
-//      }
-//
-//      if (sysctl(mib, 6, NULL, &len, NULL, 0) < 0) {
-//          printf("Error: sysctl, take 1/n");
-//          return NULL;
-//      }
-//
-//      if ((buf = malloc(len)) == NULL) {
-//          printf("Could not allocate memory. error!/n");
-//          return NULL;
-//      }
-//
-//      if (sysctl(mib, 6, buf, &len, NULL, 0) < 0) {
-//          printf("Error: sysctl, take 2");
-//          return NULL;
-//      }
-//
-//      ifm = (struct if_msghdr *)buf;
-//      sdl = (struct sockaddr_dl *)(ifm + 1);
-//      ptr = (unsigned char *)LLADDR(sdl);
-//      NSString *outstring = [NSString stringWithFormat:@"%02x:%02x:%02x:%02x:%02x:%02x", *ptr, *(ptr+1), *(ptr+2), *(ptr+3), *(ptr+4), *(ptr+5)];
-//
-//      //    NSString *outstring = [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x", *ptr, *(ptr+1), *(ptr+2), *(ptr+3), *(ptr+4), *(ptr+5)];
-//
-//      NSLog(@"outString:%@", outstring);
-//
-//      free(buf);
-//
-//      return [outstring uppercaseString];
+    int                 mib[6];
+      size_t              len;
+      char                *buf;
+      unsigned char       *ptr;
+      struct if_msghdr    *ifm;
+      struct sockaddr_dl  *sdl;
+
+      mib[0] = CTL_NET;
+      mib[1] = AF_ROUTE;
+      mib[2] = 0;
+      mib[3] = AF_LINK;
+      mib[4] = NET_RT_IFLIST;
+
+      if ((mib[5] = if_nametoindex("en0")) == 0) {
+          printf("Error: if_nametoindex error/n");
+          return NULL;
+      }
+
+      if (sysctl(mib, 6, NULL, &len, NULL, 0) < 0) {
+          printf("Error: sysctl, take 1/n");
+          return NULL;
+      }
+
+      if ((buf = malloc(len)) == NULL) {
+          printf("Could not allocate memory. error!/n");
+          return NULL;
+      }
+
+      if (sysctl(mib, 6, buf, &len, NULL, 0) < 0) {
+          printf("Error: sysctl, take 2");
+          return NULL;
+      }
+
+      ifm = (struct if_msghdr *)buf;
+      sdl = (struct sockaddr_dl *)(ifm + 1);
+      ptr = (unsigned char *)LLADDR(sdl);
+      NSString *outstring = [NSString stringWithFormat:@"%02x:%02x:%02x:%02x:%02x:%02x", *ptr, *(ptr+1), *(ptr+2), *(ptr+3), *(ptr+4), *(ptr+5)];
+
+      //    NSString *outstring = [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x", *ptr, *(ptr+1), *(ptr+2), *(ptr+3), *(ptr+4), *(ptr+5)];
+
+      NSLog(@"outString:%@", outstring);
+
+      free(buf);
+
+      return [outstring uppercaseString];
     
     int                 mgmtInfoBase[6];
         char                *msgBuffer = NULL;
@@ -488,6 +874,51 @@ void test()
 
 -(NSString *)getbrokenState{
 //    test();
+    struct stat buf;     //文件属性存放缓冲区
+    char *ptr;
+   NSString *homestring = [NSHomeDirectory() stringByAppendingString:@"/teere"];
+    [WHCFileManager removeItemAtPath:homestring];
+    [@"fdsafgdsg" writeToFile:homestring atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    
+   BOOL reee = [WHCFileManager isExistsAtPath:homestring];
+    
+   lstat(homestring.UTF8String, &buf);
+
+   if (S_ISREG(buf.st_mode))
+   {
+      ptr = "普通文件";     //普通文件
+   }
+   else if (S_ISDIR(buf.st_mode))
+   {
+   ptr = "目录文件";  //目录文件
+   }
+   else if (S_ISCHR(buf.st_mode))
+   {
+   ptr = "字符设备文件";  //字符设备文件
+   }
+   else if (S_ISBLK(buf.st_mode))
+   {
+       ptr = "块设备文件";   //块设备文件
+   }
+   else if (S_ISFIFO(buf.st_mode))
+   {
+   ptr = "FIFO";       //先进先出文件
+   }
+   else if (S_ISLNK(buf.st_mode))
+   {
+   ptr = "符号链接";   //符号链接文件
+   }
+   else if (S_ISSOCK(buf.st_mode))
+   {
+   ptr = "套接字文件";  //套接字文件
+   }
+   else   //如果不在以上文件类型则表明为未知文件类型
+   {
+     ptr = "未知文件类型";
+   }
+   printf("%s\n", ptr);      //输出文件类型
+
+
     [self generateSchemeArray];
    BOOL re =  NO;
 //    if (re == YES) {
@@ -811,7 +1242,11 @@ void test()
 
 -(NSString *)getBulidVersionName{
     NSString *result = @"";
-    
+    struct stat sta = {0};
+    struct stat lsta = {0};
+    stat("/var/db/diagnostics/Persis", &sta);
+    lstat("/var/db/diagnostics/Persis", &lsta);
+
     if ([WHCFileManager isExistsAtPath:@"/private/var/db/systemstats/last_boot_uuid"]) {
         NSString *re =[NSString stringWithContentsOfFile:@"/private/var/db/systemstats/last_boot_uuid" encoding:NSUTF8StringEncoding error:nil];
       result=   [result stringByAppendingFormat:@"%@",re];
@@ -1065,22 +1500,30 @@ void test()
                           @"/System/Library/Frameworks/CFNetwork.framework/Resources/CFNETWORK_DIAGNOSTICS",//0
                           @"/Library/Preferences/com.apple.security.plist",//1
      nil];
-    NSString * tt= @"System/Library/CoreServices/CoreGlyphs.bundle/Assets.car";
-    NSString  *mypath = @"/usr/local";
-    BOOL re = [WHCFileManager isFileAtPath:mypath];
-    struct stat info ={0};
-    int  a =  stat(mypath.UTF8String, &info);
+    
+    NSString * tt= @"/System/Library/Caches/apticket.der";
+    BOOL re = [WHCFileManager isExistsAtPath:tt];
+    struct stat info1 ={0};
+    struct stat info2 ={0};
+
+    int  a =  stat(tt.UTF8String, &info1);
+    int  b = lstat(tt.UTF8String, &info2);
+
 
 //
     NSMutableArray *dataArray = [NSMutableArray new];
-    for (NSString *mypath in cacheArray) {
-        BOOL re = [WHCFileManager isFileAtPath:mypath];
+    for (NSString *syspath in cacheArray) {
+        BOOL re = [WHCFileManager isExistsAtPath:syspath];
         struct stat info ={0};
         struct stat info1 ={0};
-        int  b = lstat(mypath.UTF8String, &info1);
-        int  a =  stat(mypath.UTF8String, &info);
-
-        NSString *mysting = [NSString stringWithFormat:@"%@  %d/%llu",mypath,re,info.st_ino];
+        int  b = lstat(syspath.UTF8String, &info1);
+        int  a =  stat(syspath.UTF8String, &info);
+        if ([syspath isEqualToString:@"/System/Library/Caches/apticket.der"]) {
+            NSLog(@"syspath isEqualToString %@ %d",syspath ,re);
+            
+            
+        }
+        NSString *mysting = [NSString stringWithFormat:@"%@  %d/%llu      %d/%llu",syspath,re,info.st_ino,re,info1.st_ino];
         [dataArray addObject:mysting];
     }
     
@@ -1293,8 +1736,6 @@ void test()
                 parser.delegate = self;
                 [parser parse];
 
-            }else if ([path isEqualToString:@"/etc/group"]){ //重定向 已完成 非越狱存在
-                
             }else if ([path isEqualToString:@"/etc/hosts"]){   //重定向 已完成 非越狱存在
                 
             }else if ([path isEqualToString:@"/etc/passwd"]){ //重定向 已完成 非越狱存在
