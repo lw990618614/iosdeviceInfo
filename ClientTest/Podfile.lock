@@ -1,0 +1,45 @@
+PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - UMCommon (7.2.9):
+    - UMDevice
+  - UMDevice (1.2.0)
+
+DEPENDENCIES:
+  - AFNetworking
+  - FMDB
+  - UMCommon
+  - UMDevice
+
+SPEC REPOS:
+  trunk:
+    - AFNetworking
+    - FMDB
+    - UMCommon
+    - UMDevice
+
+SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  UMCommon: 28a05184e0766ea2c015ce9c56963356a38f9b1b
+  UMDevice: da050ba77e5075b1ec08303065722d25f599e483
+
+PODFILE CHECKSUM: f384bfbd80f1ccb9bbb68a2e730b53dae6a97cde
+
+COCOAPODS: 1.9.1

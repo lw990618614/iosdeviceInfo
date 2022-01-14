@@ -33,11 +33,25 @@
 		1894FC9626AFDC8D009C00A4 /* MYDTCheckManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894FC9526AFDC8D009C00A4 /* MYDTCheckManager.m */; };
 		18952BE026799B8800076E04 /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18952BDF26799B8800076E04 /* libresolv.9.tbd */; };
 		18972CBB266B6BF900ADBA9F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18972CBA266B6BF900ADBA9F /* SystemConfiguration.framework */; };
+		18A0F227278046AA00E760A9 /* CGDChangAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A0F226278046AA00E760A9 /* CGDChangAppManager.m */; };
+		18A0F22A278046ED00E760A9 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A0F228278046EB00E760A9 /* Log.m */; };
+		18A76AC2278E73D70056ECD9 /* libTalkingDataSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A76AC1278E73D70056ECD9 /* libTalkingDataSDK.a */; };
 		18AC4B6F265B84A0004E41F9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AC4B6E265B849F004E41F9 /* CoreLocation.framework */; };
 		18C588B326C24A9B00046B28 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C588B226C24A9B00046B28 /* MobileCoreServices.framework */; };
 		18C662C8266732A600A56D96 /* CTCarrier+Tm.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C662C7266732A600A56D96 /* CTCarrier+Tm.m */; };
 		18C6DCA72671E3D10072E0D9 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C6DCA62671E3D10072E0D9 /* OpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18C6DCB3267202AC0072E0D9 /* ANYMethodLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C6DCB2267202AC0072E0D9 /* ANYMethodLog.m */; };
+		18D21518279032E2007A16D7 /* AppsFlyerLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D21517279032E1007A16D7 /* AppsFlyerLib.framework */; };
+		18D2151E27903458007A16D7 /* AppsFlyerLibManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D2151C27903456007A16D7 /* AppsFlyerLibManager.m */; };
+		18D7B7C3278E7AEC00739136 /* TinTalkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7B7C2278E7AEC00739136 /* TinTalkingManager.m */; };
+		18D7B7C6278E84C700739136 /* BaiduMobStatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7B7C5278E84C700739136 /* BaiduMobStatManager.m */; };
+		18D7B7C9278E851A00739136 /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D7B7C8278E851A00739136 /* libBaiduMobStat.a */; };
+		18D7B7CC278E862C00739136 /* UMConfigureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7B7CB278E862C00739136 /* UMConfigureManager.m */; };
+		18D7B7CE278E8A4100739136 /* UserFeedBack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D7B7CD278E8A4100739136 /* UserFeedBack.framework */; };
+		18D7B7D4278E8D6A00739136 /* janalytics-ios-2.1.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D7B7D0278E8D6900739136 /* janalytics-ios-2.1.2.a */; };
+		18D7B7D5278E8D6A00739136 /* jcore-ios-3.1.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D7B7D2278E8D6900739136 /* jcore-ios-3.1.2.a */; };
+		18D7B7D8278E8D9900739136 /* JiGuangManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D7B7D7278E8D9900739136 /* JiGuangManager.m */; };
+		18DBF5A3277B069A002CB931 /* Detect.s in Sources */ = {isa = PBXBuildFile; fileRef = 18DBF5A2277B069A002CB931 /* Detect.s */; };
 		18FCF329267B26D500DCD94F /* UserCust.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FCF327267B26D500DCD94F /* UserCust.m */; };
 		3524EF9A1F4E7D51001CF837 /* DeviceDataLibrery.m in Sources */ = {isa = PBXBuildFile; fileRef = 3524EF991F4E7D51001CF837 /* DeviceDataLibrery.m */; };
 		3525F6011F4D536C00C8FE8D /* NetWorkInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3525F6001F4D536C00C8FE8D /* NetWorkInfoManager.m */; };
@@ -165,6 +179,13 @@
 		18972CBA266B6BF900ADBA9F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		18972CBC266B6C0300ADBA9F /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		18972CBD266B6C1100ADBA9F /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		18A0F225278046A900E760A9 /* CGDChangAppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGDChangAppManager.h; sourceTree = "<group>"; };
+		18A0F226278046AA00E760A9 /* CGDChangAppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGDChangAppManager.m; sourceTree = "<group>"; };
+		18A0F228278046EB00E760A9 /* Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
+		18A0F229278046EC00E760A9 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		18A547A32772C56900EA1195 /* sysctlName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sysctlName.h; sourceTree = "<group>"; };
+		18A76AC1278E73D70056ECD9 /* libTalkingDataSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTalkingDataSDK.a; sourceTree = "<group>"; };
+		18A76AC3278E73E60056ECD9 /* TalkingDataSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TalkingDataSDK.h; sourceTree = "<group>"; };
 		18AC4B6E265B849F004E41F9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		18C4C70526B00DC800D167C4 /* dt+nobroken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dt+nobroken.h"; sourceTree = "<group>"; };
 		18C4C70B26B00E6E00D167C4 /* dt+nobroken1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dt+nobroken1.h"; sourceTree = "<group>"; };
@@ -181,6 +202,25 @@
 		18C6DCA62671E3D10072E0D9 /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
 		18C6DCB1267202AC0072E0D9 /* ANYMethodLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANYMethodLog.h; sourceTree = "<group>"; };
 		18C6DCB2267202AC0072E0D9 /* ANYMethodLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANYMethodLog.m; sourceTree = "<group>"; };
+		18D21517279032E1007A16D7 /* AppsFlyerLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppsFlyerLib.framework; sourceTree = "<group>"; };
+		18D2151C27903456007A16D7 /* AppsFlyerLibManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppsFlyerLibManager.m; sourceTree = "<group>"; };
+		18D2151D27903457007A16D7 /* AppsFlyerLibManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppsFlyerLibManager.h; sourceTree = "<group>"; };
+		18D7B7C1278E7AEC00739136 /* TinTalkingManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TinTalkingManager.h; sourceTree = "<group>"; };
+		18D7B7C2278E7AEC00739136 /* TinTalkingManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TinTalkingManager.m; sourceTree = "<group>"; };
+		18D7B7C4278E84C700739136 /* BaiduMobStatManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaiduMobStatManager.h; sourceTree = "<group>"; };
+		18D7B7C5278E84C700739136 /* BaiduMobStatManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaiduMobStatManager.m; sourceTree = "<group>"; };
+		18D7B7C7278E851900739136 /* BaiduMobStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMobStat.h; sourceTree = "<group>"; };
+		18D7B7C8278E851A00739136 /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
+		18D7B7CA278E862C00739136 /* UMConfigureManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMConfigureManager.h; sourceTree = "<group>"; };
+		18D7B7CB278E862C00739136 /* UMConfigureManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMConfigureManager.m; sourceTree = "<group>"; };
+		18D7B7CD278E8A4100739136 /* UserFeedBack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UserFeedBack.framework; sourceTree = "<group>"; };
+		18D7B7D0278E8D6900739136 /* janalytics-ios-2.1.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "janalytics-ios-2.1.2.a"; sourceTree = "<group>"; };
+		18D7B7D1278E8D6900739136 /* JANALYTICSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JANALYTICSService.h; sourceTree = "<group>"; };
+		18D7B7D2278E8D6900739136 /* jcore-ios-3.1.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jcore-ios-3.1.2.a"; sourceTree = "<group>"; };
+		18D7B7D3278E8D6900739136 /* JANALYTICSEventObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JANALYTICSEventObject.h; sourceTree = "<group>"; };
+		18D7B7D6278E8D9900739136 /* JiGuangManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JiGuangManager.h; sourceTree = "<group>"; };
+		18D7B7D7278E8D9900739136 /* JiGuangManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JiGuangManager.m; sourceTree = "<group>"; };
+		18DBF5A2277B069A002CB931 /* Detect.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = Detect.s; sourceTree = "<group>"; };
 		18F6B1A526CCDD7500E9117C /* MGDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGDatabase.h; sourceTree = "<group>"; };
 		18FCF327267B26D500DCD94F /* UserCust.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCust.m; sourceTree = "<group>"; };
 		18FCF328267B26D500DCD94F /* UserCust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCust.h; sourceTree = "<group>"; };
@@ -205,14 +245,20 @@
 			files = (
 				1849964326D8DED400385E24 /* CoreFoundation.framework in Frameworks */,
 				18515B7B26B0F72600B9DCA3 /* libFMDeviceManager.a in Frameworks */,
+				18A76AC2278E73D70056ECD9 /* libTalkingDataSDK.a in Frameworks */,
 				18952BE026799B8800076E04 /* libresolv.9.tbd in Frameworks */,
 				18AC4B6F265B84A0004E41F9 /* CoreLocation.framework in Frameworks */,
 				185DDE902658DDB400A844DF /* AdSupport.framework in Frameworks */,
 				18514A1B266F784900636889 /* CoreData.framework in Frameworks */,
+				18D7B7D5278E8D6A00739136 /* jcore-ios-3.1.2.a in Frameworks */,
 				18972CBB266B6BF900ADBA9F /* SystemConfiguration.framework in Frameworks */,
 				18C588B326C24A9B00046B28 /* MobileCoreServices.framework in Frameworks */,
 				18514A20266F79A100636889 /* CoreTelephony.framework in Frameworks */,
+				18D7B7C9278E851A00739136 /* libBaiduMobStat.a in Frameworks */,
+				18D7B7D4278E8D6A00739136 /* janalytics-ios-2.1.2.a in Frameworks */,
 				0909BFAF2C489EA35E835C38 /* libPods-ClientTest.a in Frameworks */,
+				18D7B7CE278E8A4100739136 /* UserFeedBack.framework in Frameworks */,
+				18D21518279032E2007A16D7 /* AppsFlyerLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,12 +315,24 @@
 		0F5D09FA1D26568100F3FDD3 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				18A0F225278046A900E760A9 /* CGDChangAppManager.h */,
+				18A0F226278046AA00E760A9 /* CGDChangAppManager.m */,
 				0F5D09EE1D264F5900F3FDD3 /* NSData+CRC32.h */,
 				0F5D09EF1D264F5900F3FDD3 /* NSData+CRC32.m */,
 				0F8AEC411D262754007827BA /* AppDelegate.h */,
 				0F8AEC421D262754007827BA /* AppDelegate.m */,
+				18D2151D27903457007A16D7 /* AppsFlyerLibManager.h */,
+				18D2151C27903456007A16D7 /* AppsFlyerLibManager.m */,
 				185BB2272727A00E00933CAC /* MYDTManager.h */,
 				185BB2282727A00E00933CAC /* MYDTManager.m */,
+				18D7B7C1278E7AEC00739136 /* TinTalkingManager.h */,
+				18D7B7C2278E7AEC00739136 /* TinTalkingManager.m */,
+				18D7B7C4278E84C700739136 /* BaiduMobStatManager.h */,
+				18D7B7C5278E84C700739136 /* BaiduMobStatManager.m */,
+				18D7B7CA278E862C00739136 /* UMConfigureManager.h */,
+				18D7B7CB278E862C00739136 /* UMConfigureManager.m */,
+				18D7B7D6278E8D9900739136 /* JiGuangManager.h */,
+				18D7B7D7278E8D9900739136 /* JiGuangManager.m */,
 				185BB22C2727A03000933CAC /* MYHelper.h */,
 				185BB22D2727A03000933CAC /* MYHelper.m */,
 				18C6DCB1267202AC0072E0D9 /* ANYMethodLog.h */,
@@ -288,6 +346,8 @@
 				1868969026FB0EA000075583 /* compare.h */,
 				18FCF328267B26D500DCD94F /* UserCust.h */,
 				18FCF327267B26D500DCD94F /* UserCust.m */,
+				18A0F229278046EC00E760A9 /* Log.h */,
+				18A0F228278046EB00E760A9 /* Log.m */,
 				1892A17F26DCC83D009E1BE3 /* AntiDebug */,
 			);
 			name = Others;
@@ -384,6 +444,7 @@
 		185DDE8E2658DDB400A844DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18D21517279032E1007A16D7 /* AppsFlyerLib.framework */,
 				1849964226D8DED400385E24 /* CoreFoundation.framework */,
 				18C588B226C24A9B00046B28 /* MobileCoreServices.framework */,
 				18952BDF26799B8800076E04 /* libresolv.9.tbd */,
@@ -391,6 +452,7 @@
 				18514A1A266F784900636889 /* CoreData.framework */,
 				18514A16266F77B300636889 /* libMobileGestalt.tbd */,
 				18972CBD266B6C1100ADBA9F /* libsqlite3.tbd */,
+				18D7B7CD278E8A4100739136 /* UserFeedBack.framework */,
 				18972CBC266B6C0300ADBA9F /* libz.tbd */,
 				18515B7A26B0F72600B9DCA3 /* libFMDeviceManager.a */,
 				18972CBA266B6BF900ADBA9F /* SystemConfiguration.framework */,
@@ -425,6 +487,7 @@
 				1894FC9326AFDAF4009C00A4 /* DTIDA.h */,
 				1838B23626B79368005598F1 /* myheader.h */,
 				1838B23D26B7DE82005598F1 /* miyueT.h */,
+				18A547A32772C56900EA1195 /* sysctlName.h */,
 				18C588DB26C27D8500046B28 /* MobileDevice.framework */,
 			);
 			name = DTCheck;
@@ -451,10 +514,26 @@
 		18952BD826799B2700076E04 /* UD */ = {
 			isa = PBXGroup;
 			children = (
+				18A76AC3278E73E60056ECD9 /* TalkingDataSDK.h */,
+				18A76AC1278E73D70056ECD9 /* libTalkingDataSDK.a */,
 				18952BDA26799B3B00076E04 /* FMDeviceManager.h */,
 				18366C4D26807A6000874249 /* libFMDeviceManager.a */,
+				18D7B7C7278E851900739136 /* BaiduMobStat.h */,
+				18D7B7C8278E851A00739136 /* libBaiduMobStat.a */,
+				18D7B7CF278E8D6900739136 /* Lib */,
 			);
 			name = UD;
+			sourceTree = "<group>";
+		};
+		18D7B7CF278E8D6900739136 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				18D7B7D0278E8D6900739136 /* janalytics-ios-2.1.2.a */,
+				18D7B7D1278E8D6900739136 /* JANALYTICSService.h */,
+				18D7B7D2278E8D6900739136 /* jcore-ios-3.1.2.a */,
+				18D7B7D3278E8D6900739136 /* JANALYTICSEventObject.h */,
+			);
+			path = Lib;
 			sourceTree = "<group>";
 		};
 		356F36D91ECDCB16001603AB /* Class */ = {
@@ -481,6 +560,7 @@
 				3524EF981F4E7D51001CF837 /* DeviceDataLibrery.h */,
 				3524EF991F4E7D51001CF837 /* DeviceDataLibrery.m */,
 				18F6B1A526CCDD7500E9117C /* MGDatabase.h */,
+				18DBF5A2277B069A002CB931 /* Detect.s */,
 				18366C5226807AFC00874249 /* mycompram.h */,
 			);
 			path = Tools;
@@ -579,6 +659,7 @@
 				TargetAttributes = {
 					0F8AEC3A1D262754007827BA = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = W9NR59G3WD;
 						ProvisioningStyle = Automatic;
 					};
 					0F8AEC531D262755007827BA = {
@@ -673,22 +754,30 @@
 				185BB24D2727A1CE00933CAC /* fishhook.c in Sources */,
 				185BB22E2727A03000933CAC /* MYHelper.m in Sources */,
 				18FCF329267B26D500DCD94F /* UserCust.m in Sources */,
+				18A0F227278046AA00E760A9 /* CGDChangAppManager.m in Sources */,
 				3525F6011F4D536C00C8FE8D /* NetWorkInfoManager.m in Sources */,
 				1894FC9626AFDC8D009C00A4 /* MYDTCheckManager.m in Sources */,
 				0F5D09F01D264F5900F3FDD3 /* NSData+CRC32.m in Sources */,
 				356F36E41ECDCC36001603AB /* DeviceInfoManager.m in Sources */,
 				18C6DCB3267202AC0072E0D9 /* ANYMethodLog.m in Sources */,
+				18D7B7C6278E84C700739136 /* BaiduMobStatManager.m in Sources */,
 				0F8AEC461D262754007827BA /* ViewController.m in Sources */,
 				0F8AEC431D262754007827BA /* AppDelegate.m in Sources */,
 				357CB08B1F4D6E96006BFB52 /* BatteryInfoManager.m in Sources */,
+				18DBF5A3277B069A002CB931 /* Detect.s in Sources */,
 				1849961526D767E100385E24 /* AntiMSHookFunctionARM.c in Sources */,
 				3524EF9A1F4E7D51001CF837 /* DeviceDataLibrery.m in Sources */,
 				185BB2292727A00E00933CAC /* MYDTManager.m in Sources */,
 				1849961426D767E100385E24 /* MSHookFunctionARMCheck.c in Sources */,
+				18D7B7D8278E8D9900739136 /* JiGuangManager.m in Sources */,
+				18A0F22A278046ED00E760A9 /* Log.m in Sources */,
+				18D7B7C3278E7AEC00739136 /* TinTalkingManager.m in Sources */,
+				18D2151E27903458007A16D7 /* AppsFlyerLibManager.m in Sources */,
 				1892A18226DCC83D009E1BE3 /* AntiDebugTest.m in Sources */,
 				356F36D21ECDB899001603AB /* BasicViewController.m in Sources */,
 				18C6DCA72671E3D10072E0D9 /* OpenUDID.m in Sources */,
 				18514A0C266F24A700636889 /* WHCFileManager.m in Sources */,
+				18D7B7CC278E862C00739136 /* UMConfigureManager.m in Sources */,
 				0F8AEC401D262754007827BA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -866,7 +955,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = W9NR59G3WD;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = armv7;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -877,12 +966,15 @@
 					"$(PROJECT_DIR)/ClientTest/Class/Tools",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = ClientTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ClientTest",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/ClientTest/Lib",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
@@ -906,7 +998,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = W9NR59G3WD;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = armv7;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -917,12 +1009,15 @@
 					"$(PROJECT_DIR)/ClientTest/Class/Tools",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = ClientTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ClientTest",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/ClientTest/Lib",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";

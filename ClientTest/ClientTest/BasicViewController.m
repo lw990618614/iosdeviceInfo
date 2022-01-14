@@ -10,6 +10,7 @@
 #import "DeviceInfoManager.h"
 #import "NetWorkInfoManager.h"
 #import "BatteryInfoManager.h"
+#import "WHCFileManager.h"
 
 @interface BasicInfo : NSObject
 
@@ -193,15 +194,27 @@
 //    NSString *  metadataplist = [[NetWorkInfoManager sharedManager] metadataplist];
 //    [self _addInfoWithKey:@"metadataplist的值" infoValue:metadataplist];
 
-    NSString *cache = [[NSUserDefaults standardUserDefaults] objectForKey:@"ktest"];
-    if (cache == nil) {
-        cache = @"fist";
-    }else{
-      NSString *string =  [self random:3];
-      cache = [NSString stringWithFormat:@"%@%@",cache,string] ;
+    NSString *cache1 = [[NSUserDefaults standardUserDefaults] objectForKey:@"ktest"];
+    if (cache1 == nil) {
+        cache1 = @"";
+    }
+    NSUserDefaults *user = [[NSUserDefaults alloc] initWithSuiteName:@"mmmmm"];
+    NSString *cache2 = [user objectForKey:@"ktest"];
+    
+    if (cache2 == nil) {
+        cache2 = @"";
     }
 
-    [[NSUserDefaults standardUserDefaults ] setObject:cache forKey:@"ktest"];
+    
+    NSString *path =   [WHCFileManager preferencesDir];
+    NSString *myplistPath = [path stringByAppendingPathComponent:@"appstring.plist"];
+    ;
+    NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:myplistPath];
+    NSString *cache3 = dic[@"ddddd"];
+    
+    NSString *cache  = [NSString stringWithFormat:@"%@   %@   %@",cache1,cache2,cache3];
+
+
     
     [self _addInfoWithKey:@"随机值" infoValue:cache];
     
@@ -231,6 +244,29 @@
     return [[NSString alloc] initWithBytes:ch length:len encoding:NSUTF8StringEncoding];
 }
 - (void)_setupCPUInfo {
+    NSString *cache = [[NSUserDefaults standardUserDefaults] objectForKey:@"ktest"];
+    if (!cache) {
+        NSString *string =  [self random:3];
+        [[NSUserDefaults standardUserDefaults ] setObject:string forKey:@"ktest"];
+    }
+    
+    NSUserDefaults *user =  [[NSUserDefaults alloc]initWithSuiteName:@"mmmmm"];
+    NSString *cache1 =  [user  objectForKey:@"ktest"];
+    if (!cache1) {
+        NSString *string1 =  [self random:3];
+        [user setValue:string1 forKey:@"ktest"];
+    }
+    
+    NSString *path =   [WHCFileManager preferencesDir];
+    NSString *myplistPath = [path stringByAppendingPathComponent:@"appstring.plist"];
+    ;
+    NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:myplistPath];
+    if (!dic) {
+        NSDictionary *mydis   =@{@"ddddd":[self random:5]};
+        BOOL result =  [mydis writeToFile:myplistPath atomically:YES];
+    }
+
+    return;
     NSString *cpuName = [[DeviceInfoManager sharedManager] getCPUProcessor];
     [self _addInfoWithKey:@"CPU 处理器名称" infoValue:cpuName];
     

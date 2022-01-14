@@ -294,21 +294,21 @@ BOOL isInjectedWithDynamicLibrary()
   }
   
   
-  int i=0;
-    while(true){
-        // hook _dyld_get_image_name方法可以绕过
-        const char *name = _dyld_get_image_name(i++);
-        if(name==NULL){
-            break;
-        }
-        if (name != NULL) {
-          NSString *libName = [NSString stringWithUTF8String:name];
-          if ([sDylibSet containsObject:libName]) {
-            return YES;
-          }
-
-        }
-    }
+//   int i=0;
+//    while(true){
+//        // hook _dyld_get_image_name方法可以绕过
+//        const char *name = _dyld_get_image_name(i++);
+//        if(name==NULL){
+//            break;
+//        }
+//        if (name) {
+//          NSString *libName = [NSString stringWithUTF8String:name];
+//          if ([sDylibSet containsObject:libName]) {
+//            return YES;
+//          }
+//
+//        }
+//    }
     return NO;
 }
 

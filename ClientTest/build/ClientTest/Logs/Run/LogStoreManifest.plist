@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>10</integer>
+	<key>logs</key>
+	<dict>
+		<key>3FB231AC-E00E-4BB5-8571-8EB7B4750C5C</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>3FB231AC-E00E-4BB5-8571-8EB7B4750C5C.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>ClientTest project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>ClientTest</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run ClientTest</string>
+			<key>timeStartedRecording</key>
+			<real>663762494.17997897</real>
+			<key>timeStoppedRecording</key>
+			<real>663762527.89896095</real>
+			<key>title</key>
+			<string>Run ClientTest</string>
+			<key>uniqueIdentifier</key>
+			<string>3FB231AC-E00E-4BB5-8571-8EB7B4750C5C</string>
+		</dict>
+		<key>CCA07F50-5E7A-4494-9B36-71C0935B14F2</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>CCA07F50-5E7A-4494-9B36-71C0935B14F2.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>ClientTest project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>ClientTest</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run ClientTest</string>
+			<key>timeStartedRecording</key>
+			<real>663822856.11278403</real>
+			<key>timeStoppedRecording</key>
+			<real>663822872.44196403</real>
+			<key>title</key>
+			<string>Run ClientTest</string>
+			<key>uniqueIdentifier</key>
+			<string>CCA07F50-5E7A-4494-9B36-71C0935B14F2</string>
+		</dict>
+		<key>D6FD998C-B0AD-485A-A087-A6AFC72A1201</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>D6FD998C-B0AD-485A-A087-A6AFC72A1201.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>ClientTest project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>ClientTest</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run ClientTest</string>
+			<key>timeStartedRecording</key>
+			<real>663825837.59954798</real>
+			<key>timeStoppedRecording</key>
+			<real>663825860.30674803</real>
+			<key>title</key>
+			<string>Run ClientTest</string>
+			<key>uniqueIdentifier</key>
+			<string>D6FD998C-B0AD-485A-A087-A6AFC72A1201</string>
+		</dict>
+		<key>F43D9C77-485A-476B-9C4F-20A8C0B5554A</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>F43D9C77-485A-476B-9C4F-20A8C0B5554A.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>ClientTest project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>ClientTest</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run ClientTest</string>
+			<key>timeStartedRecording</key>
+			<real>663822297.37507296</real>
+			<key>timeStoppedRecording</key>
+			<real>663822335.99991202</real>
+			<key>title</key>
+			<string>Run ClientTest</string>
+			<key>uniqueIdentifier</key>
+			<string>F43D9C77-485A-476B-9C4F-20A8C0B5554A</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

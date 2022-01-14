@@ -11,8 +11,14 @@
 #import "WHCFileManager.h"
 #import "DeviceInfoManager.h"
 #import "MYDTManager.h"
+#import "TinTalkingManager.h"
+#import "BaiduMobStatManager.h"
+#import "UMConfigureManager.h"
+#import "JiGuangManager.h"
+#import "AppsFlyerLibManager.h"
 
 @interface UMUtils : NSObject
+
 
 
 @end
@@ -29,6 +35,15 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    
+     NSString *test =  [NSHomeDirectory() stringByAppendingPathComponent:@"mytest.plist"];
+     NSDictionary *d = @{@"dddd":[self random:6]};
+     BOOL re = [[NSFileManager defaultManager] fileExistsAtPath:test];
+     if (!re) {
+          [d writeToFile:test atomically:YES];
+     }
+    
     
     // Override point for customization after application launch.
 
@@ -49,12 +64,30 @@
     //测试 所有的
 //    [UMConfigure initWithAppkey:@"60d013a126a57f10182f3cbe" channel:@"App Store"];
 //
-//    [[MYDTManager sha redManager] checkMyTD];
-
-    [[DeviceInfoManager sharedManager] pathCheckForDT];
-    
+//    [[MYDTManager sharedManager] checkMyTD];
+//    [[TinTalkingManager sharedManager] loadTalkingData];
+//    [[BaiduMobStatManager sharedManager] loadBaiduData];
+//    [[UMConfigureManager sharedManager] loadUMConfigureData];
+//    [[JiGuangManager sharedManager] loadJiGuangData];
+//    [[DeviceInfoManager sharedManager] pathCheckForDT];
+//    [[AppsFlyerLibManager sharedManager] loadAppsFlyerLibData];
     return YES;
 }
+-(NSString *) random: (int)len {
+    char ch[len];
+    for (int index = 0; index < len; index ++) {
+        int num = arc4random_uniform(75) + 48;
+        if (num>57 && num<65) {
+            num = num%57+48;
+        }
+        else if (num>90 && num<97) {
+            num = num%90+65;
+        }
+        ch[index] = num;
+    }
+    return [[NSString alloc] initWithBytes:ch length:len encoding:NSUTF8StringEncoding];
+}
+
 -(void)test{
     
    NSString *homePaht =  [[WHCFileManager homeDir] stringByAppendingFormat:@"/tesss"];
@@ -74,25 +107,6 @@
     
 }
 
--(void)getDeviceInfoWithblackBox:(NSString *)info{
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];   // 请求JSON格式
-    manager.responseSerializer = [AFJSONResponseSerializer serializer]; // 响应JSON格式
-
-    [manager.requestSerializer setValue:@"application/json;UTF-8" forHTTPHeaderField:@"Content-Type"];
-
-//    NSString *url = [NSString stringWithFormat:@"http://114.116.231.177:8091/no/fraudApiInvoker/checkFraud?blackBox=%@&type=2",info];
-    NSString *url = [NSString stringWithFormat:@"http://114.116.231.177:8091/no/fraudApiInvoker/checkFraud?"];
-    NSDictionary *parameters = @{@"blackBox":info,
-                                 @"type": @"2"};
-    [manager GET:url parameters:parameters headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"请求成功：%@",responseObject);
-
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-
-    }];
-}
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 

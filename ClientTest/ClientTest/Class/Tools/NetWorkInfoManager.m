@@ -48,7 +48,15 @@
 #include <sys/sysctl.h>
 #include <net/if.h>
 #include <net/if_dl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
+#define _GNU_SOURCE
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+void mystatTest( char *path);
 @implementation NetWorkInfoManager
 
 
@@ -88,62 +96,30 @@
 }
 // 获取ip
 - (NSString *)getDeviceIPAddresses {
-    struct  stat stat_info;
-    if (0 == stat("/var/lib/dpkg/info", &stat_info)) {
 
-        }
-
-    int sockfd = socket(AF_INET, SOCK_DGRAM, 0);
-    
-    NSMutableArray *ips = [NSMutableArray array];
-    
-    int BUFFERSIZE = 4096;
-    
-    struct ifconf ifc;
-    
-    char buffer[BUFFERSIZE], *ptr, lastname[IFNAMSIZ], *cptr;
-    
-    struct ifreq *ifr, ifrcopy;
-    
-    ifc.ifc_len = BUFFERSIZE;
-    ifc.ifc_buf = buffer;
-    
-    if (ioctl(sockfd, SIOCGIFCONF, &ifc) >= 0){
-        
-        for (ptr = buffer; ptr < buffer + ifc.ifc_len; ){
-            
-            ifr = (struct ifreq *)ptr;
-            int len = sizeof(struct sockaddr);
-            
-            if (ifr->ifr_addr.sa_len > len) {
-                len = ifr->ifr_addr.sa_len;
+    NSString *address = nil;
+    struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    int success = 0;
+    // retrieve the current interfaces - returns 0 on success
+    success = getifaddrs(&interfaces);
+    if (success == 0) {
+        // Loop through linked list of interfaces
+        temp_addr = interfaces;
+        while(temp_addr != NULL) {
+            if(temp_addr->ifa_addr->sa_family == AF_INET) {
+                // Check if interface is en0 which is the wifi connection on the iPhone
+                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
+                    // Get NSString from C String
+                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
+                }
             }
-            
-            ptr += sizeof(ifr->ifr_name) + len;
-            if (ifr->ifr_addr.sa_family != AF_INET) continue;
-            if ((cptr = (char *)strchr(ifr->ifr_name, ':')) != NULL) *cptr = 0;
-            if (strncmp(lastname, ifr->ifr_name, IFNAMSIZ) == 0) continue;
-            
-            memcpy(lastname, ifr->ifr_name, IFNAMSIZ);
-            ifrcopy = *ifr;
-            ioctl(sockfd, SIOCGIFFLAGS, &ifrcopy);
-            
-            if ((ifrcopy.ifr_flags & IFF_UP) == 0) continue;
-            
-            NSString *ip = [NSString  stringWithFormat:@"%s", inet_ntoa(((struct sockaddr_in *)&ifr->ifr_addr)->sin_addr)];
-            [ips addObject:ip];
+            temp_addr = temp_addr->ifa_next;
         }
     }
-    
-    close(sockfd);
-    NSString *deviceIP = @"";
-    
-    for (int i=0; i < ips.count; i++) {
-        if (ips.count > 0) {
-            deviceIP = [NSString stringWithFormat:@"%@",ips.lastObject];
-        }
-    }
-    return deviceIP;
+    // Free memory
+    freeifaddrs(interfaces);
+    return address;
 }
 
 - (NSString *)ipAddressWithIfaName:(NSString *)name {
@@ -169,7 +145,6 @@
                         
                     case AF_INET6: { // IPv6
                         char str[INET6_ADDRSTRLEN] = {0};
-                      char *tt=  inet_ntop(family, &(((struct sockaddr_in6 *)addr->ifa_addr)->sin6_addr), str, sizeof(str));//
                         if (strlen(str) > 0) {
                             
                             address = [NSString stringWithUTF8String:str];
@@ -247,13 +222,15 @@
     NSLog(@"%s", buf.f_mntfromname); //"/dev/disk0s1s1
     char* prefix = "com.apple.os.update-";
     if(strstr(buf.f_mntfromname, prefix)) {
-        NSLog(@"未越狱, 设备唯一识别码=%s", buf.f_mntfromname);
+        NSLog(@"未越狱, 设备唯一识别码=%s", buf.f_mntfromname);//com.apple.os.update-C27401D58B296783DD1FF1F51F394AD23A31748B@/dev/disk0s1s1
         return [NSString stringWithFormat:@"未越狱, 设备唯一识别码 %s",buf.f_mntfromname];
     } else {
         return  @"已越狱, 没有设备唯一识别码";
     }
 
 }
+
+
 //const char *iinet_ntop(int family, const void *addrptr, char *strptr, size_t len)
 //{
 //    const u_char *p = (const u_char*)addrptr;
@@ -381,6 +358,7 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
 {
     size_t size = sizeof(int);
     int results;
+    
     int mib[2] = {CTL_HW, typeSpecifier};
     sysctl(mib, 2, &results, &size, NULL, 0);
     return (NSUInteger) results;
@@ -395,10 +373,12 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
     NSUInteger sysinfo5=  [self getSysInfo:KIPC_MAXSOCKBUF];
     NSUInteger sysinfo6=  [self getSysInfo:HW_PAGESIZE];
 
+    
+
 }
 
 -(void)getreplaced_sysctlbyname{
-    [self getkerinfo];
+//    [self getkerinfo];
 
     size_t size;
     sysctlbyname("hw.machine", NULL, &size, NULL, 0);
@@ -410,27 +390,27 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
     sysctlbyname("kern.osproductversion", NULL, &size1, NULL, 0);
     char *model1 = malloc(size1);
     sysctlbyname("kern.osproductversion", model1, &size1, NULL, 0);
-    NSString *deviceModel1 = [NSString stringWithCString:model1];//13.51
+    NSString *deviceModel1 = [NSString stringWithCString:model1];//13.51 重启没变
    
     
     sysctlbyname("hw.model", NULL, &size, NULL, 0);
-    char* name1 = (char*)malloc(size);
+    char* name1 = (char*)malloc(size);//N71mAP
     sysctlbyname("hw.model", name1, &size, NULL, 0);
-    NSString* machine1 = [NSString stringWithCString:name1];//D10AP
+    NSString* machine1 = [NSString stringWithCString:name1];//n71map 重启没变
 
     
     sysctlbyname("kern.osrelease", NULL, &size, NULL, 0);
     char* name2 = (char*)malloc(size);
     sysctlbyname("kern.osrelease", name2, &size, NULL, 0);
-    NSString* machine2 = [NSString stringWithCString:name2];//19.5.0
+    NSString* machine2 = [NSString stringWithCString:name2];//18.2.0 重启没变
     
     sysctlbyname("kern.bootsessionuuid", NULL, &size, NULL, 0);
-    char* name3 = (char*)malloc(size);
+    char* name3 = (char*)malloc(size);//FB2336C5-57A0-4037-AAD7-C5C7EBA04D5E 重启变了
     sysctlbyname("kern.bootsessionuuid", name3, &size, NULL, 0);
     NSString* machine3 = [NSString stringWithCString:name3];//类似 uuid
     
     sysctlbyname("kern.hostname", NULL, &size, NULL, 0);
-    char* name4 = (char*)malloc(size);
+    char* name4 = (char*)malloc(size);//iphoneww 手机名字
     sysctlbyname("kern.hostname", name4, &size, NULL, 0);
     NSString* machine4 = [NSString stringWithCString:name4];//iphone1111
 
@@ -442,7 +422,7 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
 
     
     sysctlbyname("kern.version", NULL, &size, NULL, 0);
-    char* name6 = (char*)malloc(size);
+    char* name6 = (char*)malloc(size);//Darwin Kernel Version 18.2.0: Tue Oct 16 21:02:23 PDT 2018; root:xnu-4903.222.5~1/RELEASE_ARM64_S8000
     sysctlbyname("kern.version", name6, &size, NULL, 0);
     NSString* machine6 = [NSString stringWithCString:name6];//Darwin ker>>>
 
@@ -450,12 +430,37 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
     sysctlbyname("security.mac.sandbox.sentinel", NULL, &size, NULL, 0);
     char* name7 = (char*)malloc(size);
     sysctlbyname("security.mac.sandbox.sentinel", name7, &size, NULL, 0);
-    NSString* machine7 = [NSString stringWithCString:name7];//.sb-107cf39d
+    NSString* machine7 = [NSString stringWithCString:name7];//.sb-a91f51c6
+   
+    sysctlbyname("kern.osrevision", NULL, &size, NULL, 0);
+    char* name8 = (char*)malloc(size);
+    sysctlbyname("kern.osrevision", name8, &size, NULL, 0);
+    NSString* machine8 = [NSString stringWithCString:name8];//.sb-107cf39d
 
     
+    sysctlbyname("kern.uuid", NULL, &size, NULL, 0);
+    char* name9 = (char*)malloc(size);
+    sysctlbyname("kern.uuid", name9, &size, NULL, 0);
+    NSString* machine9 = [NSString stringWithCString:name9];//.sb-107cf39d 重启变了
+    
+    sysctlbyname("hw.cpufamily", NULL, &size, NULL, 0);
+    char* name10 = (char*)malloc(size);
+    sysctlbyname("hw.cpufamily", name10, &size, NULL, 0);
+    NSString* machine10 = [NSString stringWithCString:name10];//
+    
+    sysctlbyname("machdep.wake_conttime", NULL, &size, NULL, 0);
+    char* name11 = (char*)malloc(size);
+    sysctlbyname("machdep.wake_conttime", name11, &size, NULL, 0);
+    NSString* machine11 = [NSString stringWithCString:name11];//
+
+    sysctlbyname("machdep.cpu.brand_string", NULL, &size, NULL, 0);
+    char* name12 = (char*)malloc(size);
+    sysctlbyname("machdep.cpu.brand_string", name12, &size, NULL, 0);
+    NSString* machine12 = [NSString stringWithCString:name12];//
+
     
     struct timeval bootTime;//
-    size_t size2 = sizeof(bootTime); // tvsec:124234235  tvuse :23543536534,
+    size_t size2 = sizeof(bootTime); // tv_sec = 1640163282, tv_usec = 509155,
     sysctlbyname("kern.boottime", &bootTime, &size2, NULL, 0);
     
     struct timeval waketime;// // tvsec:5436456  tvuse :235455675663536534
@@ -477,7 +482,7 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
     sysctlbyname("hw.ncpu", &ncpucout, &len1, NULL, 0);
     
     
-    unsigned int memsize;//2099249152
+    unsigned int memsize;//2105016320 重启没变 2099249152
     size_t len2 = sizeof(memsize);
     sysctlbyname("hw.memsize", &memsize, &len2, NULL, 0);
 
@@ -493,32 +498,57 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
     size_t len5 = sizeof(availcpu);
     sysctlbyname("hw.availcpu", &availcpu, &len5, NULL, 0);
     
-    unsigned int physmem;//2099229152
+    unsigned int physmem;//2105016320  重启没变  2105016320
     size_t len6 = sizeof(physmem);
     sysctlbyname("hw.physmem", &physmem, &len6, NULL, 0);
     
-    unsigned int cachelinesize;//2099229152
+    unsigned int cachelinesize;//1441792 重启没变
     size_t len7 = sizeof(cachelinesize);
     sysctlbyname("hw.cachelinesize", &cachelinesize, &len7, NULL, 0);
 
 
-    int32_t value = 0;
-    size_t length = sizeof(value);
-    sysctlbyname("hw.cpusubtype", &value, &length, NULL, 0);
+    unsigned int hwcpufamily;//246593735  2465937352 2465937352  2465937352 2465937352 重启没变
+    size_t len8 = sizeof(hwcpufamily);
+    sysctlbyname("hw.cpufamily", &hwcpufamily, &len8, NULL, 0);
+    
+    
+    unsigned int machdepwake_conttime;
+    size_t len9 = sizeof(machdepwake_conttime);
+    sysctlbyname("machdep.wake_conttime", &machdepwake_conttime, &len9, NULL, 0);
+
+    unsigned int l1icachesize;//1441792 1441792
+    size_t len10 = sizeof(l1icachesize);
+    sysctlbyname("hw.l1icachesize", &l1icachesize, &len10, NULL, 0);
+
+    unsigned int kextlog;//1
+    size_t len11 = sizeof(kextlog);
+    sysctlbyname("debug.kextlog", &kextlog, &len11, NULL, 0);
+
+    unsigned int argmax;//1
+    size_t len12 = sizeof(argmax);
+    sysctlbyname("kern.argmax", &kextlog, &len12, NULL, 0);
+
+
+    unsigned int l2cachesize;//1
+    size_t len13 = sizeof(l2cachesize);
+    sysctlbyname("hw.l2cachesize", &kextlog, &len13, NULL, 0);
 
     
     
     
+    cpu_subtype_t subtype;//1
+    size = sizeof(subtype);
+    sysctlbyname("hw.cpusubtype", &subtype, &size, NULL, 0);
 }
 
 -(NSString *)getSysctlResult{
     
 //    [self getreplaced_sysctlbyname];
-//
-  NSArray *reuslt  =  [self  getAllProcess];
+////
+//  NSArray *reuslt  =  [self  getAllProcess];
 //    struct kinfo_proc *proc;
 
-    
+    mystatTest("/vayr");
     
     char sysversion[128]={0} ;//DarWin
     int mib1[2] = {CTL_KERN,KERN_OSTYPE};
@@ -531,11 +561,11 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
     int mib2[2] = {CTL_KERN,KERN_BOOTTIME};
     size_t size2 = sizeof(bootTime);
     int result =  sysctl(mib2, 2, &bootTime, &size2, NULL, 0);
-//    if (sysctl(mib2, 2, &bootTime, &size2, NULL, 0) != -1) {
-//         bootTime.tv_sec;///秒
-//    };
+    if (sysctl(mib2, 2, &bootTime, &size2, NULL, 0) != -1) {
+         bootTime.tv_sec;///秒
+    };
 
-    char kerninfo[128]={0};////DarWin dddd
+    char kerninfo[128];////DarWin dddd
     int mib3[2] = {CTL_KERN,KERN_VERSION};
     size_t size3 = sizeof(kerninfo);
     if (sysctl(mib3, 2, &kerninfo, &size3, NULL, 0) != -1) {
@@ -561,10 +591,156 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
 
     };
     
-//    int mibss[4] = {CTL_KERN, KERN_PROC, KERN_PROC_ALL, 0};
-//    int miblen = 4;
-//    size_t size;
-//    int st = sysctl(mibss, miblen, NULL, &size, NULL, 0);
+    int KERN_MAXVNODE ;//70864896
+    int mib7[2] = {CTL_KERN,KERN_MAXVNODES};
+    size_t size7;//4
+    if (sysctl(mib7, 2, &KERN_MAXVNODE, &size7, NULL, 0) != -1) {
+        
+    };
+    
+    int KERN_MAXPR ;//1000
+    int mib8[2] = {CTL_KERN,KERN_MAXPROC};
+    size_t size;//4
+    if (sysctl(mib8, 2, &KERN_MAXPR, &size, NULL, 0) != -1) {
+        
+    };
+    
+    int KERN_MAXFILE ;//1
+    int mib9[2] = {CTL_KERN,KERN_MAXFILES};
+    size_t size9;
+    if (sysctl(mib9, 2, &KERN_MAXFILE, &size9, NULL, 0) != -1) {
+        
+    };
+    
+    int KERN_ARGMA ;//1
+    int mib10[2] = {CTL_KERN,KERN_ARGMAX};
+    size_t size10;
+    if (sysctl(mib10, 2, &KERN_ARGMA, &size10, NULL, 0) != -1) {
+        
+    };
+
+    int KERN_SECURELV ;//1
+    int mib11[2] = {CTL_KERN,KERN_SECURELVL};
+    size_t size11;
+    if (sysctl(mib11, 2, &KERN_SECURELV, &size11, NULL, 0) != -1) {
+        
+    };
+
+    char KERN_HOSTNA[128]={0} ;//Administratorteki-iPhone
+    int mib12[2] = {CTL_KERN,KERN_HOSTNAME};
+    size_t size12 = sizeof(KERN_HOSTNA);
+    if (sysctl(mib12, 2, &KERN_HOSTNA, &size12, NULL, 0) != -1) {
+        
+    };
+
+    int KERN_HOSTI ;//0
+    int mib13[2] = {CTL_KERN,KERN_HOSTID};
+    size_t size13;
+    if (sysctl(mib13, 2, &KERN_HOSTI, &size13, NULL, 0) != -1) {
+        
+    };
+    
+    int KERN_POSIsss ;//1
+    int mib14[2] = {CTL_KERN,KERN_POSIX1};
+    size_t size14;
+    if (sysctl(mib14, 2, &KERN_POSIsss, &size14, NULL, 0) != -1) {
+        
+    };
+    
+    int HW_MEMSI ;//1
+    int mib15[2] = {CTL_VM,HW_MEMSIZE};
+    size_t size15;
+    if (sysctl(mib15, 2, &HW_MEMSI, &size15, NULL, 0) != -1) {
+        
+    };
+    
+    //调试检测
+    struct kinfo_proc Info;
+    int mib16[] = { CTL_KERN, KERN_PROC, KERN_PROC_PID, getpid() };
+    size_t Size = sizeof(Info);
+    sysctl( mib16, sizeof( mib16 ) / sizeof( *mib16 ), &Info, &Size, NULL, 0 );
+    int re =   ( Info.kp_proc.p_flag & P_TRACED ) != 0; //1 调试中 0 不是
+    
+    size_t size17 = 128;
+    char *hw_machine = malloc(size);
+    int name[] = {CTL_HW, HW_MACHINE};
+    sysctl(name, 2, hw_machine, &size17, NULL, 0);
+
+    
+    int HW_AVAILCP ;//1
+    int mib18[2] = {CTL_HW,HW_AVAILCPU};
+    size_t size18;
+    if (sysctl(mib18, 2, &HW_AVAILCP, &size18, NULL, 0) != -1) {
+        
+    };
+    
+    int HW_NCP ;//1
+    int mib19[2] = {CTL_HW,HW_NCPU};
+    size_t size19;
+    if (sysctl(mib19, 2, &HW_NCP, &size19, NULL, 0) != -1) {
+        
+    };
+
+    
+    int mib20[2] = {CTL_KERN,KERN_MAXFILESPERPROC};
+    int maxFilesPerProc = 0;
+    size_t size20 = sizeof(maxFilesPerProc);
+    if (sysctl(mib20, 2, &maxFilesPerProc, &size20, NULL, 0) != -1) {
+        
+    };
+    
+    int                 mib[6];
+    size_t              len;
+    char                *buf;
+    unsigned char       *ptr;
+    struct if_msghdr    *ifm;
+    struct sockaddr_dl  *sdl;
+    
+    
+    mib[0] = CTL_NET;
+    mib[1] = AF_ROUTE;
+    mib[2] = 0;
+    mib[3] = AF_LINK;
+    mib[4] = NET_RT_IFLIST;
+    
+    if ((mib[5] = if_nametoindex("en0")) == 0) {
+        printf("Error: if_nametoindex error/n");
+    }
+    
+    if (sysctl(mib, 6, NULL, &len, NULL, 0) < 0) {
+        printf("Error: sysctl, take 1/n");
+    }
+    
+    if ((buf = (char*)malloc(len)) == NULL) {
+        printf("Could not allocate memory. error!/n");
+    }
+    
+    if (sysctl(mib, 6, buf, &len, NULL, 0) < 0) {
+        printf("Error: sysctl, take 2");
+        free(buf);
+         ;
+    }
+    
+    ifm = (struct if_msghdr *)buf;
+    sdl = (struct sockaddr_dl *)(ifm + 1);
+    ptr = (unsigned char *)LLADDR(sdl);
+//    2021-12-27 17:34:36.908564+0800 ClientTest[18571:713295] replaced_sysctlreplaced_sysctl  2 = -- 4 -- 17
+//    2021-12-27 17:34:36.908955+0800 ClientTest[18571:713295] replaced_sysctlreplaced_sysctl  2 = -- 4 -- 17
+//    2021-12-27 17:34:36.909334+0800 ClientTest[18571:713295] replaced_sysctlreplaced_sysctl  2 = -- 4 -- 17
+//    2021-12-27 17:34:36.909586+0800 ClientTest[18571:713295] replaced_sysctlreplaced_sysctl  2 = -- 4 -- 17
+
+    
+    
+    
+    
+
+    
+    
+
+//    sysctl kern.clockrate { hz = 100, tick = 10000, tickadj = 0, profhz = 100, stathz = 100 }
+//    KERN_CLOCKRATE
+    
+
 
     [self macAddr];
     
@@ -613,6 +789,7 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
         [addr appendFormat:@":%02x", *(addr_ptr + i)];
     }
 
+    
     free(buffer);
     
     return [addr copy];
@@ -849,7 +1026,50 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
 
 void test()
 {
+//    NSArray *tt = [NSArray new];
+//   NSString *resuy =  tt[1];
+//    [tt componentsJoinedByString:@""];
+//    NSMutableDictionary *mydn = [NSMutableDictionary new];
+//    [mydn setValue:resuy forKey:@"df"];
+    return;;
+//    printf("www.dllhook.com\nDyld image count is: %d.\n", _dyld_image_count());
+//    long b = 0;
+//
+//    for (int i =0 ; i < 5000000; i ++) {
+//     int a =   arc4random()%20;
+//        b = b + a;
+//    }
+    
+    struct mach_header_64 *header = (struct mach_header_64*) _dyld_get_image_header(0);
+    const struct section_64 *executable_section = getsectbynamefromheader_64(header, "__TEXT", "__text");
+    uint8_t *start_address = (uint8_t *) ((intptr_t) header + executable_section->offset);
+    uint8_t *end_address = (uint8_t *) (start_address + executable_section->size);
+    uint8_t *current = start_address;
+    uint32_t index = 0;
+    uint8_t current_target = 0;
     printf("www.dllhook.com\nDyld image count is: %d.\n", _dyld_image_count());
+
+    while (current < end_address) {
+
+        // Allow 0xFF as wildcard.
+        if (current_target == *current || current_target == 0xFF) {
+
+            index++;
+        }
+        else {
+
+            index = 0;
+        }
+
+        // Check if match.
+//        if (index == target_len) {
+//            index = 0;
+//        }
+    }
+
+
+    printf("www.dllhook.com\nDyld image count is: %d.\n", _dyld_image_count());
+
     for (int i = 0; i < _dyld_image_count(); i++) {
         char *image_name = (char *)_dyld_get_image_name(i);
         const struct mach_header *mh = _dyld_get_image_header(i);
@@ -873,12 +1093,12 @@ void test()
 
 
 -(NSString *)getbrokenState{
-//    test();
+    test();
     struct stat buf;     //文件属性存放缓冲区
     char *ptr;
    NSString *homestring = [NSHomeDirectory() stringByAppendingString:@"/teere"];
-    [WHCFileManager removeItemAtPath:homestring];
-    [@"fdsafgdsg" writeToFile:homestring atomically:YES encoding:NSUTF8StringEncoding error:nil];
+//    [WHCFileManager removeItemAtPath:homestring];
+//    [@"fdsafgdsg" writeToFile:homestring atomically:YES encoding:NSUTF8StringEncoding error:nil];
     
    BOOL reee = [WHCFileManager isExistsAtPath:homestring];
     
@@ -1025,7 +1245,6 @@ void test()
 }
 
 -(NSString *)gethomeDirPath{
-    AntiCracker();
     return   [WHCFileManager homeDir];
     
 }
@@ -1508,6 +1727,7 @@ void test()
 
     int  a =  stat(tt.UTF8String, &info1);
     int  b = lstat(tt.UTF8String, &info2);
+    AntiCracker();
 
 
 //

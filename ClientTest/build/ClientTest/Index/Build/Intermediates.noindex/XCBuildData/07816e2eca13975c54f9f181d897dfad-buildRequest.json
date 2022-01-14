@@ -1,0 +1,82 @@
+{
+  "_buildCommand2" : {
+    "command" : "prepareForIndexing",
+    "enableIndexBuildArena" : true,
+    "targets" : null
+  },
+  "buildCommand" : "build",
+  "configuredTargets" : [
+    {
+      "guid" : "a96566576b5904368169fdd0d52c18c5c8fc4789fbc0ce8b3883d04708ed37eb"
+    },
+    {
+      "guid" : "a96566576b5904368169fdd0d52c18c5876b935c44476b91905d42b27bbb1ad3"
+    },
+    {
+      "guid" : "a96566576b5904368169fdd0d52c18c5c78219bcc7c3b281f8b439fe7299ad6c"
+    },
+    {
+      "guid" : "8699adb1dd336b26511df848a716bd4253a735b3dbcb86fa532787dbbe741ba1"
+    },
+    {
+      "guid" : "8699adb1dd336b26511df848a716bd423ead3867c740ed513490098006983e93"
+    },
+    {
+      "guid" : "8699adb1dd336b26511df848a716bd42e5199a3f70555689be7018ee7f9f878d"
+    }
+  ],
+  "containerPath" : "/Users/apple/Desktop/luowen/Yunshang/DeviceInfo/ClientTest/ClientTest.xcworkspace",
+  "continueBuildingAfterErrors" : true,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "indexbuild",
+    "activeArchitecture" : "arm64e",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : true,
+      "platform" : "iphoneos",
+      "sdk" : "iphoneos15.0",
+      "sdkVariant" : "iphoneos",
+      "supportedArchitectures" : [
+        "armv4t",
+        "armv5",
+        "armv6",
+        "armv7",
+        "armv7f",
+        "armv7s",
+        "armv7k",
+        "arm64",
+        "arm64e"
+      ],
+      "targetArchitecture" : "arm64e"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/apple/Desktop/luowen/Yunshang/DeviceInfo/ClientTest/build/ClientTest/Index/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/apple/Desktop/luowen/Yunshang/DeviceInfo/ClientTest/build/ClientTest/Index/Build/Products",
+      "derivedDataPath" : "/Users/apple/Desktop/luowen/Yunshang/DeviceInfo/ClientTest/build",
+      "indexDataStoreFolderPath" : "/Users/apple/Desktop/luowen/Yunshang/DeviceInfo/ClientTest/build/ClientTest/Index/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/apple/Desktop/luowen/Yunshang/DeviceInfo/ClientTest/build/ClientTest/Index/PrecompiledHeaders",
+      "pchPath" : "/Users/apple/Desktop/luowen/Yunshang/DeviceInfo/ClientTest/build/ClientTest/Index/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO",
+          "INDEX_ARENA_INFO_REGULAR_BUILD_PRODUCTS_DIR" : "/Users/apple/Desktop/luowen/Yunshang/DeviceInfo/ClientTest/build/ClientTest/Build/Products",
+          "ONLY_ACTIVE_ARCH" : "YES"
+        }
+      }
+    }
+  },
+  "qos" : "utility",
+  "schemeCommand" : "launch",
+  "schemeCommand2" : "launch",
+  "shouldCollectMetrics" : false,
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

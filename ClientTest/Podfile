@@ -4,4 +4,5 @@ pod 'AFNetworking'
 pod 'UMCommon'
 pod 'UMDevice'
 pod 'FMDB'
+pod 'BaiduMobStatCodeless'
 end

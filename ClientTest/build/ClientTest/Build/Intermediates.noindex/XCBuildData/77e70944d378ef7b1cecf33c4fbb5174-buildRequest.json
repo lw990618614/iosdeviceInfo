@@ -1,0 +1,65 @@
+{
+  "_buildCommand2" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildAndRun"
+  },
+  "buildCommand" : "build",
+  "configuredTargets" : [
+    {
+      "guid" : "a96566576b5904368169fdd0d52c18c5c8fc4789fbc0ce8b3883d04708ed37eb"
+    }
+  ],
+  "containerPath" : "/Users/apple/Desktop/luowen/Yunshang/DeviceInfo/ClientTest/ClientTest.xcworkspace",
+  "continueBuildingAfterErrors" : false,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "arm64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "iphoneos",
+      "sdk" : "iphoneos15.0",
+      "sdkVariant" : "iphoneos",
+      "supportedArchitectures" : [
+        "arm64v8",
+        "arm64",
+        "armv8"
+      ],
+      "targetArchitecture" : "arm64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/apple/Desktop/luowen/Yunshang/DeviceInfo/ClientTest/build/ClientTest/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/apple/Desktop/luowen/Yunshang/DeviceInfo/ClientTest/build/ClientTest/Build/Products",
+      "derivedDataPath" : "/Users/apple/Desktop/luowen/Yunshang/DeviceInfo/ClientTest/build",
+      "indexDataStoreFolderPath" : "/Users/apple/Desktop/luowen/Yunshang/DeviceInfo/ClientTest/build/ClientTest/Index/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/apple/Desktop/luowen/Yunshang/DeviceInfo/ClientTest/build/ClientTest/Index/PrecompiledHeaders",
+      "pchPath" : "/Users/apple/Desktop/luowen/Yunshang/DeviceInfo/ClientTest/build/ClientTest/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ASSETCATALOG_FILTER_FOR_DEVICE_MODEL" : "iPhone9,1",
+          "ASSETCATALOG_FILTER_FOR_DEVICE_OS_VERSION" : "13.7",
+          "BUILD_ACTIVE_RESOURCES_ONLY" : "YES",
+          "ENABLE_PREVIEWS" : "NO",
+          "TARGET_DEVICE_IDENTIFIER" : "b396d6014c9afb19230c21f1235eee5c43f48119",
+          "TARGET_DEVICE_MODEL" : "iPhone9,1",
+          "TARGET_DEVICE_OS_VERSION" : "13.7",
+          "TARGET_DEVICE_PLATFORM_NAME" : "iphoneos"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "launch",
+  "schemeCommand2" : "launch",
+  "shouldCollectMetrics" : false,
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

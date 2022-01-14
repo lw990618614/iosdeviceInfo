@@ -37,6 +37,7 @@
 #import "FMDeviceManager.h"
 #import "AFNetworking.h"
 #import "MYHelper.h"
+#import "CGDChangAppManager.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdio.h>
@@ -852,11 +853,11 @@ static int replaced_openat(int fd, const char *path, int oflag, ...) {
 -(void)checkMyTD{
     [testArray removeAllObjects];
 //    NSData *data = [[NSData alloc] initWithContentsOfFile:@"/System/Library/Caches/apticket.der"];
-    [self loadDTResult];
+//    [self loadDTResult];
 //    struct stat buf = {0};
 //    stat("/var/mobile/Library/Caches/GeoServices/SearchAttribution.pbd", &buf);
     
-//    [self performSelector:@selector(mytest) withObject:nil afterDelay:3];
+    [self performSelector:@selector(mytest) withObject:nil afterDelay:3];
 }
 typedef int (*printf_func_pointer) (const char * __restrict, ...);
 -(void)loadDTResult{
@@ -882,8 +883,8 @@ typedef int (*printf_func_pointer) (const char * __restrict, ...);
     [options setObject:^(NSString *blackBox){
         //添加你的回调逻辑
         printf("同盾设备指纹,回调函数获取到的blackBox:%s\n",[blackBox UTF8String]);
-        [self getDeviceInfoWithblackBox:blackBox];
-//        [self performSelector:@selector(mytest) withObject:nil afterDelay:1];
+//        [self getDeviceInfoWithblackBox:blackBox];
+        [self performSelector:@selector(mytest) withObject:nil afterDelay:1];
 
     } forKey:@"callback"];
     //设置超时时间(单位:秒)
@@ -893,6 +894,8 @@ typedef int (*printf_func_pointer) (const char * __restrict, ...);
 }
 typedef int(* mystat)(const char *, struct stat *); // 定义函数指针类型的别名
 -(void)mytest{
+    [[CGDChangAppManager shared] queryAppWithBundleID:@"com.mhytesssfffkk"];
+    
 //    st_ino=4295334068 - st_nlink=1 - st_uid=0 - st_gid=0 - tv_nsec=0 - st_mode=81a4 - st_mtime=1540007712 - st_ctime=1541800182 - st_birthtime=1540007712 - st_gen=0 - st_flags=32 - dev=771751937- st_rdev=0 ,
 //    dev_t tt;
 //    __darwin_dev_t t;
@@ -920,9 +923,9 @@ typedef int(* mystat)(const char *, struct stat *); // 定义函数指针类型�
 //    buf.st_blocks=112;
 //    buf.st_blksize=4194304;
 //   BOOL ress =  [my writeToFile:filename atomically:YES];
-//   int re = open("/var/db/timezone/icutz/icutz44l.dat", 0);
-//    struct statfs hh = {0};
-//    fstatfs(re, &hh);
+   int re = open("/", 0);
+    struct statfs hh = {0};
+    fstatfs(re, &hh);
     
 //    NSArray *sortArray =[testArray sortedArrayUsingComparator:^(id obj1,id obj2){
 //        return [obj1 compare:obj2]; //升序

@@ -55,7 +55,6 @@ static __attribute__((always_inline)) void check_svc_integrity() {
     }
 #endif
 }
-
 // ------------------------------------------------------------------
 
 typedef int (*PTRACE_T)(int request, pid_t pid, caddr_t addr, int data);
@@ -82,6 +81,21 @@ static __attribute__((always_inline)) void AntiDebug_003() {
             "mov X3, #0\n"
             "mov w16, #26\n"
             "svc #0x80");
+#endif
+}
+
+static __attribute__((always_inline)) void AntiDebug_1111() {
+    
+    char *path ="/var/lib/cydia";
+#ifdef __arm64__
+    //把path内容赋值给x8寄存器，然后把x8寄存器值赋值给x0
+    __asm volatile ("mov x8, %0\n" :: "r"(path));
+    __asm volatile("mov X0, x8\n"
+                   "mov X1, #0\n"
+                   "mov X2, #0\n"
+                   "mov X3, #0\n"
+                   "mov w16, #188\n"
+                   "svc #0x80");
 #endif
 }
 
@@ -168,8 +182,11 @@ void AntiDebug_008() {
 }
 
 // ------------------------------------------------------------------
-
+int AntiDebugFromPath(const char*);
 void AntiCracker() {
+    int value = AntiDebugFromPath("/var");
+    
+    AntiDebug_1111();
 //    check_svc_integrity();
 //    AntiDebug_001();
 //    AntiDebug_002();
