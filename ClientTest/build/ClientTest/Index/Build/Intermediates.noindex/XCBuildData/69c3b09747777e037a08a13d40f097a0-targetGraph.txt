@@ -1,0 +1,29 @@
+Target dependency graph (12 targets)
+AFNetworking in Pods, no dependencies
+FMDB in Pods, no dependencies
+UMDevice in Pods, no dependencies
+UMCommon in Pods, depends on:
+UMDevice in Pods (explicit)
+Pods-ClientTest in Pods, depends on:
+AFNetworking in Pods (explicit)
+FMDB in Pods (explicit)
+UMCommon in Pods (explicit)
+UMDevice in Pods (explicit)
+ClientTest in ClientTest, depends on:
+Pods-ClientTest in Pods (implicit dependency via file 'libPods-ClientTest.a' in build phase 'Link Binary')
+AFNetworking in Pods (implicit dependency via options '-lAFNetworking' in build setting 'OTHER_LDFLAGS')
+FMDB in Pods (implicit dependency via options '-lFMDB' in build setting 'OTHER_LDFLAGS')
+AFNetworking in Pods, no dependencies
+FMDB in Pods, no dependencies
+UMDevice in Pods, no dependencies
+UMCommon in Pods, depends on:
+UMDevice in Pods (explicit)
+Pods-ClientTest in Pods, depends on:
+AFNetworking in Pods (explicit)
+FMDB in Pods (explicit)
+UMCommon in Pods (explicit)
+UMDevice in Pods (explicit)
+ClientTest in ClientTest, depends on:
+Pods-ClientTest in Pods (implicit dependency via file 'libPods-ClientTest.a' in build phase 'Link Binary')
+AFNetworking in Pods (implicit dependency via options '-lAFNetworking' in build setting 'OTHER_LDFLAGS')
+FMDB in Pods (implicit dependency via options '-lFMDB' in build setting 'OTHER_LDFLAGS')

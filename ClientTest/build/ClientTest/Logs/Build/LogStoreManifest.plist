@@ -6,7 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>3FD40551-6C58-4D5E-A4EA-70A863E85265</key>
+		<key>7B170D3B-D107-4CC7-B8D3-6FE585B78B11</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -15,7 +15,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>3FD40551-6C58-4D5E-A4EA-70A863E85265.xcactivitylog</string>
+			<string>7B170D3B-D107-4CC7-B8D3-6FE585B78B11.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -32,15 +32,15 @@
 			<key>signature</key>
 			<string>Build ClientTest</string>
 			<key>timeStartedRecording</key>
-			<real>663826052.43293703</real>
+			<real>664366803.63581097</real>
 			<key>timeStoppedRecording</key>
-			<real>663826052.69029605</real>
+			<real>664366803.73312199</real>
 			<key>title</key>
 			<string>Build ClientTest</string>
 			<key>uniqueIdentifier</key>
-			<string>3FD40551-6C58-4D5E-A4EA-70A863E85265</string>
+			<string>7B170D3B-D107-4CC7-B8D3-6FE585B78B11</string>
 		</dict>
-		<key>61BCDE6E-70F4-471D-BF18-9E0E14A1E65A</key>
+		<key>805382DF-4457-40CF-AC5D-DAA3AC4B2FF8</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -49,7 +49,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>61BCDE6E-70F4-471D-BF18-9E0E14A1E65A.xcactivitylog</string>
+			<string>805382DF-4457-40CF-AC5D-DAA3AC4B2FF8.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -66,15 +66,15 @@
 			<key>signature</key>
 			<string>Build ClientTest</string>
 			<key>timeStartedRecording</key>
-			<real>663822853.89964998</real>
+			<real>664366801.68699205</real>
 			<key>timeStoppedRecording</key>
-			<real>663822856.10128498</real>
+			<real>664366801.81420004</real>
 			<key>title</key>
 			<string>Build ClientTest</string>
 			<key>uniqueIdentifier</key>
-			<string>61BCDE6E-70F4-471D-BF18-9E0E14A1E65A</string>
+			<string>805382DF-4457-40CF-AC5D-DAA3AC4B2FF8</string>
 		</dict>
-		<key>9775A34D-4FA9-4A90-AAD6-F6543E97186F</key>
+		<key>9BBAC6AF-F93B-404D-BEF1-3F4187E58C78</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -83,7 +83,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>9775A34D-4FA9-4A90-AAD6-F6543E97186F.xcactivitylog</string>
+			<string>9BBAC6AF-F93B-404D-BEF1-3F4187E58C78.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -100,15 +100,15 @@
 			<key>signature</key>
 			<string>Build ClientTest</string>
 			<key>timeStartedRecording</key>
-			<real>663825837.42464006</real>
+			<real>664367258.320418</real>
 			<key>timeStoppedRecording</key>
-			<real>663825837.58819103</real>
+			<real>664367269.76721501</real>
 			<key>title</key>
 			<string>Build ClientTest</string>
 			<key>uniqueIdentifier</key>
-			<string>9775A34D-4FA9-4A90-AAD6-F6543E97186F</string>
+			<string>9BBAC6AF-F93B-404D-BEF1-3F4187E58C78</string>
 		</dict>
-		<key>CE809C48-A570-4874-BE1B-6D5430AF7F57</key>
+		<key>C22468A0-AF43-4454-94CD-13673494B7BA</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -117,7 +117,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>CE809C48-A570-4874-BE1B-6D5430AF7F57.xcactivitylog</string>
+			<string>C22468A0-AF43-4454-94CD-13673494B7BA.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -134,15 +134,15 @@
 			<key>signature</key>
 			<string>Build ClientTest</string>
 			<key>timeStartedRecording</key>
-			<real>663822281.60368204</real>
+			<real>664366776.48601496</real>
 			<key>timeStoppedRecording</key>
-			<real>663822297.32393503</real>
+			<real>664366777.00710702</real>
 			<key>title</key>
 			<string>Build ClientTest</string>
 			<key>uniqueIdentifier</key>
-			<string>CE809C48-A570-4874-BE1B-6D5430AF7F57</string>
+			<string>C22468A0-AF43-4454-94CD-13673494B7BA</string>
 		</dict>
-		<key>F5E31D70-8457-45D7-954E-F4710901F687</key>
+		<key>C831E4F3-6F9F-402C-95EB-43759EEFDC67</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -151,7 +151,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>F5E31D70-8457-45D7-954E-F4710901F687.xcactivitylog</string>
+			<string>C831E4F3-6F9F-402C-95EB-43759EEFDC67.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -168,13 +168,47 @@
 			<key>signature</key>
 			<string>Build ClientTest</string>
 			<key>timeStartedRecording</key>
-			<real>663762494.06864202</real>
+			<real>664366921.71229196</real>
 			<key>timeStoppedRecording</key>
-			<real>663762494.17163205</real>
+			<real>664366921.95036399</real>
 			<key>title</key>
 			<string>Build ClientTest</string>
 			<key>uniqueIdentifier</key>
-			<string>F5E31D70-8457-45D7-954E-F4710901F687</string>
+			<string>C831E4F3-6F9F-402C-95EB-43759EEFDC67</string>
+		</dict>
+		<key>E7D1DC98-24FD-4932-BEFE-557711517C7C</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>E7D1DC98-24FD-4932-BEFE-557711517C7C.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>ClientTest project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>ClientTest</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build ClientTest</string>
+			<key>timeStartedRecording</key>
+			<real>664366687.916942</real>
+			<key>timeStoppedRecording</key>
+			<real>664366707.19666004</real>
+			<key>title</key>
+			<string>Build ClientTest</string>
+			<key>uniqueIdentifier</key>
+			<string>E7D1DC98-24FD-4932-BEFE-557711517C7C</string>
 		</dict>
 	</dict>
 </dict>
