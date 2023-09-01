@@ -5,4 +5,5 @@ pod 'UMCommon'
 pod 'UMDevice'
 pod 'FMDB'
 pod 'BaiduMobStatCodeless'
+pod 'MJExtension'
 end

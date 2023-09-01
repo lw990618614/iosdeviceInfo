@@ -1,0 +1,27 @@
+dependencies: \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/ClientTest/AppDelegate.m \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/ClientTest/AppDelegate.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/Pods/Headers/Public/AFNetworking/AFNetworking.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/Pods/Headers/Public/AFNetworking/AFURLRequestSerialization.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/Pods/Headers/Public/AFNetworking/AFURLResponseSerialization.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/Pods/Headers/Public/AFNetworking/AFSecurityPolicy.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/Pods/Headers/Public/AFNetworking/AFNetworkReachabilityManager.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/Pods/Headers/Public/AFNetworking/AFURLSessionManager.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/Pods/Headers/Public/AFNetworking/AFCompatibilityMacros.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/Pods/Headers/Public/AFNetworking/AFHTTPSessionManager.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/ClientTest/WHCFileManager.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/ClientTest/Class/Tools/DeviceInfoManager.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/ClientTest/MYDTManager.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/ClientTest/TinTalkingManager.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/ClientTest/BaiduMobStatManager.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/ClientTest/UMConfigureManager.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/ClientTest/JiGuangManager.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/ClientTest/AppsFlyerLibManager.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/AppsFlyerLib.framework/Modules/module.modulemap \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/AppsFlyerLib.framework/Headers/AppsFlyerDeepLink.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/AppsFlyerLib.framework/Headers/AppsFlyerDeepLinkResult.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/AppsFlyerLib.framework/Headers/AppsFlyerLinkGenerator.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/AppsFlyerLib.framework/Headers/AppsFlyerShareInviteHelper.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/AppsFlyerLib.framework/Headers/AppsFlyerCrossPromotionHelper.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/AppsFlyerLib.framework/Headers/AppsFlyerLib.h \
+  /Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/ClientTest/MYNetManager.h

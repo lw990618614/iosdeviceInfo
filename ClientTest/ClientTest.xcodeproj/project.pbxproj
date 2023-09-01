@@ -58,6 +58,8 @@
 		356F36D21ECDB899001603AB /* BasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 356F36D11ECDB899001603AB /* BasicViewController.m */; };
 		356F36E41ECDCC36001603AB /* DeviceInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 356F36E31ECDCC36001603AB /* DeviceInfoManager.m */; };
 		357CB08B1F4D6E96006BFB52 /* BatteryInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 357CB08A1F4D6E96006BFB52 /* BatteryInfoManager.m */; };
+		5661F90B29F91A2F00B269DE /* MYNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5661F90A29F91A2F00B269DE /* MYNetManager.m */; };
+		56C1B74F2A4D67FE00018C38 /* CGDDeviceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C1B74E2A4D67FE00018C38 /* CGDDeviceModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -234,6 +236,10 @@
 		356F36E31ECDCC36001603AB /* DeviceInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfoManager.m; sourceTree = "<group>"; };
 		357CB0891F4D6E96006BFB52 /* BatteryInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BatteryInfoManager.h; sourceTree = "<group>"; };
 		357CB08A1F4D6E96006BFB52 /* BatteryInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BatteryInfoManager.m; sourceTree = "<group>"; };
+		5661F90929F91A2F00B269DE /* MYNetManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MYNetManager.h; sourceTree = "<group>"; };
+		5661F90A29F91A2F00B269DE /* MYNetManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MYNetManager.m; sourceTree = "<group>"; };
+		56C1B74D2A4D67FE00018C38 /* CGDDeviceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGDDeviceModel.h; sourceTree = "<group>"; };
+		56C1B74E2A4D67FE00018C38 /* CGDDeviceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGDDeviceModel.m; sourceTree = "<group>"; };
 		D04520C0EE1641934DBAF840 /* libPods-ClientTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ClientTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8E5545DF40E7538362CD239 /* Pods-ClientTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClientTest.release.xcconfig"; path = "Target Support Files/Pods-ClientTest/Pods-ClientTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -323,6 +329,8 @@
 				0F8AEC421D262754007827BA /* AppDelegate.m */,
 				18D2151D27903457007A16D7 /* AppsFlyerLibManager.h */,
 				18D2151C27903456007A16D7 /* AppsFlyerLibManager.m */,
+				5661F90929F91A2F00B269DE /* MYNetManager.h */,
+				5661F90A29F91A2F00B269DE /* MYNetManager.m */,
 				185BB2272727A00E00933CAC /* MYDTManager.h */,
 				185BB2282727A00E00933CAC /* MYDTManager.m */,
 				18D7B7C1278E7AEC00739136 /* TinTalkingManager.h */,
@@ -520,6 +528,8 @@
 				18366C4D26807A6000874249 /* libFMDeviceManager.a */,
 				18D7B7C7278E851900739136 /* BaiduMobStat.h */,
 				18D7B7C8278E851A00739136 /* libBaiduMobStat.a */,
+				56C1B74D2A4D67FE00018C38 /* CGDDeviceModel.h */,
+				56C1B74E2A4D67FE00018C38 /* CGDDeviceModel.m */,
 				18D7B7CF278E8D6900739136 /* Lib */,
 			);
 			name = UD;
@@ -659,7 +669,7 @@
 				TargetAttributes = {
 					0F8AEC3A1D262754007827BA = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = W9NR59G3WD;
+						DevelopmentTeam = P83R52A6AV;
 						ProvisioningStyle = Automatic;
 					};
 					0F8AEC531D262755007827BA = {
@@ -767,6 +777,7 @@
 				18DBF5A3277B069A002CB931 /* Detect.s in Sources */,
 				1849961526D767E100385E24 /* AntiMSHookFunctionARM.c in Sources */,
 				3524EF9A1F4E7D51001CF837 /* DeviceDataLibrery.m in Sources */,
+				5661F90B29F91A2F00B269DE /* MYNetManager.m in Sources */,
 				185BB2292727A00E00933CAC /* MYDTManager.m in Sources */,
 				1849961426D767E100385E24 /* MSHookFunctionARMCheck.c in Sources */,
 				18D7B7D8278E8D9900739136 /* JiGuangManager.m in Sources */,
@@ -778,6 +789,7 @@
 				18C6DCA72671E3D10072E0D9 /* OpenUDID.m in Sources */,
 				18514A0C266F24A700636889 /* WHCFileManager.m in Sources */,
 				18D7B7CC278E862C00739136 /* UMConfigureManager.m in Sources */,
+				56C1B74F2A4D67FE00018C38 /* CGDDeviceModel.m in Sources */,
 				0F8AEC401D262754007827BA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -951,11 +963,13 @@
 					armv7,
 				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_ENTITLEMENTS = ClientTest/ClientTest.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W9NR59G3WD;
+				COMPILER_INDEX_STORE_ENABLE = NO;
+				DEVELOPMENT_TEAM = P83R52A6AV;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = armv7;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -967,8 +981,9 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_INPUT_FILETYPE = automatic;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = ClientTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -978,7 +993,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mhytesssfffkk;
+				PRODUCT_BUNDLE_IDENTIFIER = com.myTestAction;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -994,11 +1009,13 @@
 					armv7,
 				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_ENTITLEMENTS = ClientTest/ClientTest.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W9NR59G3WD;
+				COMPILER_INDEX_STORE_ENABLE = NO;
+				DEVELOPMENT_TEAM = P83R52A6AV;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = armv7;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1010,8 +1027,9 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_INPUT_FILETYPE = automatic;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = ClientTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1021,7 +1039,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mhytesssfffkk;
+				PRODUCT_BUNDLE_IDENTIFIER = com.myTestAction;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -1,0 +1,67 @@
+{
+  "_buildCommand2" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildOnly"
+  },
+  "buildCommand" : "build",
+  "configuredTargets" : [
+    {
+      "guid" : "a96566576b5904368169fdd0d52c18c5c8fc4789fbc0ce8b3883d04708ed37eb"
+    }
+  ],
+  "containerPath" : "/Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/ClientTest.xcworkspace",
+  "continueBuildingAfterErrors" : false,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "arm64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "iphoneos",
+      "sdk" : "iphoneos15.0",
+      "sdkVariant" : "iphoneos",
+      "supportedArchitectures" : [
+        "arm64e",
+        "arm64v8",
+        "arm64",
+        "armv8"
+      ],
+      "targetArchitecture" : "arm64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/Build/Products",
+      "derivedDataPath" : "/Users/chenxin/Library/Developer/Xcode/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/chenxin/Library/Developer/Xcode/DerivedData/ClientTest-bngdqhbolgybfoebmicgabkclsej/Index/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/chenxin/Library/Developer/Xcode/DerivedData/ClientTest-bngdqhbolgybfoebmicgabkclsej/Index/PrecompiledHeaders",
+      "pchPath" : "/Users/chenxin/Desktop/Myprojects/ClientTest/ClientTest/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ASSETCATALOG_FILTER_FOR_DEVICE_MODEL" : "iPhone13,2",
+          "ASSETCATALOG_FILTER_FOR_DEVICE_OS_VERSION" : "14.1",
+          "BUILD_ACTIVE_RESOURCES_ONLY" : "YES",
+          "ENABLE_PREVIEWS" : "NO",
+          "TARGET_DEVICE_IDENTIFIER" : "00008101-001C694024B82C3A",
+          "TARGET_DEVICE_MODEL" : "iPhone13,2",
+          "TARGET_DEVICE_OS_VERSION" : "14.1",
+          "TARGET_DEVICE_PLATFORM_NAME" : "iphoneos"
+        }
+      },
+      "toolchainOverride" : "org.llvm.13.0.1"
+    }
+  },
+  "schemeCommand" : "launch",
+  "schemeCommand2" : "launch",
+  "shouldCollectMetrics" : false,
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

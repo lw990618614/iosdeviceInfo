@@ -14,32 +14,40 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
+  - BaiduMobStatCodeless (5.3.6)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
+  - MJExtension (3.4.1)
   - UMCommon (7.2.9):
     - UMDevice
   - UMDevice (1.2.0)
 
 DEPENDENCIES:
   - AFNetworking
+  - BaiduMobStatCodeless
   - FMDB
+  - MJExtension
   - UMCommon
   - UMDevice
 
 SPEC REPOS:
   trunk:
     - AFNetworking
+    - BaiduMobStatCodeless
     - FMDB
+    - MJExtension
     - UMCommon
     - UMDevice
 
 SPEC CHECKSUMS:
-  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
+  BaiduMobStatCodeless: b1029b96b02d54802049d280f2b1abb0c76f0e9e
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  MJExtension: 21c5f6f8c4d5d8844b7ae8fbae08fed0b501f961
   UMCommon: 28a05184e0766ea2c015ce9c56963356a38f9b1b
   UMDevice: da050ba77e5075b1ec08303065722d25f599e483
 
-PODFILE CHECKSUM: f384bfbd80f1ccb9bbb68a2e730b53dae6a97cde
+PODFILE CHECKSUM: 4b0dad96826b1ff575723b632f09dd417b697142
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.12.1

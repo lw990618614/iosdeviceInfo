@@ -16,6 +16,7 @@
 #import "UMConfigureManager.h"
 #import "JiGuangManager.h"
 #import "AppsFlyerLibManager.h"
+#import "MYNetManager.h"
 
 @interface UMUtils : NSObject
 
@@ -44,6 +45,7 @@
           [d writeToFile:test atomically:YES];
      }
     
+    [MYNetManager getnet];
     
     // Override point for customization after application launch.
 

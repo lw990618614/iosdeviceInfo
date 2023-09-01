@@ -271,49 +271,7 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
 - (NSString *)getIpAddressCell {
     return [self ipAddressWithIfaName:@"pdp_ip0"];
 }
-//(
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "1 1",
-//    "1 10",
-//    "1 2",
-//    "1 4",
-//    "6 1",
-//    "1 14",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "4 17",
-//    "1 1",
-//    "1 2",
-//    "1 29"
-//)
+
 
 
 - (NSArray *)getAllProcess
@@ -543,7 +501,7 @@ const char* simplified_inet_ntop(int family, const void *addrptr, char *strptr, 
 
 -(NSString *)getSysctlResult{
     
-//    [self getreplaced_sysctlbyname];
+    [self getreplaced_sysctlbyname];
 ////
 //  NSArray *reuslt  =  [self  getAllProcess];
 //    struct kinfo_proc *proc;
